@@ -2,7 +2,7 @@
 
 namespace AppTripEver.Models
 {
-    public class ReservasModel : NotificationObject
+    public class ServiciosModel : NotificationObject
     {
     }
 }

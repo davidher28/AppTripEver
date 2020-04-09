@@ -51,6 +51,24 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+        public List<ReservasModel> Reservas
+        {
+            get { return reservas; }
+            set
+            {
+                reservas = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsHost
+        {
+            get { return isHost; }
+            set
+            {
+                isHost = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion 
     }
 }
