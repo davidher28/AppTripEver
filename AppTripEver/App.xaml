@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="AppTripEver.App">
-                <!--Davincho-->
-                <!--Germancho-->
-                <!--miprueba-->
-
+                <!--1-->
+                <!--2-->
+                <!--3-->
+                <!--4-->
+    
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
