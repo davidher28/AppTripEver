@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -87,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppTripEver\AppTripEver.csproj">
-      <Project>{7B5A3235-7F29-4CC9-940C-C3464C154B30}</Project>
+      <Project>{BC0A5F30-94E1-40DC-B310-FA8A7FB77189}</Project>
       <Name>AppTripEver</Name>
     </ProjectReference>
   </ItemGroup>
