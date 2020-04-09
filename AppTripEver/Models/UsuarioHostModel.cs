@@ -8,9 +8,16 @@ namespace AppTripEver.Models
     {
         #region Properties
         private long noCuenta { get; set; }
-        private string direcFacturacion { get; set; }
+        private string direcFacturacion { get; set; }  
         private List<ServiciosModel> servicios { get; set; }
-        #endregion Properties
+        #endregion Properties        
+
+        #region Initialize
+        public UsuarioHostModel(CarteraModel Cartera) : base(Cartera)
+        {
+            this.Cartera = Cartera;
+        }
+        #endregion Initialize
 
         #region Getters & Setters
         public long NoCuenta

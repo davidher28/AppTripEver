@@ -21,7 +21,17 @@ namespace AppTripEver.Models
         private List<ReservasModel> reservas { get; set; }
         private List<FavoritosModel> favoritos { get; set; }
         private bool isHost { get; set; }
+        public TarjetasRegaloModel Comprador { get; set; }
+        public TarjetasRegaloModel Destinatario { get; set; }
+
         #endregion Properties
+
+        #region Initialize
+        public UsuarioModel(CarteraModel Cartera) 
+        {
+            this.Cartera = Cartera;
+        }
+        #endregion Initialize
 
         #region Getters & Setters
         public string Email
@@ -72,3 +82,4 @@ namespace AppTripEver.Models
         #endregion 
     }
 }
+ 
