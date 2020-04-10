@@ -28,6 +28,33 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+        public string FechaFinal 
+        {
+            get { return fechaFinal; }
+            set
+            {
+                fechaFinal = value;
+                OnPropertyChanged();
+            }
+        }
+        public string HoraInicio
+        {
+            get { return horaInicio; }
+            set
+            {
+                horaInicio = value;
+                OnPropertyChanged();
+            }
+        }
+        public string HoraFinal
+        {
+            get { return horaFinal; }
+            set
+            {
+                horaFinal = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion Getters & Setters 
     }
 }

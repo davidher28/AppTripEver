@@ -16,6 +16,11 @@ namespace AppTripEver.Models
 
         #region Initialize
         #endregion Initialize
+        public HospedajesModel(HorarioModel Fecha, UsuarioHostModel Creador) : base(Fecha, Creador)
+        {
+            this.Fecha = Fecha;
+            this.Creador = Creador;
+        }
         #region Getters & Setters
         public int PrecioNoche
         {

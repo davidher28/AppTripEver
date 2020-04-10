@@ -19,7 +19,7 @@ namespace AppTripEver.Models
         public string NombreUsuario { get; set; }
         private string contraseña { get; set; }
         private List<ReservasModel> reservas { get; set; }
-        private List<ServicosModel> favoritos { get; set; }
+        private List<ServiciosModel> favoritos { get; set; }
         private bool isHost { get; set; }
         public TarjetasRegaloModel Comprador { get; set; }
         public TarjetasRegaloModel Destinatario { get; set; }

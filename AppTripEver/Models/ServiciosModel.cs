@@ -13,15 +13,19 @@ namespace AppTripEver.Models
         private int numMaxPersonas { get; set; }
         public string Ubicacion { get; set; }
         private string descripcion { get; set; }
-        private HorarioModel fechaInicio { get; set; }
+        private HorarioModel fecha { get; set; }
         private int precio { get; set; }
         private List<ReseñasModel> reseñas { get; set; }
+        
+        public UsuarioHostModel Creador { get; set; }
+        public ReservasModel Reserva { get; set; }
         #endregion Properties
 
         #region Initialize
-        public ServiciosModel(HorarioModel fechaInicio)
+        public ServiciosModel(HorarioModel fecha, UsuarioHostModel Creador)
         {
-            this.fechaInicio = fechaInicio;
+            this.fecha = fecha;
+            this.Creador = Creador;
         }
         #endregion Initialize
 
@@ -53,12 +57,12 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
-        public HorarioModel FechaInicio
+        public HorarioModel Fecha
         {
-            get { return fechaInicio; }
+            get { return fecha; }
             set
             {
-                fechaInicio = value;
+                fecha = value;
                 OnPropertyChanged();
             }
         }

@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppTripEver.Services;
-using AppTripEver.Views;
 
 namespace AppTripEver
 {
@@ -12,8 +11,6 @@ namespace AppTripEver
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 
