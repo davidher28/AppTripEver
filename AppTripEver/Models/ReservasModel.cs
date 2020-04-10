@@ -3,6 +3,6 @@
 namespace AppTripEver.Models
 {
     public class ReservasModel : NotificationObject
-    {
+    {            
     }
 }

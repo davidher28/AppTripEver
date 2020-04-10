@@ -1,6 +1,6 @@
 ﻿namespace AppTripEver.Models
 {
-    internal class FavoritosModel
+    public class ReseñasModel
     {
     }
 }

@@ -7,7 +7,6 @@ namespace AppTripEver.Models
         #region Properties
         public long ID { get; set; }
         public UsuarioModel Usuario { get; set; }
-        public UsuarioHostModel Usuario1 { get; set; }
         private int montoTotal {get; set;}
         #endregion Properties 
 
