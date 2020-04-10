@@ -13,7 +13,6 @@
         #region Initialize 
         #endregion Initialize
 
-
         #region Getters & Setters
         #endregion Getters & Setters 
     }

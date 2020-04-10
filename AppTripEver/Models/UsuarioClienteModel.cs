@@ -8,12 +8,14 @@ namespace AppTripEver.Models
     {
         #region Properties
         #endregion Properties
+
         #region Initialize
         public UsuarioClienteModel(CarteraModel Cartera) : base(Cartera)
         {
             this.Cartera = Cartera;
         }
         #endregion Initialize
+
         #region Getters & Setters
         #endregion Getters & Setters
     }
