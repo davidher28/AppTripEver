@@ -42,4 +42,4 @@ namespace AppTripEver.Models
         }
         #endregion Getters & Setters
     }
-}
+} 

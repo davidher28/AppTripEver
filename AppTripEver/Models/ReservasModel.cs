@@ -10,14 +10,14 @@ namespace AppTripEver.Models
         public int NumPersonas { get; set; }
         private EstadoModel estado { get; set; }
         public UsuarioClienteModel Cliente { get; set; }
-        public List<ServiciosModel> Servicios { get; set; }
+        public ServiciosModel Servicio { get; set; }
         #endregion Properties
 
         #region Initialize
-        public ReservasModel(EstadoModel estado, List<ServiciosModel> Servicios, UsuarioClienteModel Cliente)
+        public ReservasModel(EstadoModel estado, ServiciosModel Servicio, UsuarioClienteModel Cliente)
         {
             this.estado = estado;
-            this.Servicios = Servicios;
+            this.Servicio = Servicio;
             this.Cliente = Cliente;
         }
         #endregion Initialize

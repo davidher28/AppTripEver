@@ -6,7 +6,7 @@ namespace AppTripEver.Models
     {
         #region Properties
         public long ID { get; set; }
-        public ServiciosModel Servicio { get; set; }
+        /* public ServiciosModel Servicio { get; set; } Creo que esto no va, fue lo que no pregunté */
         private string fechaInicio { get; set; }
         private string fechaFinal { get; set; }
         private string horaInicio { get; set; }

@@ -8,7 +8,7 @@ namespace AppTripEver.Models
         public long ID { get; set; }
         public string Estado { get; set; }
 
-        public ReservasModel Reserva { get; set; }
+        /* public ReservasModel Reserva { get; set; } Creo que esto no va, fue lo que no pregunté */
         #endregion Properties
 
         #region Initialize

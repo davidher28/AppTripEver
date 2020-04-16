@@ -18,7 +18,8 @@ namespace AppTripEver.Models
         private List<ReseñasModel> reseñas { get; set; }
         
         public UsuarioHostModel Creador { get; set; }
-        public ReservasModel Reserva { get; set; }
+
+        /* public ReservasModel Reserva { get; set; } Creo que esto no va, fue lo que no pregunté */
         #endregion Properties
 
         #region Initialize
