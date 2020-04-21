@@ -19,7 +19,7 @@ namespace AppTripEver.Models
         
         public UsuarioHostModel Creador { get; set; }
 
-        /* public ReservasModel Reserva { get; set; } Creo que esto no va, fue lo que no pregunté */
+        public ReservasModel Reserva { get; set; } 
         #endregion Properties
 
         #region Initialize
