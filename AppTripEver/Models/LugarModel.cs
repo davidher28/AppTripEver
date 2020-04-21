@@ -9,7 +9,7 @@ namespace AppTripEver.Models
         public string Direccion { get; set; }
         public string Historia { get; set; }
         public string Descripcion { get; set; }
-        /* public ActividadesModel Actividad { get; set; } Creo que esto no va, fue lo que no pregunté */
+        public ActividadesModel Actividad { get; set; }
 
         #endregion Properties
 
