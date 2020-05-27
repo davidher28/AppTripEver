@@ -1,17 +1,15 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using AppTripEver.Services;
-
+using AppTripEver.Views;
 namespace AppTripEver
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()

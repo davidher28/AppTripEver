@@ -17,3 +17,4 @@ namespace AppTripEver.Models.AuxiliarModels
         #endregion Initialize
     }
 }
+ 

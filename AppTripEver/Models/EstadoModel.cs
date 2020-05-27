@@ -17,5 +17,5 @@ namespace AppTripEver.Models
 
         #region Getters & Setters 
         #endregion Getters & Setters 
-    }
+    } 
 }
