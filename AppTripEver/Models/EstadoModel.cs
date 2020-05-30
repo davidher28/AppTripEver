@@ -2,10 +2,11 @@
 
 namespace AppTripEver.Models
 {
-    public class EstadoModel : NotificationObject
+    public class EstadoModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdEstado { get; set; }
+
         public string Estado { get; set; }
 
         public ReservasModel Reserva { get; set; } 

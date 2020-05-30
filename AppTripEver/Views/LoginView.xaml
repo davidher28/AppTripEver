@@ -73,7 +73,7 @@
             Text="LOGIN"
             TextColor="#4758AE"
             TranslationY="-20"
-            Clicked="Choose_OnClicked"/>
+            Command="{Binding IniciarSesionCommand}"/>
 
         <Label
             Grid.Row="5"

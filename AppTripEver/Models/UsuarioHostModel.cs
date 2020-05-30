@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace AppTripEver.Models
 {
     public class UsuarioHostModel : UsuarioModel
     {
         #region Properties
+        [JsonIgnore]
         private long noCuenta { get; set; }
-        private string direcFacturacion { get; set; }  
+        [JsonIgnore]
+        private string direcFacturacion { get; set; }
+        [JsonIgnore]
         private List<ServiciosModel> servicios { get; set; }
         #endregion Properties        
 

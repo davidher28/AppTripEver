@@ -23,10 +23,10 @@ namespace AppTripEver.Configuration
         private void InicializarVerbosConfiguracion()
         {
             VerbosConfiguracion = new Dictionary<string, string>();
-            VerbosConfiguracion.Add("GET", string.Concat(NameSpaceRest, "RequestParametros"));
-            VerbosConfiguracion.Add("DELETE", string.Concat(NameSpaceRest, "RequestParametros"));
-            VerbosConfiguracion.Add("POST", string.Concat(NameSpaceRest, "RequestBody"));
-            VerbosConfiguracion.Add("PUT", string.Concat(NameSpaceRest, "RequestBody"));
+            VerbosConfiguracion.Add("GET", string.Concat(NameSpaceRest, "RequestParametros`1"));
+            VerbosConfiguracion.Add("DELETE", string.Concat(NameSpaceRest, "RequestParametros`1"));
+            VerbosConfiguracion.Add("POST", string.Concat(NameSpaceRest, "RequestBody`1"));
+            VerbosConfiguracion.Add("PUT", string.Concat(NameSpaceRest, "RequestBody`1"));
         }
         #endregion Métodos
     }

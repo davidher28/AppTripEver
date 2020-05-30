@@ -2,10 +2,10 @@
 
 namespace AppTripEver.Models
 {
-    public class HorarioModel : NotificationObject
+    public class HorarioModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdHorario { get; set; }
         public ServiciosModel Servicio { get; set; } 
         private string fechaInicio { get; set; }
         private string fechaFinal { get; set; }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace AppTripEver.Models
 {
-    public class ReservasModel : NotificationObject
+    public class ReservasModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }    
+        public long IdReservas { get; set; }
         public int NumPersonas { get; set; }
         private EstadoModel estado { get; set; }
         public UsuarioClienteModel Cliente { get; set; }

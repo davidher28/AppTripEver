@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppTripEver.Models.APIRest
+namespace AppTripEver.Services.APIRest
 {
     public class ElegirRequest<T> 
     {
@@ -30,12 +30,16 @@ namespace AppTripEver.Models.APIRest
             if (diccionario.TryGetValue(verbo.ToUpper(), out nombreClase))
             {
                 Type tipoClase = Type.GetType(nombreClase);
-                EstrategiaEnvio = (Request<T>)Activator.CreateInstance(tipoClase);
+                Type[] typeArgs = { typeof(T) };
+                var genericClass = tipoClase.MakeGenericType(typeArgs);
+                EstrategiaEnvio = (Request<T>)Activator.CreateInstance(genericClass, url, verbo.ToUpper());
             }
         }
         
-        public async Task<APIResponse> EjecutarEstrategia(T objecto)
+        public async Task<APIResponse> EjecutarEstrategia(T objecto, ParametersRequest parametersRequest = null)
         {
+            parametersRequest = parametersRequest ?? new ParametersRequest();
+            await EstrategiaEnvio.ConstruirURL(parametersRequest);
             var response = await EstrategiaEnvio.SendRequest(objecto);
             return response;
         }

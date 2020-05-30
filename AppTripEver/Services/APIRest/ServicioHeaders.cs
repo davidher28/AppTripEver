@@ -14,7 +14,8 @@ namespace AppTripEver.Services.APIRest
         #region Initialize
         public ServicioHeaders()
         {
-            Headers.Add("content-type", "application/json");
+            Headers = new Dictionary<string, string>();
+            Headers.Add("ContentType", "application/json");
         }
         #endregion Initialize
 

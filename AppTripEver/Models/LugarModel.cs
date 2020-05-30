@@ -2,10 +2,10 @@
 
 namespace AppTripEver.Models
 {
-    public class LugarModel : NotificationObject 
+    public class LugarModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdLugar { get; set; }
         public string Direccion { get; set; }
         public string Historia { get; set; }
         public string Descripcion { get; set; }
