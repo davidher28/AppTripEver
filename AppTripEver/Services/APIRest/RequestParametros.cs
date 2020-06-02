@@ -32,12 +32,10 @@ namespace AppTripEver.Services.APIRest
             {
                 using (var client = new HttpClient())
                 {
-                    Console.WriteLine(Verbo);
                     var verboHttp = (Verbo == "GET") ? HttpMethod.Get : HttpMethod.Delete;
                     client.Timeout = TimeSpan.FromSeconds(50);
                     HttpRequestMessage requestMessage = new HttpRequestMessage(verboHttp, UrlParameters);
                     requestMessage = ServicioHeaders.AgregarCabeceras(requestMessage);
-                    Console.WriteLine(requestMessage);
                     HttpResponseMessage HttpResponse = await client.SendAsync(requestMessage);
                     respuesta.Code = Convert.ToInt32(HttpResponse.StatusCode);
                     respuesta.IsSuccess = HttpResponse.IsSuccessStatusCode;
