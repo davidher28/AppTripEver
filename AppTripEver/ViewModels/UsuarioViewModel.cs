@@ -54,8 +54,9 @@ namespace AppTripEver.ViewModels
             ParametersRequest parametros = new ParametersRequest();
             parametros.Parametros.Add("1");
             APIResponse response = await GetUsuario.EjecutarEstrategia(null, parametros);
-            Console.WriteLine(response);
+            Console.WriteLine(response.Response);
             UsuarioModel usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
         }
     }
 }
+ 

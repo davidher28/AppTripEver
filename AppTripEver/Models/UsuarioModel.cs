@@ -9,9 +9,9 @@ namespace AppTripEver.Models
     public class UsuarioModel : BaseModel
     {
         #region Properties
-        [JsonProperty("IdUsuario")]
+        [JsonProperty ("IdUsuario")]
         public long IdUsuario { get; set; }
-        
+
         [JsonProperty("Nombre")]
         public string Nombre { get; set; }
 
