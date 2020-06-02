@@ -12,7 +12,7 @@ namespace AppTripEver.Services.APIRest
     /* Verbos GET y DELETE */
     public class RequestParametros<T> : Request<T>
     {
-        public RequestParametros(string verbo, string url) 
+        public RequestParametros(string url, string verbo) 
         {
             Url = url;
             Verbo = verbo; 
@@ -33,8 +33,8 @@ namespace AppTripEver.Services.APIRest
                 using (var client = new HttpClient())
                 {
                     var verboHttp = (Verbo == "GET") ? HttpMethod.Get : HttpMethod.Delete;
-                    await this.ConstruirURL(objecto);
-                    HttpRequestMessage requestMessage = new HttpRequestMessage(verboHttp, Url);
+                    client.Timeout = TimeSpan.FromSeconds(50);
+                    HttpRequestMessage requestMessage = new HttpRequestMessage(verboHttp, UrlParameters);
                     requestMessage = ServicioHeaders.AgregarCabeceras(requestMessage);
                     HttpResponseMessage HttpResponse = await client.SendAsync(requestMessage);
                     respuesta.Code = Convert.ToInt32(HttpResponse.StatusCode);
@@ -49,29 +49,6 @@ namespace AppTripEver.Services.APIRest
             }
 
             return respuesta;
-        }
-
-        private async Task ConstruirURL(T parametros)
-        {
-            ParametersRequest Parametros = parametros as ParametersRequest;
-            
-            if (Parametros.Parametros.Count() > 0 )
-            {
-                Url = (Url.Substring(Url.Length - 1) == "/") ? Url.Remove(Url.Length - 1) : Url;
-                Parametros.Parametros.ForEach(p => Url += "/" + p);
-            }
-
-            if (Parametros.QueryParametros.Count() > 0)
-            {
-                var queryParameters = await new FormUrlEncodedContent(Parametros.QueryParametros).ReadAsStringAsync();
-                Url += queryParameters;
-            }
-
-        }
-
-        private object FormUrlEncodedContent(Dictionary<string, string> queryParametros)
-        {
-            throw new NotImplementedException();
         }
         #endregion Métodos
 

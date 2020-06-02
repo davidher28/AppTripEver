@@ -2,10 +2,10 @@
 
 namespace AppTripEver.Models
 {
-    public class ActividadesModel : NotificationObject
+    public class ActividadesModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdActividad { get; set; }
         private string duracion { get; set; }
         private LugarModel lugar { get; set; }
         private int edadMinima { get; set; }

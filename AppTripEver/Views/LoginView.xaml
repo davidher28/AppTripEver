@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
-             x:Class="AppTripEver.MainPage"
+             x:Class="AppTripEver.Views.LoginView"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#4AAFDB">
+             BackgroundColor="#4AAFDB"
+             NavigationPage.HasNavigationBar="false">
     <Grid Padding="20" RowSpacing="20">
 
         <Grid.RowDefinitions>
@@ -71,7 +72,8 @@
             CornerRadius="8"
             Text="LOGIN"
             TextColor="#4758AE"
-            TranslationY="-20" />
+            TranslationY="-20"
+            Command="{Binding IniciarSesionCommand}"/>
 
         <Label
             Grid.Row="5"

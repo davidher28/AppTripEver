@@ -2,10 +2,11 @@
 
 namespace AppTripEver.Models
 {
-    public class CarteraModel : NotificationObject
+    public class CarteraModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdCartera { get; set; }
+
         public UsuarioModel Usuario { get; set; }
         private int montoTotal {get; set;}
         #endregion Properties 

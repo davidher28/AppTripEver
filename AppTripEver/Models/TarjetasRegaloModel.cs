@@ -5,10 +5,10 @@ using System.Text;
 
 namespace AppTripEver.Models
 {
-   public class TarjetasRegaloModel : NotificationObject
+   public class TarjetasRegaloModel : BaseModel
     {
         #region Properties
-        public long ID { get; set; }
+        public long IdTarjetasRegalo { get; set; }
         public string Direccion { get; set; }
         public UsuarioModel Comprador { get; set; }
         public UsuarioModel Destinatario { get; set; }
