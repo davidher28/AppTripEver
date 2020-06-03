@@ -13,10 +13,12 @@ namespace AppTripEver.Views
     public partial class LoginView : ContentPage
     {
         UsuarioViewModel context = new UsuarioViewModel();
+
         public LoginView()
         {
             InitializeComponent();
             BindingContext = context;
+
         }
     }
 }

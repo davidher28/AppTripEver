@@ -25,6 +25,7 @@ namespace AppTripEver.ViewModels
         #region Request
         public ElegirRequest<BaseModel> GetUsuarios { get; set; }
         public ElegirRequest<BaseModel> GetUsuario { get; set; }
+        public ElegirRequest<BaseModel> GetUsuario_Name { get; set; }
         public ElegirRequest<UsuarioModel> CreateUsuario { get; set; }
         public ElegirRequest<UsuarioModel> EditUsuario { get; set; }
         public ElegirRequest<BaseModel> DeleteUsuario { get; set; }
@@ -51,6 +52,8 @@ namespace AppTripEver.ViewModels
         private bool isBuscarEnable;
 
         private ObservableCollection<UsuarioModel> usuarios;
+
+
 
 
         #endregion
@@ -169,6 +172,7 @@ namespace AppTripEver.ViewModels
         {
             string urlUsuarios = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_USUARIOS;
             string urlUsuario = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO;
+            string urlUsuario_Name = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_NOMBRE;
             string urlCrearUsuario = Endpoints.URL_SERVIDOR + Endpoints.CREAR_USUARIO;
             string urlEditarUsuario = Endpoints.URL_SERVIDOR + Endpoints.EDITAR_USUARIO;
             string urlEliminarUsuario = Endpoints.URL_SERVIDOR + Endpoints.ELIMINAR_USUARIO;
@@ -178,6 +182,9 @@ namespace AppTripEver.ViewModels
 
             GetUsuario = new ElegirRequest<BaseModel>();
             GetUsuario.ElegirEstrategia("GET", urlUsuario);
+
+            GetUsuario_Name = new ElegirRequest<BaseModel>();
+            GetUsuario_Name.ElegirEstrategia("GET", urlUsuario_Name);
 
             CreateUsuario = new ElegirRequest<UsuarioModel>();
             CreateUsuario.ElegirEstrategia("POST", urlCrearUsuario);
@@ -214,10 +221,19 @@ namespace AppTripEver.ViewModels
 
         public async Task SeleccionarUsuario()
         {
+
             ParametersRequest parametros = new ParametersRequest();
-            parametros.Parametros.Add("1");
-            APIResponse response = await GetUsuario.EjecutarEstrategia(null, parametros);
-            UsuarioModel usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
+            parametros.Parametros.Add("camiflow");
+            parametros.Parametros.Add("micontra");
+            APIResponse response = await GetUsuario_Name.EjecutarEstrategia(null, parametros); 
+            if (response.IsSuccess)
+            {
+                Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
+                NombreUsuario.Value = Usuario.Nombre;
+                IsEliminarEnable = true;
+                IsGuardarEnable = true;
+                IsGuardarEditar = true;
+            }
         }
 
         public async Task ListaUsuarios()

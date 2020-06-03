@@ -55,6 +55,7 @@
             PlaceholderColor="White" />
 
         <controls:StandardEntry
+            
             Grid.Row="3"
             Margin="0,0,0,20"
             Padding="13"
