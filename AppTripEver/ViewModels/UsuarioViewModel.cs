@@ -194,11 +194,11 @@ namespace AppTripEver.ViewModels
             IniciarSesionCommand = new Command(async () => await SeleccionarUsuario(), () => true);
             ListaUsuariosCommand = new Command(async () => await ListaUsuarios(), () => true);
             SelectUsuarioCommand = new Command(async () => await SeleccionarUsuario(), () => IsBuscarEnable);
-            CrearUsuarioCommand = new Command(async () => await NuevoUsuario(), () => true);
-            EliminarUsuarioCommand = new Command(async () => await DeleteUsuario(), () => IsEliminarEnable);
-            EditarUsuarioCommand = new Command(async () => await GuardarUsuario(), () => IsGuardarEnable);
-            ValidateBusquedaCommand = new Command(async () => await ValidateBusquedaForm(), () => true);
-            ValidateNombreUsuarioCommand = new Command(async () => await ValidateNombreUsuarioForm(), () => true);
+            //CrearUsuarioCommand = new Command(async () => await NuevoUsuario(), () => true);
+            //EliminarUsuarioCommand = new Command(async () => await DeleteUsuario(), () => IsEliminarEnable);
+            //EditarUsuarioCommand = new Command(async () => await GuardarUsuario(), () => IsGuardarEnable);
+            //ValidateBusquedaCommand = new Command(async () => await ValidateBusquedaForm(), () => true);
+            //ValidateNombreUsuarioCommand = new Command(async () => await ValidateNombreUsuarioForm(), () => true);
         }
 
         public void InitializeFields()
