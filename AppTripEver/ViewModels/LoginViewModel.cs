@@ -7,6 +7,7 @@ using AppTripEver.Validation;
 using AppTripEver.Validation.Rules;
 using AppTripEver.Views;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -158,7 +159,9 @@ namespace AppTripEver.ViewModels
                 }
                 else
                 {
+                    MessageViewPop popUp = new MessageViewPop();
                     ((MessageViewModel)PopUp.BindingContext).Message = "Datos incorrectos.";
+                    await PopupNavigation.Instance.PushAsync(popUp);
                 }
             }
             catch(Exception)
