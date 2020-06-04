@@ -7,6 +7,7 @@ using AppTripEver.Validation;
 using AppTripEver.Validation.Rules;
 using AppTripEver.Views;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -138,16 +139,29 @@ namespace AppTripEver.ViewModels
                 parametros.Parametros.Add(NombreUsuario.Value);
                 parametros.Parametros.Add(ContraUsuario.Value);
                 APIResponse response = await GetUsuario_Name.EjecutarEstrategia(null, parametros);
-                Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
                 if (response.IsSuccess)
-                {                    
+                {
+                    Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
                     IsUsuarioEnable = true;
                     IsContraEnable = true;
-                    await NavigationService.PushPage(new ChooseView(), Usuario);
+                    Console.WriteLine(Usuario.IsHost);
+                    if (Usuario.IsHost == true)
+                    {
+                        await NavigationService.PushPage(new ChooseView(), Usuario);
+
+                    }
+                    else if (Usuario.IsHost == false)
+                    {
+                        Console.WriteLine("HOLAAAAAA");
+                        await NavigationService.PushPage(new ServicesView(), Usuario);
+
+                    }
                 }
                 else
                 {
+                    MessageViewPop popUp = new MessageViewPop();
                     ((MessageViewModel)PopUp.BindingContext).Message = "Datos incorrectos.";
+                    await PopupNavigation.Instance.PushAsync(popUp);
                 }
             }
             catch(Exception)
