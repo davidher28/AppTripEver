@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using AppTripEver.Behaviors;
 
 namespace AppTripEver.ViewModels
 {
@@ -27,8 +28,10 @@ namespace AppTripEver.ViewModels
 
         #region Commands
         public ICommand IniciarSesionCommand { get; set; }
-        public ICommand RegistroCommand { get; set; }
 
+        public ICommand ValidateContraUsuarioCommand { get; set; }
+
+        public ICommand ValidateNombreUsuarioCommand { get; set; }
         #endregion Commands
 
         #region Properties
@@ -129,14 +132,16 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            IniciarSesionCommand = new Command(async () => await Login(), () => true);
-            RegistroCommand = new Command(async () => await Registro(), () => true);
+            IniciarSesionCommand = new Command(async () => await Login(), () => isUsuarioEnable);
+            ValidateNombreUsuarioCommand = new Command(() =>  ValidateNombreUsuarioForm(), () => true);
+            ValidateContraUsuarioCommand = new Command(() =>  ValidateContraUsuarioForm(), () => true);
         }
 
         public void InitializeFields()
         {            
             NombreUsuario = new ValidatableObject<string>();
             ContraUsuario = new ValidatableObject<string>();
+
             NombreUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El nombre del usuario es Obligatorio" });
             ContraUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio" });
         }
@@ -156,8 +161,6 @@ namespace AppTripEver.ViewModels
                 if (response.IsSuccess)
                 {
                     Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
-                    IsUsuarioEnable = true;
-                    IsContraEnable = true;
                     Console.WriteLine(Usuario.IsHost);
                     if (Usuario.IsHost == true)
                     {
@@ -185,12 +188,18 @@ namespace AppTripEver.ViewModels
             }
         }
 
-
-        public async Task Registro()
+        private void ValidateNombreUsuarioForm()
         {
-            await NavigationService.PushPage(new RegistroView());
+            isUsuarioEnable = NombreUsuario.Validate();
+            ((Command)IniciarSesionCommand).ChangeCanExecute();
         }
-        #endregion Methods
 
+        private void ValidateContraUsuarioForm()
+        {
+            isContraEnable = ContraUsuario.Validate();
+            ((Command)IniciarSesionCommand).ChangeCanExecute();
+        }
+
+        #endregion Methods
     }
 }

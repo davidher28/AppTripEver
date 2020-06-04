@@ -125,11 +125,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
              BackgroundColor="#4AAFDB"
              NavigationPage.HasNavigationBar="false"
              BackgroundImageSource="fondo_login.JPEG">
-    
+              
     <Grid Padding="20" RowSpacing="20">
 
         <Grid.RowDefinitions>
@@ -174,7 +175,13 @@
             CornerRadius="8"
             Placeholder="Username"
             PlaceholderColor="White"
-            Text="{Binding NombreUsuario.Value}"/>
+            Text="{Binding NombreUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateNombreUsuarioCommand}"/>
+            </Entry.Behaviors>
+        </controls:StandardEntry>
+
 
         <controls:StandardEntry      
             Grid.Row="3"
