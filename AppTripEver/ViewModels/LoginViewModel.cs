@@ -144,7 +144,6 @@ namespace AppTripEver.ViewModels
                     Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
                     IsUsuarioEnable = true;
                     IsContraEnable = true;
-                    Console.WriteLine(Usuario.IsHost);
                     if (Usuario.IsHost == true)
                     {
                         await NavigationService.PushPage(new ChooseView(), Usuario);
@@ -152,7 +151,6 @@ namespace AppTripEver.ViewModels
                     }
                     else if (Usuario.IsHost == false)
                     {
-                        Console.WriteLine("HOLAAAAAA");
                         await NavigationService.PushPage(new ServicesView(), Usuario);
 
                     }
