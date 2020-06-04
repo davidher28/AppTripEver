@@ -36,7 +36,7 @@
 
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
-                <Setter Property="BackgroundColor" Value="#d7b045"></Setter>
+                <Setter Property="BackgroundColor" Value="#A69E56"></Setter>
                 <Setter Property="Margin" Value="40,0,40,0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
             </Style>
@@ -48,7 +48,7 @@
         <FlexLayout Style="{StaticResource Container}">
             <Frame Style="{StaticResource Modal}">
                 <StackLayout>
-                    <Label Text="{Binding Message.Message}" Style="{StaticResource Message}" TextColor="Blue"/>
+                    <Label Text="{Binding Message.Message}" Style="{StaticResource Message}" TextColor="#677BA6"/>
                     <Button Text="Aceptar" Command="{Binding CloseCommand}" TextColor="White"></Button>
                 </StackLayout>
             </Frame>

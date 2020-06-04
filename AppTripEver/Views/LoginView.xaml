@@ -6,22 +6,36 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
              BackgroundColor="#4AAFDB"
-             NavigationPage.HasNavigationBar="false">
-    <Grid Padding="20" RowSpacing="20">
+             NavigationPage.HasNavigationBar="false"
+             BackgroundImageSource="fondo_login.JPEG">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Registrate" TargetType="Button">
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="Padding" Value="0,0,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="20" RowSpacing="20">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Image
+            <Image
             Grid.RowSpan="4"
             Margin="-21"
             Aspect="AspectFit"
@@ -29,7 +43,7 @@
             VerticalOptions="FillAndExpand"
             Source="xamarin_logo.png" />
 
-        <Image
+            <Image
             Grid.Row="0"
             Margin="70,70,70,100"
             HeightRequest="100"
@@ -37,29 +51,33 @@
             Source="logo.png"
             WidthRequest="100" />
 
-        <Label
+            <Label
             Grid.Row="1"
             FontAttributes="Bold"
             FontSize="Medium"
             Text="LOGIN"
             TextColor="White" />
 
-        <controls:StandardEntry
+            <controls:StandardEntry
             Grid.Row="2"
             Padding="13"
             BackgroundColor="#31FFFFFF"
             BorderColor="White"
             BorderThickness="1"
             CornerRadius="8"
+            TextColor="White"
             Placeholder="Username"
             PlaceholderColor="White"
-            Text="{Binding NombreUsuario.Value}"/>
+            Text="{Binding NombreUsuario.Value}">
+            <Entry.Behaviors>                <behaviors:EventToCommandBehavior EventName="TextChanged"                Command="{Biding ValidateNombreUsuarioCommand}"/>            </Entry.Behaviors>
+            </controls:StandardEntry>
 
-        <controls:StandardEntry      
+            <controls:StandardEntry   
             Grid.Row="3"
             Margin="0,0,0,20"
             Padding="13"
             BackgroundColor="#31FFFFFF"
+            TextColor="White"
             BorderColor="White"
             BorderThickness="1"
             CornerRadius="8"
@@ -68,7 +86,7 @@
             PlaceholderColor="White"
             Text="{Binding ContraUsuario.Value}"/>
 
-        <Button
+            <Button
             Grid.Row="4"
             BackgroundColor="White"
             CornerRadius="8"
@@ -76,18 +94,23 @@
             TextColor="#4758AE"
             TranslationY="-20"
             Command="{Binding IniciarSesionCommand}"/>
-
-        <Label
+        
+            <Label
             Grid.Row="5"
-            HorizontalOptions="Center"
-            TextColor="White"
-            VerticalOptions="Center">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Don't have an account? " />
-                    <Span FontAttributes="Bold" Text="SIGNUP" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </Grid>
+            TextColor="White" 
+            TranslationY="-20"
+            TranslationX="70"
+            VerticalOptions="Center"
+            Text="No tienes una cuenta?" />
+        
+            <Button
+            Grid.Row="5"
+            TranslationY="-20"
+            TranslationX="70"
+            Command="{Binding RegistroCommand}"
+            Style="{StaticResource Registrate}"
+            Text="REGISTRATE"/>
+
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

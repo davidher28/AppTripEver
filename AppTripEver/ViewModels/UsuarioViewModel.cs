@@ -236,7 +236,7 @@ namespace AppTripEver.ViewModels
             }
             else
             {
-                ((MessageViewModel)PopUp.BindingContext).Message = "Error al cargar los usuarios";
+                //((MessageViewModel)PopUp.BindingContext).Message = "Error al cargar los usuarios";
             }
         }
 
