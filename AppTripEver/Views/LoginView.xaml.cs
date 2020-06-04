@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppTripEver.ViewModels;
 
+
 namespace AppTripEver.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
