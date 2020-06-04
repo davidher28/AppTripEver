@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppTripEver.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace AppTripEver.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessageViewPop
     {
+        MessageViewModel context = new MessageViewModel();
         public MessageViewPop()
         {
             InitializeComponent();
+            BindingContext = context;
         }
     }
 }

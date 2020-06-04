@@ -9,20 +9,6 @@
              mc:Ignorable="d"
              BackgroundColor="#4AAFDB"
              NavigationPage.HasNavigationBar="false">
-    <Grid Padding="20" RowSpacing="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Label      
             Grid.Row="0"
             Grid.ColumnSpan="2"
@@ -33,5 +19,4 @@
             TextColor="White"                
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
-    </Grid>
 </ContentPage>

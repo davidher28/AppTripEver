@@ -199,7 +199,7 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             IniciarSesionCommand = new Command(async () => await SeleccionarUsuario(), () => true);
-            ListaUsuariosCommand = new Command(async () => await ListaUsuarios(), () => true);
+            //ListaUsuariosCommand = new Command(async () => await ListaUsuarios(), () => true);
             SelectUsuarioCommand = new Command(async () => await SeleccionarUsuario(), () => IsBuscarEnable);
             //CrearUsuarioCommand = new Command(async () => await NuevoUsuario(), () => true);
             //EliminarUsuarioCommand = new Command(async () => await DeleteUsuario(), () => IsEliminarEnable);
@@ -236,19 +236,19 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public async Task ListaUsuarios()
-        {
-            APIResponse response = await GetUsuarios.EjecutarEstrategia(null);
-            if (response.IsSuccess)
-            {
-                List<UsuarioModel> listaUsuarios = JsonConvert.DeserializeObject<List<UsuarioModel>>(response.Response);
-                Usuarios = new ObservableCollection<UsuarioModel>(listaUsuarios);
-            }
-            else
-            {
-                ((MessageViewModel)PopUp.BindingContext).Message = "Error al cargar los usuarios";
-            }
-        }
+        //public async Task ListaUsuarios()
+        //{
+        //    APIResponse response = await GetUsuarios.EjecutarEstrategia(null);
+        //    if (response.IsSuccess)
+        //    {
+        //        List<UsuarioModel> listaUsuarios = JsonConvert.DeserializeObject<List<UsuarioModel>>(response.Response);
+        //        Usuarios = new ObservableCollection<UsuarioModel>(listaUsuarios);
+        //    }
+        //    else
+        //    {
+        //        ((MessageViewModel)PopUp.BindingContext).Message = "Error al cargar los usuarios";
+        //    }
+        //}
     }
 }
  

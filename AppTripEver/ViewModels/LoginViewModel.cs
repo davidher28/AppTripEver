@@ -40,6 +40,8 @@ namespace AppTripEver.ViewModels
 
         private CarteraModel cartera;
 
+        private MessageModel message;
+
         private bool isUsuarioEnable;
 
         private bool isContraEnable;
@@ -66,6 +68,15 @@ namespace AppTripEver.ViewModels
             set
             {
                 cartera = value;
+                OnPropertyChanged();
+            }
+        }
+        public MessageModel Message
+        {
+            get { return message; }
+            set
+            {
+                message = value;
                 OnPropertyChanged();
             }
         }
@@ -97,6 +108,7 @@ namespace AppTripEver.ViewModels
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
+            Message = new MessageModel { Message = "Datos incorrectos." };
             IsUsuarioEnable = false;
             IsContraEnable = false;
             InitializeRequest();
@@ -160,13 +172,14 @@ namespace AppTripEver.ViewModels
                 else
                 {
                     MessageViewPop popUp = new MessageViewPop();
-                    ((MessageViewModel)PopUp.BindingContext).Message = "Datos incorrectos.";
-                    await PopupNavigation.Instance.PushAsync(popUp);
+                    var viewModel = popUp.BindingContext;
+                    await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                    await PopupNavigation.Instance.PushAsync(popUp);                   
                 }
             }
             catch(Exception)
             {
-                ((MessageViewModel)PopUp.BindingContext).Message = "Sistema no disponible en este momento.";
+                //((MessageViewModel)PopUp.BindingContext).Message = "Sistema no disponible en este momento.";
             }
         }
 
