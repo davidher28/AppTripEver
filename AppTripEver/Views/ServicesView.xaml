@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
-             x:Class="AppTripEver.Views.ChooseView"
+             x:Class="AppTripEver.Views.ServicesView"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -33,7 +33,5 @@
             TextColor="White"                
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
-        <Button Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
-        <Button Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150"/>
     </Grid>
 </ContentPage>

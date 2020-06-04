@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppTripEver.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace AppTripEver.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MessageViewPop
+    public partial class ServicesView : ContentPage
     {
-        public MessageViewPop()
+        ServicesViewModel context = new ServicesViewModel();
+        public ServicesView()
         {
             InitializeComponent();
+            BindingContext = context;
         }
     }
 }

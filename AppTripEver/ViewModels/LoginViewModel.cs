@@ -7,7 +7,6 @@ using AppTripEver.Validation;
 using AppTripEver.Validation.Rules;
 using AppTripEver.Views;
 using Newtonsoft.Json;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,7 +46,7 @@ namespace AppTripEver.ViewModels
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
-
+        
         #region Getters & Setters
 
         public UsuarioModel Usuario
@@ -120,7 +119,7 @@ namespace AppTripEver.ViewModels
         }
 
         public void InitializeFields()
-        {
+        {            
             NombreUsuario = new ValidatableObject<string>();
             ContraUsuario = new ValidatableObject<string>();
             NombreUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El nombre del usuario es Obligatorio" });
@@ -159,12 +158,10 @@ namespace AppTripEver.ViewModels
                 }
                 else
                 {
-                    MessageViewPop popUp = new MessageViewPop();
                     ((MessageViewModel)PopUp.BindingContext).Message = "Datos incorrectos.";
-                    await PopupNavigation.Instance.PushAsync(popUp);
                 }
             }
-            catch (Exception)
+            catch(Exception)
             {
                 ((MessageViewModel)PopUp.BindingContext).Message = "Sistema no disponible en este momento.";
             }
