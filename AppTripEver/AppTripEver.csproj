@@ -36,7 +36,7 @@
     <EmbeddedResource Update="Views\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\LoginViewPop.xaml">
+    <EmbeddedResource Update="Views\MessageViewPop.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UserView.xaml">
@@ -49,5 +49,11 @@
     <Folder Include="Validation\" />
     <Folder Include="Validation\Base\" />
     <Folder Include="Validation\Rules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MessageViewPop.xaml.cs">
+      <DependentUpon>MessageViewPop.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
