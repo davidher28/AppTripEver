@@ -35,7 +35,7 @@ namespace AppTripEver.ViewModels
 
         public MessageViewPop PopUp { get; set; }
 
-        public ValidatableObject<string> BusquedaUsuario{ get; set; }
+        public ValidatableObject<string> ContraUsuario{ get; set; }
 
         public ValidatableObject<string> NombreUsuario{ get; set; }
 
@@ -204,16 +204,16 @@ namespace AppTripEver.ViewModels
             //CrearUsuarioCommand = new Command(async () => await NuevoUsuario(), () => true);
             //EliminarUsuarioCommand = new Command(async () => await DeleteUsuario(), () => IsEliminarEnable);
             //EditarUsuarioCommand = new Command(async () => await GuardarUsuario(), () => IsGuardarEnable);
-            //ValidateBusquedaCommand = new Command(async () => await ValidateBusquedaForm(), () => true);
+            //ValidateContraCommand = new Command(async () => await ValidateContraUsuarioForm(), () => true);
             //ValidateNombreUsuarioCommand = new Command(async () => await ValidateNombreUsuarioForm(), () => true);
         }
 
         public void InitializeFields()
         {
-            BusquedaUsuario = new ValidatableObject<string>();
+            ContraUsuario = new ValidatableObject<string>();
             NombreUsuario = new ValidatableObject<string>();
 
-            BusquedaUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio"});
+            ContraUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio"});
             NombreUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El nombre del usuario es Obligatorio"});
         }
 
@@ -223,8 +223,8 @@ namespace AppTripEver.ViewModels
         {
 
             ParametersRequest parametros = new ParametersRequest();
-            parametros.Parametros.Add("camiflow");
-            parametros.Parametros.Add("micontra");
+            parametros.Parametros.Add(NombreUsuario.Value); 
+            parametros.Parametros.Add(ContraUsuario.Value);
             APIResponse response = await GetUsuario_Name.EjecutarEstrategia(null, parametros); 
             if (response.IsSuccess)
             {
