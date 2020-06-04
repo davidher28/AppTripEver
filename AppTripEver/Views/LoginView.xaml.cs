@@ -12,7 +12,7 @@ namespace AppTripEver.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginView : ContentPage
     {
-        UsuarioViewModel context = new UsuarioViewModel();
+        LoginViewModel context = new LoginViewModel();
 
         public LoginView()
         {

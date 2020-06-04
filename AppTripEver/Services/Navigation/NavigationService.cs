@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AppTripEver.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AppTripEver.Services.Navigation
@@ -13,7 +15,7 @@ namespace AppTripEver.Services.Navigation
             {
                 var navigationPage = Application.Current.MainPage;
                 var viewModel = page.BindingContext;
-                await ((ViewModelBase)viewModel).ConstructorAsync(parameter);
+                await ((BaseViewModel)viewModel).ConstructorAsync(parameter);
                 NavigationPage wrapper = new NavigationPage(page);
                 await ((NavigationPage)navigationPage).PushAsync(wrapper);
             }

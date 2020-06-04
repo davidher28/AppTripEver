@@ -223,7 +223,7 @@ namespace AppTripEver.ViewModels
         {
 
             ParametersRequest parametros = new ParametersRequest();
-            parametros.Parametros.Add(NombreUsuario.Value);
+            parametros.Parametros.Add(NombreUsuario.Value); 
             parametros.Parametros.Add(ContraUsuario.Value);
             APIResponse response = await GetUsuario_Name.EjecutarEstrategia(null, parametros); 
             if (response.IsSuccess)

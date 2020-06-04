@@ -13,7 +13,7 @@ namespace AppTripEver.Models
         public long IdUsuario { get; set; }
 
         [JsonProperty("Nombre")]
-        public string Nombre { get; set; }
+        private string nombre { get; set; }
 
         [JsonIgnore]
         private string email { get; set; }
@@ -64,6 +64,17 @@ namespace AppTripEver.Models
         #endregion Initialize
 
         #region Getters & Setters
+
+        [JsonIgnore]
+        public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                nombre = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public string Email
