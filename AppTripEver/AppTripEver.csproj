@@ -16,7 +16,6 @@
     <None Remove="NewFolder1\**" />
     <EmbeddedResource Remove="Views\RegistroView.xaml" />
     <Compile Remove="Views\RegistroView.xaml.cs" />
-    <EmbeddedResource Remove="Views\LoginView.xaml" />
   </ItemGroup>
 
   <ItemGroup>

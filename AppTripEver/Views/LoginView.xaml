@@ -59,10 +59,9 @@
             Text="{Binding NombreUsuario.Value}">
             <Entry.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="TextChanged"
-                Command="{Biding ValidateNombreUsuarioCommand}"/>
+                Command="{Binding ValidateNombreUsuarioCommand}"/>
             </Entry.Behaviors>
         </controls:StandardEntry>
-
 
 
         <controls:StandardEntry      
