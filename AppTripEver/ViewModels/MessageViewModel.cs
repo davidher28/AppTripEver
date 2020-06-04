@@ -42,7 +42,7 @@ namespace AppTripEver.ViewModels
             Message = message;
         }
 
-        public void Close()
+        public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
         }
