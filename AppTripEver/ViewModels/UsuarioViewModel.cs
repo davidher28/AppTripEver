@@ -72,7 +72,7 @@ namespace AppTripEver.ViewModels
 
         public ICommand EliminarUsuarioCommand { get; set; }
 
-        public ICommand ValidateBusquedaCommand { get; set; }
+        public ICommand ValidateContraUsuarioCommand { get; set; }
 
         public ICommand ValidateNombreUsuarioCommand { get; set; }
 
@@ -233,6 +233,10 @@ namespace AppTripEver.ViewModels
                 IsEliminarEnable = true;
                 IsGuardarEnable = true;
                 IsGuardarEditar = true;
+            }
+            else
+            {
+                ((MessageViewModel)PopUp.BindingContext).Message = "Error al cargar los usuarios";
             }
         }
 
