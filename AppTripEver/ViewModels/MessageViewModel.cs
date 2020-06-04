@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AppTripEver.Models;
 using AppTripEver.Services.Propagation;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace AppTripEver.ViewModels
@@ -32,7 +33,7 @@ namespace AppTripEver.ViewModels
 
         public MessageViewModel()
         {
-            CloseCommand = new Command(() => Close(), () => true);
+            CloseCommand = new Command(async () => await Close(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -43,7 +44,7 @@ namespace AppTripEver.ViewModels
 
         public void Close()
         {
-
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }
