@@ -45,7 +45,7 @@ namespace AppTripEver.Models
         [JsonIgnore]
         private List<ServiciosModel> favoritos { get; set; }
 
-        [JsonProperty("Tipo")]
+        [JsonIgnore]
         private bool isHost { get; set; }
         
         [JsonIgnore]

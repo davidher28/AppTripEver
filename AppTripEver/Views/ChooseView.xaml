@@ -10,6 +10,7 @@
              BackgroundColor="#4AAFDB"
              NavigationPage.HasNavigationBar="false">
     <Grid Padding="20" RowSpacing="20">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto"/>
