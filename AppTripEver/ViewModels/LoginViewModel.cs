@@ -141,7 +141,6 @@ namespace AppTripEver.ViewModels
                 Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
                 if (response.IsSuccess)
                 {                    
-                    NombreUsuario.Value = Usuario.Nombre;
                     IsUsuarioEnable = true;
                     IsContraEnable = true;
                     await NavigationService.PushPage(new ChooseView(), Usuario);
