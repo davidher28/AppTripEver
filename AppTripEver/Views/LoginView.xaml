@@ -52,10 +52,10 @@
             BorderThickness="1"
             CornerRadius="8"
             Placeholder="Username"
-            PlaceholderColor="White" />
+            PlaceholderColor="White"
+            Text="{Binding NombreUsuario.Value}"/>
 
-        <controls:StandardEntry
-            
+        <controls:StandardEntry      
             Grid.Row="3"
             Margin="0,0,0,20"
             Padding="13"
@@ -65,7 +65,8 @@
             CornerRadius="8"
             IsPassword="True"
             Placeholder="Password"
-            PlaceholderColor="White" />
+            PlaceholderColor="White"
+            Text="{Binding ContraUsuario.Value}"/>
 
         <Button
             Grid.Row="4"
