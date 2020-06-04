@@ -8,7 +8,9 @@
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
              BackgroundColor="#4AAFDB"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="false"
+             BackgroundImageSource="fondo_login.JPEG">
+    
     <Grid Padding="20" RowSpacing="20">
 
         <Grid.RowDefinitions>
