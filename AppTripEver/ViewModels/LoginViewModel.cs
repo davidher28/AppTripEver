@@ -132,7 +132,7 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            IniciarSesionCommand = new Command(async () => await Login(), () => isUsuarioEnable && isContraEnable);
+            IniciarSesionCommand = new Command(async () => await Login(), () => isUsuarioEnable);
             ValidateNombreUsuarioCommand = new Command(() =>  ValidateNombreUsuarioForm(), () => true);
             ValidateContraUsuarioCommand = new Command(() =>  ValidateContraUsuarioForm(), () => true);
         }
