@@ -27,6 +27,7 @@ namespace AppTripEver.ViewModels
 
         #region Commands
         public ICommand IniciarSesionCommand { get; set; }
+        public ICommand RegistroCommand { get; set; }
 
         #endregion Commands
 
@@ -129,6 +130,7 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             IniciarSesionCommand = new Command(async () => await Login(), () => true);
+            RegistroCommand = new Command(async () => await Registro(), () => true);
         }
 
         public void InitializeFields()
@@ -183,6 +185,12 @@ namespace AppTripEver.ViewModels
             }
         }
 
+
+        public async Task Registro()
+        {
+            await NavigationService.PushPage(new RegistroView());
+        }
         #endregion Methods
+
     }
 }
