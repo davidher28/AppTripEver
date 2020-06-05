@@ -9,9 +9,9 @@ namespace AppTripEver.Models
     {
         #region Properties
         [JsonIgnore]
-        private long noCuenta { get; set; }
+        private string noCuenta { get; set; }
         [JsonIgnore]
-        private string direcFacturacion { get; set; }
+        private string mailHost { get; set; }
         [JsonIgnore]
         private List<ServiciosModel> servicios { get; set; }
         #endregion Properties        
@@ -24,7 +24,7 @@ namespace AppTripEver.Models
         #endregion Initialize
 
         #region Getters & Setters
-        public long NoCuenta
+        public string NoCuenta
         {
             get { return noCuenta; }
             set
@@ -33,12 +33,12 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
-        public string DirecFacturacion
+        public string MailHost
         {
-            get { return direcFacturacion; }
+            get { return mailHost; }
             set
             {
-                direcFacturacion = value;
+                mailHost = value;
                 OnPropertyChanged();
             }
         }
