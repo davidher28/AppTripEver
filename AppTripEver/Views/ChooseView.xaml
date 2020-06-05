@@ -33,7 +33,29 @@
             TextColor="White"                
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
-        <Button Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
-        <Button Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150"/>
+        <FlexLayout Direction="Row" Grid.Row="2"
+                        Grid.Column="0"
+                        AlignItems="Center"
+                        JustifyContent="Center"
+                        TranslationY="-100"
+                        TranslationX="36"
+                        Padding="0"
+                        Margin="0">
+            <Label Text="Reservar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="2"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        </FlexLayout>
+        
+        <Button  ImageSource="reservar.png" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        <FlexLayout Direction="Row" Grid.Row="2"
+                        Grid.Column="1"
+                        AlignItems="Center"
+                        JustifyContent="Center"
+                        TranslationY="-100"
+                        TranslationX="30"
+                        Padding="0"
+                        Margin="0">
+            <Label Text="Hospedar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        </FlexLayout>
+        <Button  ImageSource="hospedar.png" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+
     </Grid>
 </ContentPage>
