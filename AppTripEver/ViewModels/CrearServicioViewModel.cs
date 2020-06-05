@@ -30,6 +30,25 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearServicioCommand { get; set; }
 
+        public ICommand ValidateTituloCommand { get; set; }
+
+        public ICommand ValidatePaisCommand { get; set; }
+
+        public ICommand ValidateCiudadCommand { get; set; }
+
+        public ICommand ValidateMaxPersonasCommand { get; set; }
+
+        public ICommand ValidateDescripcionCommand { get; set; }
+
+        public ICommand ValidatePrecioCommand { get; set; }
+
+        public ICommand ValidateFechaInicioCommand { get; set; }
+
+        public ICommand ValidateFechaFinalCommand { get; set; }
+
+        public ICommand ValidateHoraInicioCommand { get; set; }
+
+        public ICommand ValidateHoraFinalCommand { get; set; }
         #endregion Commands
 
         #region Properties
