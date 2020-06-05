@@ -134,7 +134,7 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            IniciarSesionCommand = new Command(async () => await Login(), () => isUsuarioEnable);
+            IniciarSesionCommand = new Command(async () => await Login(), () => IsUsuarioEnable);
             RegistroCommand = new Command(async () => await Registro(), () => true);
             ValidateNombreUsuarioCommand = new Command(() =>  ValidateNombreUsuarioForm(), () => true);
             ValidateContraUsuarioCommand = new Command(() =>  ValidateContraUsuarioForm(), () => true);
@@ -182,7 +182,8 @@ namespace AppTripEver.ViewModels
                     MessageViewPop popUp = new MessageViewPop();
                     var viewModel = popUp.BindingContext;
                     await ((BaseViewModel)viewModel).ConstructorAsync(Message);
-                    await PopupNavigation.Instance.PushAsync(popUp);                   
+                    await PopupNavigation.Instance.PushAsync(popUp);
+                    
                 }
             }
             catch(Exception)
@@ -198,13 +199,13 @@ namespace AppTripEver.ViewModels
 
         private void ValidateNombreUsuarioForm()
         {
-            isUsuarioEnable = NombreUsuario.Validate();
+            IsUsuarioEnable = NombreUsuario.Validate();
             ((Command)IniciarSesionCommand).ChangeCanExecute();
         }
 
         private void ValidateContraUsuarioForm()
         {
-            isContraEnable = ContraUsuario.Validate();
+            IsContraEnable = ContraUsuario.Validate();
             ((Command)IniciarSesionCommand).ChangeCanExecute();
         }
 
