@@ -9,35 +9,37 @@ namespace AppTripEver.Models
     public class UsuarioModel : BaseModel
     {
         #region Properties
-        [JsonProperty ("IdUsuario")]
+        [JsonIgnore]
         public long IdUsuario { get; set; }
 
         [JsonProperty("Nombre")]
         private string nombre { get; set; }
 
         [JsonIgnore]
+
+        [JsonProperty("Mail")]
         private string email { get; set; }
 
-        [JsonIgnore]
-        public string FechaNacimiento { get; set; }
+        [JsonProperty("FechaNacimiento")]
+        private string fechaNacimiento { get; set; }
 
-        [JsonIgnore]
-        public string TipoIdentificacion { get; set; }
+        [JsonProperty("TipoIdentificacion")]
+        private string tipoIdentificacion { get; set; }
 
-        [JsonIgnore]
-        public string Identificacion { get; set; }
+        [JsonProperty("NoIdentificacion")]
+        private string identificacion { get; set; }
         
         [JsonIgnore]
         public CarteraModel Cartera { get; set; }
 
-        [JsonIgnore]
-        private int telefono { get; set; }
+        [JsonProperty("Telefono")]
+        private string telefono { get; set; }
 
-        [JsonIgnore]
-        public string NombreUsuario { get; set; }
+        [JsonProperty("Usuario")]
+        private string nombreUsuario { get; set; }
 
-        [JsonIgnore]
-        private string contraseña { get; set; }
+        [JsonProperty("Contrasena")]
+        private string contrasena { get; set; }
         
         [JsonIgnore]
         private List<ReservasModel> reservas { get; set; }
@@ -46,7 +48,7 @@ namespace AppTripEver.Models
         private List<ServiciosModel> favoritos { get; set; }
 
         [JsonProperty("Tipo")]
-        private bool isHost { get; set; }
+        private int isHost { get; set; }
         
         [JsonIgnore]
         public TarjetasRegaloModel Comprador { get; set; }
@@ -65,16 +67,17 @@ namespace AppTripEver.Models
 
         #region Getters & Setters
 
+
         [JsonIgnore]
         public string Nombre
-        {
-            get { return nombre; }
-            set
             {
-                nombre = value;
-                OnPropertyChanged();
+                get { return nombre; }
+                set
+                {
+                    nombre = value;
+                    OnPropertyChanged();
+                }
             }
-        }
 
         [JsonIgnore]
         public string Email
@@ -88,7 +91,29 @@ namespace AppTripEver.Models
         }
 
         [JsonIgnore]
-        public int Telefono
+        public string FechaNacimiento
+           {
+            get { return fechaNacimiento; }
+            set
+            {
+                fechaNacimiento = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public string TipoIdentificacion
+        {
+            get { return tipoIdentificacion; }
+            set
+            {
+                tipoIdentificacion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public string Telefono
         {
             get { return telefono; }
             set
@@ -99,12 +124,12 @@ namespace AppTripEver.Models
         }
 
         [JsonIgnore]
-        public string Contraseña
+        public string Contrasena
         {
-            get { return contraseña; }
+            get { return contrasena; }
             set
             {
-                contraseña = value;
+                contrasena = value;
                 OnPropertyChanged();
             }
         }
@@ -121,7 +146,7 @@ namespace AppTripEver.Models
         }
 
         [JsonIgnore]     
-        public bool IsHost
+        public int IsHost
         {
             get { return isHost; }
             set
@@ -130,6 +155,31 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+
+        [JsonIgnore]
+        public string Identificacion
+        {
+            get { return identificacion; }
+            set
+            {
+                identificacion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public string NombreUsuario
+        {
+            get { return nombreUsuario; }
+            set
+            {
+                nombreUsuario = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
+
         #endregion 
     }
 }

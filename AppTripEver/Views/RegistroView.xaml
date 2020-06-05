@@ -83,7 +83,7 @@
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
-            Placeholder="Fecha de Nacimiento"
+            Placeholder="Fecha de Nacimiento - '2019-09-19' "
             PlaceholderColor="#677BA6"
             Text="{Binding FechaUsuario.Value}">
             <Entry.Behaviors>

@@ -23,6 +23,7 @@ namespace AppTripEver.ViewModels
         #region Request
 
         public ElegirRequest<BaseModel> CrearNuevoUsuario { get; set; }
+        public ElegirRequest<BaseModel> GetUsuario_Name { get; set; }
 
         #endregion Request 
 
@@ -228,6 +229,10 @@ namespace AppTripEver.ViewModels
         {
             string urlCrear_Usuario = Endpoints.URL_SERVIDOR + Endpoints.CREAR_USUARIO;
 
+            string urlUsuario_Name = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_NOMBRE;
+
+            GetUsuario_Name = new ElegirRequest<BaseModel>();
+            GetUsuario_Name.ElegirEstrategia("GET", urlUsuario_Name);
             CrearNuevoUsuario = new ElegirRequest<BaseModel>();
             CrearNuevoUsuario.ElegirEstrategia("POST", urlCrear_Usuario);
 
@@ -235,7 +240,7 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            CrearUsuarioCommand = new Command(async () => await Login(), () => isCrearEnable);
+            CrearUsuarioCommand = new Command(async () => await CrearUsuario(), () => isCrearEnable);
             ValidateNombreCommand = new Command(() => ValidateNombreUsuarioForm(), () => true);
             ValidateMailCommand = new Command(() => ValidateMailUsuarioForm(), () => true);
             ValidateTelefonoCommand = new Command(() => ValidateTelUsuarioForm(), () => true);
@@ -276,50 +281,27 @@ namespace AppTripEver.ViewModels
         #endregion Initialize
 
         #region Methods
-        public async Task Login()
+        public async Task CrearUsuario()
         {
-            if (IsCrearEnable == true)
+            CarteraModel cartera = new CarteraModel();
+            UsuarioModel usuario = new UsuarioModel(cartera)
             {
-                try
-                {
-                    ParametersRequest parametros = new ParametersRequest();
-                    parametros.Parametros.Add(NombreUsuario.Value);
-                    parametros.Parametros.Add(ContraUsuario.Value);
-                    APIResponse response = await CrearNuevoUsuario.EjecutarEstrategia(null, parametros);
-                    if (response.IsSuccess)
-                    {
-                        Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
-                        Console.WriteLine(Usuario.IsHost);
-                        if (Usuario.IsHost == true)
-                        {
-                            await NavigationService.PushPage(new ChooseView(), Usuario);
+                Nombre = NombreUsuario.Value,
+                Email = MailUsuario.Value,
+                Telefono = TelUsuario.Value,
+                FechaNacimiento = FechaUsuario.Value,
+                TipoIdentificacion = TipoIdentUsuario.Value,
+                Identificacion = IdentUsuario.Value,
+                NombreUsuario = UserUsuario.Value,
+                Contrasena = ContraUsuario.Value,
+                IsHost = 0
+            };
 
-                        }
-                        else if (Usuario.IsHost == false)
-                        {
-                            Console.WriteLine("HOLAAAAAA");
-                            await NavigationService.PushPage(new ServicesView(), Usuario);
-
-                        }
-                    }
-                    else
-                    {
-                        MessageViewPop popUp = new MessageViewPop();
-                        var viewModel = popUp.BindingContext;
-                        await ((BaseViewModel)viewModel).ConstructorAsync(Message);
-                        await PopupNavigation.Instance.PushAsync(popUp);
-                    }
-                }
-                catch (Exception)
-                {
-                    //((MessageViewModel)PopUp.BindingContext).Message = "Sistema no disponible en este momento.";
-                }
-            }
-            else
+            APIResponse response = await CrearNuevoUsuario.EjecutarEstrategia(usuario);
+            if (response.IsSuccess)
             {
-
+                await NavigationService.PushPage(new LoginView());
             }
-
         }
 
         public async Task Registro()
@@ -336,7 +318,7 @@ namespace AppTripEver.ViewModels
                 IsCrearEnable = true;
                 ((Command)CrearUsuarioCommand).ChangeCanExecute();
             }
-            }
+        }
 
         private void ValidateMailUsuarioForm()
         {
