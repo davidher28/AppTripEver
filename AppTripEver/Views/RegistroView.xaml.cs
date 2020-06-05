@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace AppTripEver.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistroView : TabbedPage
+    public partial class RegistroView : ContentPage
     {
         RegistroViewModel context = new RegistroViewModel();
         public RegistroView()

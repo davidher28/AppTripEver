@@ -1,12 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage 
+             x:Class="AppTripEver.Views.RegistroView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
-             x:Class="AppTripEver.Views.RegistroView">
-  <!--Pages can be added as references or inline-->
-  <ContentPage Title="Tab 1" />
-  <ContentPage Title="Tab 2" />
-  <ContentPage Title="Tab 3" />
-</TabbedPage>
+             BackgroundColor="#1A3161"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Registrate" TargetType="Button">
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="Padding" Value="0,0,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="20" RowSpacing="20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="1" Padding="0" Margin="0,0,0,0">
+            <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Nombre"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+            </Entry>
+            </Frame>
+            
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Email"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Teléfono"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="4" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Fecha de Nacimiento"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="5" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Tipo de identificación"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="6" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Número de identificación"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="7" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Nombre de usuario"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Contraseña"
+            PlaceholderColor="#677BA6"
+            Text="{Binding NombreUsuario.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="9" Padding="0" Margin="0,0,0,0">
+            <Button
+            BackgroundColor="#393c3e"
+            Text="Crear Usuario"
+            TextColor="White"
+            Command="{Binding IniciarSesionCommand}"/>
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
