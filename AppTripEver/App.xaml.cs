@@ -9,7 +9,11 @@ namespace AppTripEver
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginView());
+            MainPage = new NavigationPage(new LoginView())
+            {
+                BarBackgroundColor = Color.FromHex("#000000"),
+                BarTextColor = Color.White
+            };
         }
 
         protected override void OnStart()
