@@ -89,21 +89,30 @@
             TextColor="White"
             TranslationY="-20"
             Command="{Binding IniciarSesionCommand}"/>
+
+            <FlexLayout Direction="Row" Grid.Row="5"
+                        AlignItems="Center"
+                        JustifyContent="Center"
+                        TranslationY="-50"
+                        Padding="0"
+                        Margin="0">
+
+                <Label
+                Grid.Row="5"
+                TextColor="White" 
+                Margin="0"
+                TranslationY="-20"
+                VerticalOptions="Center"
+                Text="No tienes una cuenta?" />
         
-            <Label
-            Grid.Row="5"
-            TextColor="White" 
-            TranslationY="-20"
-            VerticalOptions="Center"
-            Text="No tienes una cuenta?" />
-        
-            <Button
-            Grid.Row="5"
-            TranslationY="-20"
-            TextColor="#DBA016"
-            Command="{Binding RegistroCommand}"
-            Style="{StaticResource Registrate}"
-            Text="REGISTRATE"/>
+                <Button
+                Grid.Row="5"
+                TranslationY="-20"
+                TextColor="#DBA016"
+                Command="{Binding RegistroCommand}"
+                Style="{StaticResource Registrate}"
+                Text="REGISTRATE"/>
+            </FlexLayout>
 
         </Grid>
     </ContentPage.Content>
