@@ -34,6 +34,7 @@ namespace AppTripEver.ViewModels
         #region Properties
         public MessageViewPop PopUp { get; set; }
 
+
         public ValidatableObject<string> MailUsuario { get; set; }
         public ValidatableObject<string> NoCuentaUsuario { get; set; }
 
@@ -42,6 +43,8 @@ namespace AppTripEver.ViewModels
         private CarteraModel cartera;
 
         private UsuarioHostModel host;
+
+        private MessageModel message;
 
         #endregion Properties
 
@@ -66,6 +69,16 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public MessageModel Message
+        {
+            get { return message; }
+            set
+            {
+                message = value;
+                OnPropertyChanged();
+            }
+        }
+
         public UsuarioHostModel Host
         {
             get { return host; }
@@ -81,9 +94,11 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public RegistroHostViewModel()
         {
+            PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
+            Message = new MessageModel { Message = "Usuario Host creado correctamente" };
             InitializeRequest();
             InitializeCommands();
             InitializeFields();
@@ -91,7 +106,7 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlCrear_Host = Endpoints.URL_SERVIDOR + Endpoints.CREAR_USUARIO;
+            string urlCrear_Host = Endpoints.URL_SERVIDOR + Endpoints.CREAR_USUARIO_HOST;
             CrearNuevoHost = new ElegirRequest<BaseModel>();
             CrearNuevoHost.ElegirEstrategia("POST", urlCrear_Host);
         }
@@ -121,11 +136,20 @@ namespace AppTripEver.ViewModels
         {
             UsuarioHostModel host = new UsuarioHostModel(Cartera)
             {
+                IdUsuario = Usuario.IdUsuario,
                 NoCuenta = NoCuentaUsuario.Value,
-                MailHost = MailUsuario.Value
+                MailHost = MailUsuario.Value,
+                IsHost = null
             };
 
             APIResponse response = await CrearNuevoHost.EjecutarEstrategia(host);
+            if (response.IsSuccess)
+            {
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
         }
 
         #endregion Methods

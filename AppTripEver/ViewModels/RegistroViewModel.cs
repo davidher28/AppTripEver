@@ -23,6 +23,7 @@ namespace AppTripEver.ViewModels
         #region Request
 
         public ElegirRequest<BaseModel> CrearNuevoUsuario { get; set; }
+        public ElegirRequest<BaseModel> GetUsuario_Name { get; set; }
 
         #endregion Request 
 

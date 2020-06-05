@@ -46,7 +46,18 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            await Application.Current.MainPage.Navigation.PopAsync();
+            //var navigationCount = Application.Current.MainPage.Navigation.NavigationStack.Count - 1 ;
+            //Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount]);
+            //Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount]);
+
+            //for (var count = 1; count <= navigationCount; count++)
+            //{
+            //    if (Application.Current.MainPage.Navigation.NavigationStack.Count == 0)
+            //        return;
+            //    var page = Application.Current.MainPage.Navigation.NavigationStack[navigationCount - count];
+            //    Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount - count]);
+            //}
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new LoginView());
         }
     }
 }

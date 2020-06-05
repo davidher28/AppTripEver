@@ -1,8 +1,12 @@
 ﻿using AppTripEver.Models;
+using AppTripEver.Services.Navigation;
+using AppTripEver.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AppTripEver.ViewModels
 {
@@ -15,7 +19,7 @@ namespace AppTripEver.ViewModels
         #endregion Request 
 
         #region Commands
-        //public ICommand IniciarSesionCommand { get; set; }
+        public ICommand CrearHostCommand { get; set; }
 
         #endregion Commands
 
@@ -25,6 +29,7 @@ namespace AppTripEver.ViewModels
 
         private CarteraModel cartera;
 
+        public NavigationService NavigationService { get; set; }
 
         #endregion Properties
 
@@ -54,7 +59,13 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public ServicesViewModel()
         {
+            InitializeCommands();
+            NavigationService = new NavigationService();
+        }
 
+        public void InitializeCommands()
+        {
+            CrearHostCommand = new Command(async () => await CrearUsuario(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -66,7 +77,10 @@ namespace AppTripEver.ViewModels
         #endregion Initialize
 
         #region Methods
-
+        public async Task CrearUsuario()
+        {
+            await NavigationService.PushPage(new RegistroHostView(), Usuario);
+        }
         #endregion Methods
     }
 }

@@ -1,16 +1,14 @@
-﻿using AppTripEver.Services.Propagation;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace AppTripEver.Models
 {
     public class UsuarioModel : BaseModel
     {
         #region Properties
-        [JsonIgnore]
-        public long IdUsuario { get; set; }
+        [JsonProperty("IdUsuario")]
+        private long idUsuario { get; set; }
 
         [JsonProperty("Nombre")]
         private string nombre { get; set; }
@@ -46,7 +44,7 @@ namespace AppTripEver.Models
         private List<ServiciosModel> favoritos { get; set; }
 
         [JsonProperty("Tipo")]
-        private int isHost { get; set; }
+        private Nullable<int> isHost { get; set; }
         
         [JsonIgnore]
         public TarjetasRegaloModel Comprador { get; set; }
@@ -64,18 +62,28 @@ namespace AppTripEver.Models
         #endregion Initialize
 
         #region Getters & Setters
-
+        
+        [JsonIgnore]
+        public long IdUsuario
+        {
+            get { return idUsuario; }
+            set
+            {
+                idUsuario = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public string Nombre
+        {
+            get { return nombre; }
+            set
             {
-                get { return nombre; }
-                set
-                {
-                    nombre = value;
-                    OnPropertyChanged();
-                }
+                 nombre = value;
+                 OnPropertyChanged();
             }
+        }
 
         [JsonIgnore]
         public string Email
@@ -144,7 +152,7 @@ namespace AppTripEver.Models
         }
 
         [JsonIgnore]     
-        public int IsHost
+        public Nullable<int> IsHost
         {
             get { return isHost; }
             set

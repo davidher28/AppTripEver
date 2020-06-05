@@ -25,7 +25,10 @@ namespace AppTripEver.Services.APIRest
                 Response = ""
             };
 
-            string objetoJson = JsonConvert.SerializeObject(objecto);
+            string objetoJson = JsonConvert.SerializeObject(objecto, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
             HttpContent content = new StringContent(objetoJson, Encoding.UTF8, "application/json");
 
             try

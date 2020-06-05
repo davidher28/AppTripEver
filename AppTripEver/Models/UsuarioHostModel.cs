@@ -8,10 +8,12 @@ namespace AppTripEver.Models
     public class UsuarioHostModel : UsuarioModel
     {
         #region Properties
-        [JsonIgnore]
+        [JsonProperty("NoCuenta")]
         private string noCuenta { get; set; }
-        [JsonIgnore]
+        
+        [JsonProperty("Mail")]
         private string mailHost { get; set; }
+        
         [JsonIgnore]
         private List<ServiciosModel> servicios { get; set; }
         #endregion Properties        
@@ -24,6 +26,8 @@ namespace AppTripEver.Models
         #endregion Initialize
 
         #region Getters & Setters
+        
+        [JsonIgnore]
         public string NoCuenta
         {
             get { return noCuenta; }
@@ -33,6 +37,8 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+        
+        [JsonIgnore]
         public string MailHost
         {
             get { return mailHost; }
@@ -42,6 +48,8 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+
+        [JsonIgnore]
         public List<ServiciosModel> Servicios
         {
             get { return servicios; }

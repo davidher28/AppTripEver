@@ -13,5 +13,7 @@ namespace AppTripEver.Configuration
         public static readonly string CREAR_USUARIO = "/createUsuario";
         public static readonly string EDITAR_USUARIO = "/updateUsuario";
         public static readonly string ELIMINAR_USUARIO = "/deleteUsuario";
+        public static readonly string CREAR_USUARIO_HOST = "/createHost";
+
     }
 }
