@@ -209,7 +209,7 @@ namespace AppTripEver.ViewModels
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
-            Message = new MessageModel { Message = "Datos incorrectos" };
+            Message = new MessageModel { Message = "Usuario creado correctamente." };
             IsNombreEnable = false;
             IsMailEnable = false;
             IsTelEnable = false;
@@ -300,6 +300,10 @@ namespace AppTripEver.ViewModels
             APIResponse response = await CrearNuevoUsuario.EjecutarEstrategia(usuario);
             if (response.IsSuccess)
             {
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
                 await NavigationService.PushPage(new LoginView());
             }
         }
