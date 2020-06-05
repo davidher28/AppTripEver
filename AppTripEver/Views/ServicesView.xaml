@@ -8,7 +8,8 @@
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
              BackgroundColor="#4AAFDB"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
     <Grid Padding="20" RowSpacing="20">
         <Label      
             Grid.Row="0"
