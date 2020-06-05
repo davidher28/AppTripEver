@@ -29,6 +29,8 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand IniciarSesionCommand { get; set; }
 
+        public ICommand RegistroCommand { get; set; }
+
         public ICommand ValidateContraUsuarioCommand { get; set; }
 
         public ICommand ValidateNombreUsuarioCommand { get; set; }
@@ -133,6 +135,7 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             IniciarSesionCommand = new Command(async () => await Login(), () => isUsuarioEnable);
+            RegistroCommand = new Command(async () => await Registro(), () => true);
             ValidateNombreUsuarioCommand = new Command(() =>  ValidateNombreUsuarioForm(), () => true);
             ValidateContraUsuarioCommand = new Command(() =>  ValidateContraUsuarioForm(), () => true);
         }
@@ -188,6 +191,10 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public async Task Registro()
+        {
+            await NavigationService.PushPage(new RegistroView());
+        }
         private void ValidateNombreUsuarioForm()
         {
             isUsuarioEnable = NombreUsuario.Validate();
