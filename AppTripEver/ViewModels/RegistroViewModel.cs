@@ -257,8 +257,6 @@ namespace AppTripEver.ViewModels
             UserUsuario = new ValidatableObject<string>();
             ContraUsuario = new ValidatableObject<string>();
 
-            NombreUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El nombre del usuario es Obligatorio" });
-            ContraUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio" });
         }
 
         public void AddValidations()
@@ -280,7 +278,7 @@ namespace AppTripEver.ViewModels
         #region Methods
         public async Task Login()
         {
-            if (isNombreEnable && isMailEnable && isTelEnable && isFechaEnable && isTipoIdentEnable && isIdentEnable && isUsuarioEnable && IsContraEnable)
+            if (IsCrearEnable == true)
             {
                 try
                 {
@@ -338,7 +336,7 @@ namespace AppTripEver.ViewModels
                 IsCrearEnable = true;
                 ((Command)CrearUsuarioCommand).ChangeCanExecute();
             }
-        }
+            }
 
         private void ValidateMailUsuarioForm()
         {
@@ -414,9 +412,8 @@ namespace AppTripEver.ViewModels
             {
                 IsCrearEnable = true;
                 ((Command)CrearUsuarioCommand).ChangeCanExecute();
-            }
-
-            #endregion Methods
+            }            
         }
+        #endregion Methods
     }
 }

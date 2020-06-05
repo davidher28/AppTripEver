@@ -44,6 +44,10 @@
             Placeholder="Nombre"
             PlaceholderColor="#677BA6"
             Text="{Binding NombreUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateNombreCommand}"/>
+            </Entry.Behaviors>
             </Entry>
             </Frame>
             
@@ -53,7 +57,11 @@
             TextColor="#677BA6"
             Placeholder="Email"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding MailUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateMailCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -63,7 +71,11 @@
             TextColor="#677BA6"
             Placeholder="Teléfono"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding TelUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateTelefonoCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -73,7 +85,11 @@
             TextColor="#677BA6"
             Placeholder="Fecha de Nacimiento"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding FechaUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateFechaCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -83,7 +99,11 @@
             TextColor="#677BA6"
             Placeholder="Tipo de identificación"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding TipoIdentUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateTipoIdentificacionCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -93,7 +113,11 @@
             TextColor="#677BA6"
             Placeholder="Número de identificación"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding IdentUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateIdentificacionCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -103,7 +127,11 @@
             TextColor="#677BA6"
             Placeholder="Nombre de usuario"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding UserUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateUsuarioCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -113,7 +141,11 @@
             TextColor="#677BA6"
             Placeholder="Contraseña"
             PlaceholderColor="#677BA6"
-            Text="{Binding NombreUsuario.Value}">
+            Text="{Binding ContraUsuario.Value}">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                Command="{Binding ValidateContraCommand}"/>
+            </Entry.Behaviors>
                 </Entry>
             </Frame>
 
@@ -122,7 +154,7 @@
             BackgroundColor="#393c3e"
             Text="Crear Usuario"
             TextColor="White"
-            Command="{Binding IniciarSesionCommand}"/>
+            Command="{Binding CrearUsuarioCommand}"/>
             </Frame>
 
         </Grid>
