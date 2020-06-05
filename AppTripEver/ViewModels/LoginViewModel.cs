@@ -112,7 +112,7 @@ namespace AppTripEver.ViewModels
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
-            Message = new MessageModel { Message = "Datos incorrectos." };
+            Message = new MessageModel { Message = "Datos incorrectos" };
             IsUsuarioEnable = false;
             IsContraEnable = false;
             InitializeRequest();

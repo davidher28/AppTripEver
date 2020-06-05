@@ -36,7 +36,7 @@
 
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
-                <Setter Property="BackgroundColor" Value="#A69E56"></Setter>
+                <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
                 <Setter Property="Margin" Value="40,0,40,0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
             </Style>
