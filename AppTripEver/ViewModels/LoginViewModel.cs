@@ -195,6 +195,7 @@ namespace AppTripEver.ViewModels
         {
             await NavigationService.PushPage(new RegistroView());
         }
+
         private void ValidateNombreUsuarioForm()
         {
             isUsuarioEnable = NombreUsuario.Validate();

@@ -15,7 +15,10 @@ namespace AppTripEver.Services.Navigation
             {
                 var navigationPage = Application.Current.MainPage;
                 var viewModel = page.BindingContext;
-                await ((BaseViewModel)viewModel).ConstructorAsync(parameter);
+                if (parameter != null)
+                {
+                    await ((BaseViewModel)viewModel).ConstructorAsync(parameter);
+                }
                 NavigationPage wrapper = new NavigationPage(page);
                 await ((NavigationPage)navigationPage).PushAsync(wrapper);
             }
