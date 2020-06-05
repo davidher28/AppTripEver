@@ -57,44 +57,36 @@
             FontSize="Medium"
             Text="LOGIN"
             TextColor="White" />
-
+            
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
             <controls:StandardEntry
-            Grid.Row="2"
-            Padding="13"
-            BackgroundColor="#31FFFFFF"
-            BorderColor="White"
-            BorderThickness="1"
-            CornerRadius="8"
-            TextColor="White"
-            Placeholder="Username"
-            PlaceholderColor="White"
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Usuario"
+            PlaceholderColor="#677BA6"
             Text="{Binding NombreUsuario.Value}">
             <Entry.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="TextChanged"
                 Command="{Binding ValidateNombreUsuarioCommand}"/>
             </Entry.Behaviors>
             </controls:StandardEntry>
+            </Frame>
 
-            <controls:StandardEntry   
-            Grid.Row="3"
-            Margin="0,0,0,20"
-            Padding="13"
-            BackgroundColor="#31FFFFFF"
-            TextColor="White"
-            BorderColor="White"
-            BorderThickness="1"
-            CornerRadius="8"
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,20">
+            <controls:StandardEntry                      
+            TextColor="#677BA6"                     
             IsPassword="True"
-            Placeholder="Password"
-            PlaceholderColor="White"
+            Placeholder="Contraseña"
+            PlaceholderColor="#677BA6"
             Text="{Binding ContraUsuario.Value}"/>
+            </Frame>
 
             <Button
             Grid.Row="4"
-            BackgroundColor="White"
+            BackgroundColor="#393c3e"
             CornerRadius="8"
-            Text="LOGIN"
-            TextColor="#4758AE"
+            Text="Iniciar Sesión"
+            TextColor="White"
             TranslationY="-20"
             Command="{Binding IniciarSesionCommand}"/>
         
@@ -102,14 +94,13 @@
             Grid.Row="5"
             TextColor="White" 
             TranslationY="-20"
-            TranslationX="70"
             VerticalOptions="Center"
             Text="No tienes una cuenta?" />
         
             <Button
             Grid.Row="5"
             TranslationY="-20"
-            TranslationX="70"
+            TextColor="#DBA016"
             Command="{Binding RegistroCommand}"
             Style="{StaticResource Registrate}"
             Text="REGISTRATE"/>
