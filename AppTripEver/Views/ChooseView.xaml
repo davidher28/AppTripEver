@@ -51,7 +51,7 @@
                         Grid.Column="0"
                         AlignItems="Center"
                         JustifyContent="Center"
-                        TranslationY="60"
+                        TranslationY="61"
                         Grid.ColumnSpan="1">
             <Label Text="Reservar" FontAttributes="Bold" Grid.ColumnSpan="2" FontSize="Large" TextColor="#677BA6" Grid.Row="5"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="150" />
         </FlexLayout>
@@ -62,7 +62,7 @@
                         Grid.Column="1"
                         AlignItems="Center"
                         JustifyContent="Center"
-                        TranslationY="60"
+                        TranslationY="61"
                         Grid.ColumnSpan="1">
             <Label Text="Hospedar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="5" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"  HeightRequest="150" />
         </FlexLayout>
