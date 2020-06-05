@@ -13,6 +13,7 @@ namespace AppTripEver
             {
                 BarBackgroundColor = Color.FromHex("#000000"),
                 BarTextColor = Color.White
+                //IsVisible = false
             };
         }
 
