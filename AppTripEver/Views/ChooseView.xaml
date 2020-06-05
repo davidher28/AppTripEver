@@ -7,55 +7,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#4AAFDB"
-             NavigationPage.HasNavigationBar="false">
+             BackgroundColor="#1A3161"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
     <Grid Padding="20" RowSpacing="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="200" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label      
-            Grid.Row="0"
+            Grid.Row="2"
             Grid.ColumnSpan="2"
             FontAttributes="Bold"
+            TranslationY="25"
             FontSize="Large"
-            Text="{Binding Usuario.Nombre}"
+            Text="{Binding Usuario.Nombre, StringFormat='Bienvenido {0}'}"
             FontFamily="Lobster"
-            TextColor="White"                
+            TextColor="#CAD1E0"                
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
-        <FlexLayout Direction="Row" Grid.Row="2"
+        <Label      
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            TranslationY="5"
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="¿Que acción deseas realizar?"
+            FontFamily="Lobster"
+            TextColor="#CAD1E0"                
+            VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand" />
+        <FlexLayout Direction="Row" Grid.Row="5"
                         Grid.Column="0"
                         AlignItems="Center"
                         JustifyContent="Center"
-                        TranslationY="-100"
-                        TranslationX="36"
-                        Padding="0"
-                        Margin="0">
-            <Label Text="Reservar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="2"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+                        TranslationY="60"
+                        Grid.ColumnSpan="1">
+            <Label Text="Reservar" FontAttributes="Bold" Grid.ColumnSpan="2" FontSize="Large" TextColor="#677BA6" Grid.Row="5"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="150" />
         </FlexLayout>
-        
-        <Button  ImageSource="reservar.png" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
-        <FlexLayout Direction="Row" Grid.Row="2"
+        <Frame Grid.Row="4" Grid.Column="0" HasShadow="True" Padding="0.2" CornerRadius="2" BackgroundColor="#14254A">
+            <Button  ImageSource="reservar.png" BackgroundColor="#1A3161" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        </Frame>
+        <FlexLayout Direction="Row" Grid.Row="5"
                         Grid.Column="1"
                         AlignItems="Center"
                         JustifyContent="Center"
-                        TranslationY="-100"
-                        TranslationX="30"
-                        Padding="0"
-                        Margin="0">
-            <Label Text="Hospedar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+                        TranslationY="60"
+                        Grid.ColumnSpan="1">
+            <Label Text="Hospedar" FontAttributes="Bold" FontSize="Large" TextColor="#677BA6" Grid.Row="5" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"  HeightRequest="150" />
         </FlexLayout>
-        <Button  ImageSource="hospedar.png" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        <Frame Grid.Row="4" Grid.Column="1" HasShadow="True" Padding="0.2" CornerRadius="5" BackgroundColor="#14254A" >
+            <Button  ImageSource="hospedar.png" BackgroundColor="#1A3161" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+        </Frame>
 
     </Grid>
 </ContentPage>
