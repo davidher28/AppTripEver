@@ -26,7 +26,7 @@ namespace AppTripEver.Services.APIRest
             };
 
             string objetoJson = JsonConvert.SerializeObject(objecto);
-            HttpContent content = new StringContent(objetoJson, Encoding.UTF8);
+            HttpContent content = new StringContent(objetoJson, Encoding.UTF8, "application/json");
 
             try
             {
@@ -34,7 +34,6 @@ namespace AppTripEver.Services.APIRest
                 {
                     var verboHttp = (Verbo == "POST") ? HttpMethod.Post : HttpMethod.Put;
                     HttpRequestMessage requestMessage = new HttpRequestMessage(verboHttp, UrlParameters);
-                    //requestMessage = ServicioHeaders.AgregarCabeceras(requestMessage);
                     requestMessage.Content = content;
                     client.Timeout = TimeSpan.FromSeconds(50);
                     HttpResponseMessage HttpResponse = client.SendAsync(requestMessage).Result;

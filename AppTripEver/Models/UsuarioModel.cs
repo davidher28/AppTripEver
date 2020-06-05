@@ -15,8 +15,6 @@ namespace AppTripEver.Models
         [JsonProperty("Nombre")]
         private string nombre { get; set; }
 
-        [JsonIgnore]
-
         [JsonProperty("Mail")]
         private string email { get; set; }
 
