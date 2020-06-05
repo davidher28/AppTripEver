@@ -23,7 +23,6 @@ namespace AppTripEver.ViewModels
         #region Request
 
         public ElegirRequest<BaseModel> CrearNuevoUsuario { get; set; }
-        public ElegirRequest<BaseModel> GetUsuario_Name { get; set; }
 
         #endregion Request 
 
@@ -304,9 +303,6 @@ namespace AppTripEver.ViewModels
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);               
-
-                //await NavigationService.PushPage(new LoginView());
-
             }
         }
 
