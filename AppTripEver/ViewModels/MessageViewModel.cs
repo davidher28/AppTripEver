@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AppTripEver.Models;
 using AppTripEver.Services.Propagation;
+using AppTripEver.Views;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
@@ -45,6 +46,7 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
 }
