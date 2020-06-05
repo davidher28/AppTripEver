@@ -41,7 +41,7 @@
             Aspect="AspectFit"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="xamarin_logo.png" />
+            Source="tripever_logo_3.png" />
 
             <Image
             Grid.Row="0"
