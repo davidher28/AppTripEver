@@ -11,10 +11,10 @@ using Xamarin.Forms.Xaml;
 namespace AppTripEver.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HostView : ContentPage
+    public partial class CrearServicioView : ContentPage
     {
-        HostViewModel context = new HostViewModel();    
-        public HostView()
+        CrearServicioViewModel context = new CrearServicioViewModel();
+        public CrearServicioView()
         {
             InitializeComponent();
             BindingContext = context;

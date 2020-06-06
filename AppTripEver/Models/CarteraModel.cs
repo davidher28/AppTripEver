@@ -1,13 +1,19 @@
 ﻿using AppTripEver.Services.Propagation;
+using Newtonsoft.Json;
 
 namespace AppTripEver.Models
 {
     public class CarteraModel : BaseModel
     {
         #region Properties
-        public long IdCartera { get; set; }
 
+        [JsonProperty("IdCartera")]
+        private long idCartera { get; set; }
+
+        [JsonIgnore]
         public UsuarioModel Usuario { get; set; }
+
+        [JsonProperty("Monto")]
         private int montoTotal {get; set;}
         #endregion Properties 
 
@@ -16,12 +22,26 @@ namespace AppTripEver.Models
         #endregion Initialize 
 
         #region Getters & Setters
+
+
+        [JsonIgnore]
         public int MontoTotal
         {
             get { return montoTotal; }
-            set 
+            set
             {
                 montoTotal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public long IdCartera
+        {
+            get { return idCartera; }
+            set 
+            {
+                idCartera = value;
                 OnPropertyChanged();
             }
         }
