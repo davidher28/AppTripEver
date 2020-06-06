@@ -139,6 +139,7 @@ namespace AppTripEver.ViewModels
                 IdUsuario = Usuario.IdUsuario,
                 NoCuenta = NoCuentaUsuario.Value,
                 MailHost = MailUsuario.Value,
+                IdHost = null,
                 IsHost = null
             };
 

@@ -34,7 +34,7 @@ namespace AppTripEver.Services.APIRest
         #endregion Getters / Setters 
 
         #region Métodos 
-        public abstract Task<APIResponse> SendRequest(T objecto);
+        public abstract Task<APIResponse> SendRequest(T objecto, string Json = null);
 
         public async Task ConstruirURL(ParametersRequest parametros)
         {

@@ -19,7 +19,7 @@ namespace AppTripEver.Services.APIRest
         }
 
         #region Métodos
-        public override async Task<APIResponse> SendRequest(T objecto)
+        public override async Task<APIResponse> SendRequest(T objecto, string Json = null)
         {
             APIResponse respuesta = new APIResponse()
             {

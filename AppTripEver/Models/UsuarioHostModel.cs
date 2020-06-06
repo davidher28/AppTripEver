@@ -10,7 +10,7 @@ namespace AppTripEver.Models
         #region Properties
 
         [JsonProperty("IdHost")]
-        private long idHost { get; set; }
+        private Nullable<long> idHost { get; set; }
 
         [JsonProperty("NoCuenta")]
         private string noCuenta { get; set; }
@@ -33,7 +33,7 @@ namespace AppTripEver.Models
         #region Getters & Setters
 
         [JsonIgnore]
-        public long IdHost
+        public Nullable<long> IdHost
         {
             get { return idHost; }
             set

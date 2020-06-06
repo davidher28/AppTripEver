@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using AppTripEver.Behaviors;
+using Newtonsoft.Json.Linq;
 
 namespace AppTripEver.ViewModels
 {
@@ -109,14 +110,7 @@ namespace AppTripEver.ViewModels
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Host = new UsuarioHostModel(Cartera);
-            Horario = new HorarioModel()
-            {
-                FechaInicio = FechaInicio.Value,
-                FechaFinal = FechaInicio.Value,
-                HoraInicio = FechaInicio.Value,
-                HoraFinal = FechaInicio.Value,
-
-            };
+            Horario = new HorarioModel();
             Message = new MessageModel { Message = "Servicio creado correctamente" };
             InitializeRequest();
             InitializeCommands();
@@ -157,6 +151,11 @@ namespace AppTripEver.ViewModels
 
         public async Task CrearServicio()
         {
+            Horario.FechaInicio = "1999-01-01";
+            Horario.FechaFinal = "1999-01-01";
+            Horario.HoraInicio = "1999-01-01";
+            Horario.HoraFinal = "1999-01-01" +
+                "";
             ServiciosModel servicio = new ServiciosModel(Horario, Host)
             {
                 Titulo = Titulo.Value,
@@ -166,15 +165,33 @@ namespace AppTripEver.ViewModels
                 Descripcion = Descripcion.Value,
                 Precio = Precio.Value
             };
-            APIResponse response = await CrearNuevoServicio.EjecutarEstrategia(servicio);
+            JObject vals =
+                new JObject(
+                    new JProperty("Titulo", servicio.Titulo),
+                    new JProperty("Pais", servicio.Pais),
+                    new JProperty("Ciudad", servicio.Ciudad),
+                    new JProperty("MaxPersonas", servicio.NumMaxPersonas.ToString()),
+                    new JProperty("Descripcion", servicio.Descripcion),
+                    new JProperty("Precio", servicio.Precio.ToString()),
+                    new JProperty("IdHost", Host.IdHost.ToString()),
+                    new JProperty("IdTipoServicio", "1"),
+                    new JProperty("FechaInicio", Horario.FechaInicio),
+                    new JProperty("FechaFin", Horario.FechaFinal),
+                    new JProperty("HoraInicio", Horario.HoraInicio),
+                    new JProperty("HoraFin", Horario.HoraFinal)
+                    );
+            string Json = vals.ToString();
+            APIResponse response = await CrearNuevoServicio.EjecutarEstrategia(servicio,null,Json);
             if (response.IsSuccess)
             {
-                Host.Servicios.Add(servicio);
+                Console.WriteLine("Todo bien");
+                //Host.Servicios.Add(servicio);
                 MessageViewPop popUp = new MessageViewPop();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
+
         }
         #endregion Methods
     }

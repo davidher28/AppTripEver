@@ -36,11 +36,11 @@ namespace AppTripEver.Services.APIRest
             }
         }
         
-        public async Task<APIResponse> EjecutarEstrategia(T objecto, ParametersRequest parametersRequest = null)
+        public async Task<APIResponse> EjecutarEstrategia(T objecto, ParametersRequest parametersRequest = null, string Json = null)
         {
             parametersRequest = parametersRequest ?? new ParametersRequest();
             await EstrategiaEnvio.ConstruirURL(parametersRequest);
-            var response = await EstrategiaEnvio.SendRequest(objecto);
+            var response = await EstrategiaEnvio.SendRequest(objecto,Json);
             return response;
         }
         #endregion Métodos

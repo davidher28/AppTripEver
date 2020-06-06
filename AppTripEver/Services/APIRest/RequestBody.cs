@@ -16,7 +16,7 @@ namespace AppTripEver.Services.APIRest
             Url = url;
             Verbo = verbo;
         }
-        public override async Task<APIResponse> SendRequest(T objecto)
+        public override async Task<APIResponse> SendRequest(T objecto, string Json = null)
         {
             APIResponse respuesta = new APIResponse()
             {
@@ -24,11 +24,18 @@ namespace AppTripEver.Services.APIRest
                 IsSuccess = false,
                 Response = ""
             };
-
-            string objetoJson = JsonConvert.SerializeObject(objecto, new JsonSerializerSettings
+            string objetoJson = "";
+            if (Json != null)
             {
-                NullValueHandling = NullValueHandling.Ignore
-            });
+                objetoJson = Json;
+            }else
+            {
+                objetoJson = JsonConvert.SerializeObject(objecto, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            }
+
             HttpContent content = new StringContent(objetoJson, Encoding.UTF8, "application/json");
 
             try
