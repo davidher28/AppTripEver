@@ -23,6 +23,7 @@ namespace AppTripEver.ViewModels
         #region Request
 
         public ElegirRequest<BaseModel> GetUsuario_Name { get; set; }
+        public ElegirRequest<BaseModel> GetUsuarioHost { get; set; }
 
         #endregion Request 
 
@@ -44,6 +45,8 @@ namespace AppTripEver.ViewModels
 
         private UsuarioModel usuario;
 
+        private UsuarioHostModel host;
+
         private CarteraModel cartera;
 
         private MessageModel message;
@@ -64,6 +67,15 @@ namespace AppTripEver.ViewModels
             set
             {
                 usuario = value;
+                OnPropertyChanged();
+            }
+        }
+        public UsuarioHostModel Host
+        {
+            get { return host; }
+            set
+            {
+                host = value;
                 OnPropertyChanged();
             }
         }
@@ -114,6 +126,7 @@ namespace AppTripEver.ViewModels
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
+            Host = new UsuarioHostModel(Cartera);
             Message = new MessageModel { Message = "Datos incorrectos" };
             IsUsuarioEnable = false;
             IsContraEnable = false;
@@ -126,9 +139,12 @@ namespace AppTripEver.ViewModels
         public void InitializeRequest()
         {
             string urlUsuario_Name = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_NOMBRE;
+            string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
 
             GetUsuario_Name = new ElegirRequest<BaseModel>();
             GetUsuario_Name.ElegirEstrategia("GET", urlUsuario_Name);
+            GetUsuarioHost = new ElegirRequest<BaseModel>();
+            GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
 
         }
 
@@ -164,11 +180,30 @@ namespace AppTripEver.ViewModels
                 if (response.IsSuccess)
                 {
                     Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
-                    Console.WriteLine(Usuario.IsHost);
                     if (Usuario.IsHost == 1)
                     {
-                        await NavigationService.PushPage(new ChooseView(), Usuario);
-
+                        try
+                        {
+                            ParametersRequest parametros2 = new ParametersRequest();
+                            parametros2.Parametros.Add(Usuario.IdUsuario.ToString());
+                            APIResponse response2 = await GetUsuarioHost.EjecutarEstrategia(null, parametros2);
+                            if (response2.IsSuccess)
+                            {
+                                Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response2.Response);
+                                Host.IdUsuario = Usuario.IdUsuario;
+                                Host.Nombre = Usuario.Nombre;
+                                Host.Email = Usuario.Email;
+                                Host.FechaNacimiento = Usuario.FechaNacimiento;
+                                Host.TipoIdentificacion = Usuario.TipoIdentificacion;
+                                Host.Identificacion = Usuario.Identificacion;
+                                Host.Telefono = Usuario.Telefono;
+                                Host.NombreUsuario = Usuario.NombreUsuario;
+                                Host.Contrasena = Usuario.Contrasena;
+                                Host.IsHost = Usuario.IsHost;
+                                await NavigationService.PushPage(new ChooseView(), Host);
+                            }
+                        }
+                        catch(Exception){ }
                     }
                     else if (Usuario.IsHost == 0)
                     {
