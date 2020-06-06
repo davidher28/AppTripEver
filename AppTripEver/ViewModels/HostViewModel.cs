@@ -87,6 +87,7 @@ namespace AppTripEver.ViewModels
         {
             await NavigationService.PushPage(new CrearServicioView(),Host);
         }
+
         #endregion Methods
     }
 }
