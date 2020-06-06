@@ -27,6 +27,8 @@ namespace AppTripEver.ViewModels
 
         #region Commands
         public ICommand UsuarioHostCommand { get; set; }
+        public ICommand UsuarioCommand { get; set; }
+
 
         #endregion Commands
 
@@ -101,6 +103,8 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             UsuarioHostCommand = new Command(async () => await GetHost(), () => true);
+            UsuarioCommand = new Command(async () => await OpenServices(), () => true);
+
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -112,6 +116,10 @@ namespace AppTripEver.ViewModels
         #endregion Initialize
 
         #region Methods
+        public async Task OpenServices()
+        {
+            await NavigationService.PushPage(new ServicesView(), Usuario);
+        }
 
         public async Task GetHost()
         {

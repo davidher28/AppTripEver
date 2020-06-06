@@ -39,9 +39,9 @@ namespace AppTripEver.ViewModels
         public ValidatableObject<string> Titulo { get; set; }
         public ValidatableObject<string> Pais { get; set; }
         public ValidatableObject<string> Ciudad { get; set; }
-        public ValidatableObject<int> MaxPersonas { get; set; }
+        public ValidatableObject<Nullable<int>> MaxPersonas { get; set; }
         public ValidatableObject<string> Descripcion { get; set; }
-        public ValidatableObject<int> Precio { get; set; }
+        public ValidatableObject<Nullable<int>> Precio { get; set; }
         public ValidatableObject<string> FechaInicio { get; set; }
         public ValidatableObject<string> FechaFinal { get; set; }
         public ValidatableObject<string> HoraInicio { get; set; }
@@ -134,9 +134,9 @@ namespace AppTripEver.ViewModels
             Titulo = new ValidatableObject<string>();
             Pais = new ValidatableObject<string>();
             Ciudad = new ValidatableObject<string>();
-            MaxPersonas = new ValidatableObject<int>();
+            MaxPersonas = new ValidatableObject<Nullable<int>>();
             Descripcion = new ValidatableObject<string>();
-            Precio = new ValidatableObject<int>();
+            Precio = new ValidatableObject<Nullable<int>>();
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -154,16 +154,15 @@ namespace AppTripEver.ViewModels
             Horario.FechaInicio = "1999-01-01";
             Horario.FechaFinal = "1999-01-01";
             Horario.HoraInicio = "1999-01-01";
-            Horario.HoraFinal = "1999-01-01" +
-                "";
+            Horario.HoraFinal = "1999-01-01";
             ServiciosModel servicio = new ServiciosModel(Horario, Host)
             {
                 Titulo = Titulo.Value,
                 Pais = Pais.Value,
                 Ciudad = Ciudad.Value,
-                NumMaxPersonas = MaxPersonas.Value,
+                NumMaxPersonas = (int)MaxPersonas.Value,
                 Descripcion = Descripcion.Value,
-                Precio = Precio.Value
+                Precio = (int)Precio.Value
             };
             JObject vals =
                 new JObject(
