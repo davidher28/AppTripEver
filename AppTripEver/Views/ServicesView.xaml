@@ -7,9 +7,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#4AAFDB"
-             NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False">
+             BackgroundColor="#1A3161"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="ic_account_circle.png"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
     <Grid Padding="20" RowSpacing="20">
         <Label      
             Grid.Row="0"
