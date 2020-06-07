@@ -59,7 +59,7 @@
             <Label Text="Reservar" FontAttributes="Bold"  FontSize="Large" TextColor="#677BA6"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
         </FlexLayout>
         <Frame Grid.Row="4" Grid.Column="0" HasShadow="True" Padding="1" CornerRadius="2" BackgroundColor="#14254A">
-            <Button  ImageSource="reservar.png" BackgroundColor="#1A3161" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" />
+            <Button  ImageSource="reservar.png" BackgroundColor="#1A3161" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="150" Command="{Binding UsuarioCommand }"/>
         </Frame>
         <FlexLayout Direction="Row" Grid.Row="5"
                         Grid.Column="1"

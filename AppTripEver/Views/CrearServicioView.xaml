@@ -35,9 +35,15 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -47,7 +53,7 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -57,7 +63,7 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="4" Padding="0" Margin="0,0,0,0">
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="4" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -67,7 +73,7 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="5" Padding="0" Margin="0,0,0,0">
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="5" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -76,8 +82,8 @@
             Text="{Binding MaxPersonas.Value}">
                 </Entry>
             </Frame>
-            
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="6" Padding="0" Margin="0,0,0,0">
+
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="6" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -87,7 +93,7 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="7" Padding="0" Margin="0,0,0,0">
+            <Frame CornerRadius="5"  Grid.ColumnSpan="2" BackgroundColor="White"  Grid.Row="7" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
             TextColor="#677BA6"
@@ -97,7 +103,48 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Fecha Inicio"
+            PlaceholderColor="#677BA6"
+            Text="{Binding FechaInicio.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Fecha Final"
+            PlaceholderColor="#677BA6"
+            Text="{Binding FechaFinal.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="9" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Hora Inicio"
+            PlaceholderColor="#677BA6"
+            Text="{Binding FechaInicio.Value}">
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="9" Padding="0" Margin="0,0,0,0">
+                <Entry
+            BackgroundColor="White"
+            TextColor="#677BA6"
+            Placeholder="Hora Final"
+            PlaceholderColor="#677BA6"
+            Text="{Binding FechaFinal.Value}">
+                </Entry>
+            </Frame>
+
+
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="#393c3e" Grid.Row="10" Padding="0" Margin="0,0,0,0">
                 <Button
             BackgroundColor="#393c3e"
             Text="Crear Servicio"

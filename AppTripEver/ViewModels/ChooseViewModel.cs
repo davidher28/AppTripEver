@@ -27,6 +27,8 @@ namespace AppTripEver.ViewModels
 
         #region Commands
         public ICommand UsuarioHostCommand { get; set; }
+        public ICommand UsuarioCommand { get; set; }
+
 
         #endregion Commands
 
@@ -101,45 +103,30 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             UsuarioHostCommand = new Command(async () => await GetHost(), () => true);
+            UsuarioCommand = new Command(async () => await OpenServices(), () => true);
+
         }
 
         public override async Task ConstructorAsync(object parameters)
         {
             var usuario = parameters as UsuarioModel;
+            var host = parameters as UsuarioHostModel;
             Usuario = usuario;
+            Host = host;
         }
 
         #endregion Initialize
 
         #region Methods
+        public async Task OpenServices()
+        {
+            await NavigationService.PushPage(new ServicesView(), Usuario);
+        }
 
         public async Task GetHost()
         {
-            try
-            {
-                ParametersRequest parametros = new ParametersRequest();
-                parametros.Parametros.Add(Usuario.IdUsuario.ToString());
-                APIResponse response = await GetUsuarioHost.EjecutarEstrategia(null, parametros);
-                if (response.IsSuccess)
-                {
-                    Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response.Response);
-                    Host.IdUsuario = Usuario.IdUsuario;
-                    Host.Nombre = Usuario.Nombre;
-                    Host.Email = Usuario.Email;
-                    Host.FechaNacimiento = Usuario.FechaNacimiento;
-                    Host.TipoIdentificacion = Usuario.TipoIdentificacion;
-                    Host.Identificacion = Usuario.Identificacion;
-                    Host.Telefono = Usuario.Telefono;
-                    Host.NombreUsuario = Usuario.NombreUsuario;
-                    Host.Contrasena = Usuario.Contrasena;
-                    Host.IsHost = Usuario.IsHost;
-                    await NavigationService.PushPage(new HostView(), Host);
-                }
-            }
-            catch (Exception)
-            {
-                //((MessageViewModel)PopUp.BindingContext).Message = "Sistema no disponible en este momento.";
-            }
+            await NavigationService.PushPage(new HostView(), Host);
+
         }
     }
 
