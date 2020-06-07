@@ -10,6 +10,16 @@
              BackgroundColor="#4AAFDB"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="usuario.png"
+                 Order="Primary"
+                 Priority="0" />
+        <ToolbarItem 
+                 IconImageSource="billetera.png"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
     <Grid Padding="20" RowSpacing="20">
         <Label      
             Grid.Row="0"
@@ -22,12 +32,5 @@
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
 
-        <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="1" Padding="0" Margin="0,0,0,0">
-            <Button
-            BackgroundColor="#393c3e"
-            Text="Crear Servicio"
-            TextColor="White"
-            Command="{Binding CrearServicioCommand}"/>
-        </Frame>
     </Grid>
 </ContentPage>

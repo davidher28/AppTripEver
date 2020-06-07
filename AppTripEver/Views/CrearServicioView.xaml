@@ -11,156 +11,163 @@
              BackgroundColor="#1A3161"
              NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="Registrate" TargetType="Button">
-                <Setter Property="Margin" Value="5,0,0,0"></Setter>
-                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
-                <Setter Property="FontAttributes" Value="Bold"></Setter>
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="Padding" Value="0,0,0,0"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+            <ResourceDictionary>
+                <Style x:Key="Registrate" TargetType="Button">
+                    <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                    <Setter Property="FontAttributes" Value="Bold"></Setter>
+                    <Setter Property="TextColor" Value="White"></Setter>
+                    <Setter Property="Padding" Value="0,0,0,0"></Setter>
+                </Style>
+            </ResourceDictionary>
+        </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Padding="20" RowSpacing="20">
+        <ScrollView>
+            <Grid Padding="20" RowSpacing="20">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="1" Padding="0" Margin="0,0,0,0">
-                <Picker x:Name="TipoServicio"  SelectedIndex="{Binding TipoServicio.Value}"  HorizontalOptions="FillAndExpand" TextColor="#677BA6" TitleColor="#677BA6" Title="Tipo de Servicio">
-                    <Picker.Items>
-                        <x:String>Hospedaje</x:String>
-                        <x:String>Experiencia</x:String>
-                    </Picker.Items>
-                </Picker>
-            </Frame>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Titulo"
-            PlaceholderColor="#677BA6"
-            Text="{Binding Titulo.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="1" Padding="0" Margin="0,0,0,0">
+                    <Picker x:Name="TipoServicio"  SelectedIndex="{Binding TipoServicio.Value}"  HorizontalOptions="FillAndExpand" TextColor="#677BA6" TitleColor="#677BA6" Title="Tipo de Servicio">
+                        <Picker.Items>
+                            <x:String>Hospedaje</x:String>
+                            <x:String>Experiencia</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Frame>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Pais"
-            PlaceholderColor="#677BA6"
-            Text="{Binding Pais.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Título"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding Titulo.Value}">
+                    </Entry>
+                </Frame>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="4" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Ciudad"
-            PlaceholderColor="#677BA6"
-            Text="{Binding Ciudad.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="País"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding Pais.Value}">
+                    </Entry>
+                </Frame>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="5" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Maximo número de personas"
-            PlaceholderColor="#677BA6"
-            Text="{Binding MaxPersonas.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="4" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Ciudad"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding Ciudad.Value}">
+                    </Entry>
+                </Frame>
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="6" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Descripcion"
-            PlaceholderColor="#677BA6"
-            Text="{Binding Descripcion.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="5" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Máximo número de personas"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding MaxPersonas.Value}">
+                    </Entry>
+                </Frame>
 
-            <Frame CornerRadius="5"  Grid.ColumnSpan="2" BackgroundColor="White"  Grid.Row="7" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Precio"
-            PlaceholderColor="#677BA6"
-            Text="{Binding Precio.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5"  Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="6" Padding="0" Margin="0,0,0,0">
+                    <Editor
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Descripción"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding Descripcion.Value}"
+                    HeightRequest="150">
+                    </Editor>
+                </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="8" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Fecha Inicio"
-            PlaceholderColor="#677BA6"
-            Text="{Binding FechaInicio.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5"  Grid.ColumnSpan="2" BackgroundColor="White"  Grid.Row="7" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Precio"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding Precio.Value}">
+                    </Entry>
+                </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="8" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Fecha Final"
-            PlaceholderColor="#677BA6"
-            Text="{Binding FechaFinal.Value}">
-                </Entry>
-            </Frame>
-
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="9" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Hora Inicio"
-            PlaceholderColor="#677BA6"
-            Text="{Binding HoraInicio.Value}">
-                </Entry>
-            </Frame>
-
-            <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="9" Padding="0" Margin="0,0,0,0">
-                <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
-            Placeholder="Hora Final"
-            PlaceholderColor="#677BA6"
-            Text="{Binding HoraFinal.Value}">
-                </Entry>
-            </Frame>
+                <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                            BackgroundColor="White"
+                            TextColor="#677BA6"
+                            Placeholder="Fecha Inicio"
+                            PlaceholderColor="#677BA6"
+                            Text="{Binding FechaInicio.Value}">
+                        </Entry>
+                </Frame>
+                <Label Padding="-2" Margin="-13" Grid.ColumnSpan="2" TextColor="White"  Grid.Row="8" Text="1997-01-19 / 10:00 am-pm" FontSize="10" VerticalOptions="End" HorizontalOptions="Center"/>
 
 
-            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="#393c3e" Grid.Row="10" Padding="0" Margin="0,0,0,0">
-                <Button
-            BackgroundColor="#393c3e"
-            Text="Crear Servicio"
-            TextColor="White"
-            Command="{Binding CrearServicioCommand}"/>
-            </Frame>
+                <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="8" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Fecha Final"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding FechaFinal.Value}">
+                    </Entry>
+                </Frame>
 
-        </Grid>
+                <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="9" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Hora Inicio"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding HoraInicio.Value}">
+                    </Entry>
+                </Frame>
+
+                <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="1" Grid.Row="9" Padding="0" Margin="0,0,0,0">
+                    <Entry
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Hora Final"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding HoraFinal.Value}">
+                    </Entry>
+                </Frame>
+
+
+                <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="#393c3e" Grid.Row="10" Padding="0" Margin="0,0,0,0">
+                    <Button
+                    BackgroundColor="#393c3e"
+                    Text="Crear Servicio"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Command="{Binding CrearServicioCommand}"/>
+                </Frame>
+
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
