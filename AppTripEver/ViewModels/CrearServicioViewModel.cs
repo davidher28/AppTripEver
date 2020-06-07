@@ -190,11 +190,11 @@ namespace AppTripEver.ViewModels
             };
             if (TipoServicio.Value == "0") 
             {
-                TipoServicio.Value = "1";
+                TipoServicio.Value = "1"; 
             }
             else if (TipoServicio.Value == "1")
             {
-                TipoServicio.Value = "2";
+                TipoServicio.Value = "2"; 
             }
             JObject vals =
                 new JObject(
@@ -217,6 +217,14 @@ namespace AppTripEver.ViewModels
             {
                 Console.WriteLine("Todo bien");
                 //Host.Servicios.Add(servicio);
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
+            else
+            {
+                Message.Message = "Usuario host ya existente";
                 MessageViewPop popUp = new MessageViewPop();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
