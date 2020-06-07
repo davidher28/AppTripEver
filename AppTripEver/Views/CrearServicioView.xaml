@@ -60,6 +60,10 @@
                     Placeholder="Título"
                     PlaceholderColor="#677BA6"
                     Text="{Binding Titulo.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateTituloCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -70,6 +74,10 @@
                     Placeholder="País"
                     PlaceholderColor="#677BA6"
                     Text="{Binding Pais.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidatePaisCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -80,6 +88,10 @@
                     Placeholder="Ciudad"
                     PlaceholderColor="#677BA6"
                     Text="{Binding Ciudad.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateCiudadCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -90,6 +102,10 @@
                     Placeholder="Máximo número de personas"
                     PlaceholderColor="#677BA6"
                     Text="{Binding MaxPersonas.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateMaxPersonasCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -101,6 +117,10 @@
                     PlaceholderColor="#677BA6"
                     Text="{Binding Descripcion.Value}"
                     HeightRequest="150">
+                    <Editor.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateDescripcionCommand}"/>
+                    </Editor.Behaviors>
                     </Editor>
                 </Frame>
 
@@ -111,17 +131,26 @@
                     Placeholder="Precio"
                     PlaceholderColor="#677BA6"
                     Text="{Binding Precio.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateNombreCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
                 <Frame CornerRadius="5" BackgroundColor="White" Grid.Column="0" Grid.Row="8" Padding="0" Margin="0,0,0,0">
                     <Entry
-                            BackgroundColor="White"
-                            TextColor="#677BA6"
-                            Placeholder="Fecha Inicio"
-                            PlaceholderColor="#677BA6"
-                            Text="{Binding FechaInicio.Value}">
-                        </Entry>
+                    BackgroundColor="White"
+                    TextColor="#677BA6"
+                    Placeholder="Fecha Inicio"
+                    PlaceholderColor="#677BA6"
+                    Text="{Binding FechaInicio.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateFechaInicioCommand}"/>
+                    </Entry.Behaviors>
+
+                    </Entry>
                 </Frame>
                 <Label Padding="-2" Margin="-13" Grid.ColumnSpan="2" TextColor="White"  Grid.Row="8" Text="1997-01-19 / 10:00 am-pm" FontSize="10" VerticalOptions="End" HorizontalOptions="Center"/>
 
@@ -133,6 +162,10 @@
                     Placeholder="Fecha Final"
                     PlaceholderColor="#677BA6"
                     Text="{Binding FechaFinal.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateFechaFinalCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -143,6 +176,10 @@
                     Placeholder="Hora Inicio"
                     PlaceholderColor="#677BA6"
                     Text="{Binding HoraInicio.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateHoraInicioCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -153,6 +190,10 @@
                     Placeholder="Hora Final"
                     PlaceholderColor="#677BA6"
                     Text="{Binding HoraFinal.Value}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                        Command="{Binding ValidateHoraFinalCommand}"/>
+                    </Entry.Behaviors>
                     </Entry>
                 </Frame>
 
@@ -162,8 +203,6 @@
                     BackgroundColor="#393c3e"
                     Text="Crear Servicio"
                     TextColor="White"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
                     Command="{Binding CrearServicioCommand}"/>
                 </Frame>
 
