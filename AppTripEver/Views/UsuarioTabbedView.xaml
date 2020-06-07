@@ -8,15 +8,17 @@
              x:Class="AppTripEver.Views.UsuarioTabbedView"
              NavigationPage.HasNavigationBar="False"
              BarBackgroundColor="Black"
+             android:TabbedPage.BarSelectedItemColor="#3D70E0"
              BarTextColor="White"
+             android:TabbedPage.BarItemColor="White"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
   <!--Pages can be added as references or inline-->
-    <NavigationPage IconImageSource="usuario.png">
+    <NavigationPage Icon="navegador.png">
         <x:Arguments>
             <views:ServicesView BindingContext="{Binding ServicesViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage IconImageSource="favorito.png"/>
-    <ContentPage IconImageSource="calendario.png"/>
+    <ContentPage Icon="favorito.png"/>
+    <ContentPage Icon="calendario.png"/>
 </TabbedPage>

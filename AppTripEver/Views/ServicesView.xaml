@@ -9,6 +9,9 @@
              mc:Ignorable="d"
              BackgroundColor="#1A3161"
              NavigationPage.HasNavigationBar="False">
+    <NavigationPage.TitleView>
+        <Label Text="TripEver"/>
+    </NavigationPage.TitleView>
     <ContentPage.ToolbarItems>
         <ToolbarItem 
                  IconImageSource="usuario.png"
