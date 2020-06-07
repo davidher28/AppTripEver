@@ -29,6 +29,10 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearHostCommand { get; set; }
 
+        public ICommand ValidateMailUsuarioCommand { get; set; }
+
+        public ICommand ValidateNoCuentaUsuarioCommand { get; set; }
+
         #endregion Commands
 
         #region Properties
@@ -45,6 +49,12 @@ namespace AppTripEver.ViewModels
         private UsuarioHostModel host;
 
         private MessageModel message;
+
+        private bool isCrearEnable;
+
+        private bool isMailUsuarioEnable;
+
+        private bool isNoCuentaUsuarioEnable;
 
         #endregion Properties
 
@@ -89,6 +99,35 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public bool IsCrearEnable
+        {
+            get { return isCrearEnable; }
+            set
+            {
+                isCrearEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsMailUsuarioEnable
+        {
+            get { return isMailUsuarioEnable; }
+            set
+            {
+                isMailUsuarioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsNoCuentaUsuarioEnable
+        {
+            get { return isNoCuentaUsuarioEnable; }
+            set
+            {
+                isNoCuentaUsuarioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters & Setters
 
         #region Initialize
@@ -99,9 +138,13 @@ namespace AppTripEver.ViewModels
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
             Message = new MessageModel { Message = "Usuario Host creado correctamente" };
+            isCrearEnable = false;
+            isMailUsuarioEnable = false;
+            isNoCuentaUsuarioEnable = false;
             InitializeRequest();
             InitializeCommands();
             InitializeFields();
+            AddValidations();
         }
 
         public void InitializeRequest()
@@ -113,7 +156,9 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            CrearHostCommand = new Command(async () => await CrearHost(), () => true);
+            CrearHostCommand = new Command(async () => await CrearHost(), () => isCrearEnable);
+            ValidateMailUsuarioCommand = new Command(() => ValidateMailUsuarioForm(), () => true);
+            ValidateNoCuentaUsuarioCommand = new Command(() => ValidateNoCuentaUsuarioUsuarioForm(), () => true);
         }
 
         public void InitializeFields()
@@ -122,6 +167,15 @@ namespace AppTripEver.ViewModels
             NoCuentaUsuario = new ValidatableObject<string>();
 
         }
+
+        public void AddValidations()
+        {
+            NoCuentaUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El numero de cuenta es Obligatorio" });
+            NoCuentaUsuario.Validation.Add(new TenDigitsRule<string> { ValidationMessage = "El numero de cuenta debe ser de 10 digitos" });
+            MailUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El mail es Obligatorio" });
+            MailUsuario.Validation.Add(new EmailRule<string> { ValidationMessage = "Debe introducir un Email" });
+        }
+
         public override async Task ConstructorAsync(object parameters)
         {
             var usuario = parameters as UsuarioModel;
@@ -150,6 +204,36 @@ namespace AppTripEver.ViewModels
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
+            }
+            else
+            {
+                Message.Message = "Usuario ya registrado como Host";
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
+        }
+
+        private void ValidateNoCuentaUsuarioUsuarioForm()
+        {
+            IsNoCuentaUsuarioEnable = NoCuentaUsuario.Validate();
+
+            if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearHostCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateMailUsuarioForm()
+        {
+            IsMailUsuarioEnable = MailUsuario.Validate();
+
+            if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearHostCommand).ChangeCanExecute();
             }
         }
 

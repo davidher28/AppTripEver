@@ -200,7 +200,10 @@ namespace AppTripEver.ViewModels
                                 Host.NombreUsuario = Usuario.NombreUsuario;
                                 Host.Contrasena = Usuario.Contrasena;
                                 Host.IsHost = Usuario.IsHost;
-                                await NavigationService.PushPage(new ChooseView(), Host);
+                                var page = new ChooseView();
+                                await NavigationService.PushPage(page, Host);
+                                var navigationCount = Application.Current.MainPage.Navigation.NavigationStack.Count - 1 ;
+                                Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount-1]);
                             }
                         }
                         catch(Exception){ }

@@ -30,12 +30,31 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearServicioCommand { get; set; }
 
+        public ICommand ValidateTituloCommand { get; set; }
+
+        public ICommand ValidatePaisCommand { get; set; }
+
+        public ICommand ValidateCiudadCommand { get; set; }
+
+        public ICommand ValidateMaxPersonasCommand { get; set; }
+
+        public ICommand ValidateDescripcionCommand { get; set; }
+
+        public ICommand ValidatePrecioCommand { get; set; }
+
+        public ICommand ValidateFechaInicioCommand { get; set; }
+
+        public ICommand ValidateFechaFinalCommand { get; set; }
+
+        public ICommand ValidateHoraInicioCommand { get; set; }
+
+        public ICommand ValidateHoraFinalCommand { get; set; }
         #endregion Commands
 
         #region Properties
         public MessageViewPop PopUp { get; set; }
 
-
+        public ValidatableObject<string> TipoServicio { get; set; }
         public ValidatableObject<string> Titulo { get; set; }
         public ValidatableObject<string> Pais { get; set; }
         public ValidatableObject<string> Ciudad { get; set; }
@@ -131,13 +150,18 @@ namespace AppTripEver.ViewModels
 
         public void InitializeFields()
         {
+            TipoServicio = new ValidatableObject<string>();
             Titulo = new ValidatableObject<string>();
             Pais = new ValidatableObject<string>();
             Ciudad = new ValidatableObject<string>();
             MaxPersonas = new ValidatableObject<Nullable<int>>();
             Descripcion = new ValidatableObject<string>();
             Precio = new ValidatableObject<Nullable<int>>();
-        }
+            FechaInicio = new ValidatableObject<string>();
+            FechaFinal = new ValidatableObject<string>();
+            HoraInicio = new ValidatableObject<string>();
+            HoraFinal = new ValidatableObject<string>();
+    }
 
         public override async Task ConstructorAsync(object parameters)
         {
@@ -151,10 +175,10 @@ namespace AppTripEver.ViewModels
 
         public async Task CrearServicio()
         {
-            Horario.FechaInicio = "1999-01-01";
-            Horario.FechaFinal = "1999-01-01";
-            Horario.HoraInicio = "1999-01-01";
-            Horario.HoraFinal = "1999-01-01";
+            Horario.FechaInicio = FechaInicio.Value;
+            Horario.FechaFinal = FechaFinal.Value;
+            Horario.HoraInicio = HoraInicio.Value;
+            Horario.HoraFinal = HoraFinal.Value;
             ServiciosModel servicio = new ServiciosModel(Horario, Host)
             {
                 Titulo = Titulo.Value,
@@ -164,6 +188,14 @@ namespace AppTripEver.ViewModels
                 Descripcion = Descripcion.Value,
                 Precio = (int)Precio.Value
             };
+            if (TipoServicio.Value == "0") 
+            {
+                TipoServicio.Value = "1";
+            }
+            else if (TipoServicio.Value == "1")
+            {
+                TipoServicio.Value = "2";
+            }
             JObject vals =
                 new JObject(
                     new JProperty("Titulo", servicio.Titulo),
@@ -173,7 +205,7 @@ namespace AppTripEver.ViewModels
                     new JProperty("Descripcion", servicio.Descripcion),
                     new JProperty("Precio", servicio.Precio.ToString()),
                     new JProperty("IdHost", Host.IdHost.ToString()),
-                    new JProperty("IdTipoServicio", "1"),
+                    new JProperty("IdTipoServicio", TipoServicio.Value),
                     new JProperty("FechaInicio", Horario.FechaInicio),
                     new JProperty("FechaFin", Horario.FechaFinal),
                     new JProperty("HoraInicio", Horario.HoraInicio),
@@ -190,7 +222,6 @@ namespace AppTripEver.ViewModels
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
-
         }
         #endregion Methods
     }
