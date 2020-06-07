@@ -11,7 +11,11 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-                 IconImageSource="ic_account_circle.png"
+                 IconImageSource="usuario.png"
+                 Order="Primary"
+                 Priority="0" />
+        <ToolbarItem 
+                 IconImageSource="billetera.png"
                  Order="Primary"
                  Priority="0" />
     </ContentPage.ToolbarItems>

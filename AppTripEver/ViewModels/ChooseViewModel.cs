@@ -120,7 +120,7 @@ namespace AppTripEver.ViewModels
         #region Methods
         public async Task OpenServices()
         {
-            await NavigationService.PushPage(new ServicesView(), Usuario);
+            await NavigationService.PushPage(new UsuarioTabbedView(), Usuario);
         }
 
         public async Task GetHost()

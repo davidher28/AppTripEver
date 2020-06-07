@@ -1,21 +1,22 @@
-﻿using AppTripEver.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AppTripEver.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppTripEver.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ServicesView : ContentPage
+    public partial class UsuarioTabbedView : TabbedPage
     {
-        public ServicesView()
+        UsuarioTabbedViewModel context = new UsuarioTabbedViewModel();
+        public UsuarioTabbedView()
         {
             InitializeComponent();
+            BindingContext = context;
         }
     }
 }
