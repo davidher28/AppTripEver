@@ -18,7 +18,7 @@ using AppTripEver.Behaviors;
 
 namespace AppTripEver.ViewModels
 {
-    class ReseñasViewModel : BaseViewModel
+    public class ReseñasViewModel : BaseViewModel
     {
     }
 }
