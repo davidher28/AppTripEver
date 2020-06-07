@@ -30,6 +30,8 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearServicioCommand { get; set; }
 
+        public ICommand ValidateTipoServicioCommand { get; set; }
+
         public ICommand ValidateTituloCommand { get; set; }
 
         public ICommand ValidatePaisCommand { get; set; }
@@ -78,6 +80,30 @@ namespace AppTripEver.ViewModels
 
         private MessageModel message;
 
+        private bool isCrearEnable;
+
+        private bool isTipoServicioEnable;
+
+        private bool isTituloEnable;
+
+        private bool isPaisEnable;
+
+        private bool isCiudadEnable;
+
+        private bool isMaxPersonasEnable;
+
+        private bool isDescripcionEnable;
+
+        private bool isPrecioEnable;
+
+        private bool isFechaInicioEnable;
+
+        private bool isFechaFinalEnable;
+
+        private bool isHoraInicioEnable;
+
+        private bool isHoraFinalEnable;
+
         #endregion Properties
 
         #region Getters & Setters
@@ -121,6 +147,122 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public bool IsCrearEnable
+        {
+            get { return isCrearEnable; }
+            set
+            {
+                isCrearEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsTipoServicioEnable
+        {
+            get { return isTipoServicioEnable; }
+            set
+            {
+                isTipoServicioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsTituloEnable
+        {
+            get { return isTituloEnable; }
+            set
+            {
+                isTituloEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsPaisEnable
+        {
+            get { return isPaisEnable; }
+            set
+            {
+                isPaisEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsCiudadEnable
+        {
+            get { return isCiudadEnable; }
+            set
+            {
+                isCiudadEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsMaxPersonasEnable
+        {
+            get { return isMaxPersonasEnable; }
+            set
+            {
+                isMaxPersonasEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsDescripcionEnable
+        {
+            get { return isDescripcionEnable; }
+            set
+            {
+                isDescripcionEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsPrecioEnable
+        {
+            get { return isPrecioEnable; }
+            set
+            {
+                isPrecioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsFechaInicioEnable
+        {
+            get { return isFechaInicioEnable; }
+            set
+            {
+                isFechaInicioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsFechaFinalEnable
+        {
+            get { return isFechaFinalEnable; }
+            set
+            {
+                isFechaFinalEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsHoraInicioEnable
+        {
+            get { return isHoraInicioEnable; }
+            set
+            {
+                isHoraInicioEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsHoraFinalEnable
+        {
+            get { return isHoraFinalEnable; }
+            set
+            {
+                isHoraFinalEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         #endregion Getters & Setters
 
         #region Initialize
@@ -131,9 +273,21 @@ namespace AppTripEver.ViewModels
             Host = new UsuarioHostModel(Cartera);
             Horario = new HorarioModel();
             Message = new MessageModel { Message = "Servicio creado correctamente" };
+            IsCrearEnable = false;
+            IsTipoServicioEnable = false;
+            IsTituloEnable = false;
+            IsPaisEnable = false;
+            IsCiudadEnable = false;
+            IsMaxPersonasEnable = false;
+            IsDescripcionEnable = false;
+            IsFechaInicioEnable = false;
+            IsFechaFinalEnable = false;
+            IsHoraInicioEnable = false;
+            IsHoraFinalEnable = false;
             InitializeRequest();
             InitializeCommands();
             InitializeFields();
+            AddValidations();
         }
 
         public void InitializeRequest()
@@ -146,7 +300,18 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             CrearServicioCommand = new Command(async () => await CrearServicio(), () => true);
+            //ValidateTipoServicioCommand = new Command(() => ValidateTipoServicioCommandForm(), () => true);
+            //ValidateTituloCommand = new Command(() => ValidateTituloCommandForm(), () => true);
+            //ValidatePaisCommand = new Command(() => ValidatePaisCommandForm(), () => true);
+            //ValidateCiudadCommand = new Command(() => ValidateCiudadCommandForm(), () => true);
+            //ValidateMaxPersonasCommand = new Command(() => ValidateMaxPersonasCommandForm(), () => true);
+            //ValidateDescripcionCommand = new Command(() => ValidateDescripcionCommandForm(), () => true);
+            //ValidateFechaInicioCommand = new Command(() => ValidateFechaInicioCommandForm(), () => true);
+            //ValidateFechaFinalCommand = new Command(() => ValidateFechaFinalCommandoForm(), () => true);
+            //ValidateHoraInicioCommand = new Command(() => ValidateHoraInicioCommandForm(), () => true);
+            //ValidateHoraFinalCommand = new Command(() => ValidateHoraFinalCommandForm(), () => true);
         }
+    
 
         public void InitializeFields()
         {
@@ -161,7 +326,22 @@ namespace AppTripEver.ViewModels
             FechaFinal = new ValidatableObject<string>();
             HoraInicio = new ValidatableObject<string>();
             HoraFinal = new ValidatableObject<string>();
-    }
+        }
+
+        public void AddValidations()
+        {
+
+            TipoServicio.Validation.Add(new RequiredRule<string> { ValidationMessage = "El nombre del usuario es Obligatorio" });
+            Titulo.Validation.Add(new RequiredRule<string> { ValidationMessage = "El mail es Obligatorio" });
+            Pais.Validation.Add(new RequiredRule<string> { ValidationMessage = "Debe introducir un Email" });
+            Ciudad.Validation.Add(new RequiredRule<string> { ValidationMessage = "El Telefono es Obligatorio" });
+            Descripcion.Validation.Add(new RequiredRule<string> { ValidationMessage = "La fecha de nacimiento es Obligatoria" });
+            FechaInicio.Validation.Add(new RequiredRule<string> { ValidationMessage = "El numerode identificacion es Obligatorio" });
+            FechaFinal.Validation.Add(new RequiredRule<string> { ValidationMessage = "El Usuario es Obligatorio" });
+            HoraInicio.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio" });
+            HoraFinal.Validation.Add(new RequiredRule<string> { ValidationMessage = "El id es Obligatorio" });
+
+        }
 
         public override async Task ConstructorAsync(object parameters)
         {
@@ -231,6 +411,7 @@ namespace AppTripEver.ViewModels
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
         }
+
         #endregion Methods
     }
 }
