@@ -16,7 +16,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using AppTripEver.Behaviors;
 
-namespace AppTripEver.ViewModels
+namespace AppTripEver.ViewModels 
 {
     public class RegistroViewModel : BaseViewModel
     {
@@ -45,6 +45,8 @@ namespace AppTripEver.ViewModels
         public ICommand ValidateUsuarioCommand { get; set; }
 
         public ICommand ValidateContraCommand { get; set; }
+
+        
         #endregion Commands
 
         #region Properties

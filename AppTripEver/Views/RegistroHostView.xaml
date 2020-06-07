@@ -46,7 +46,7 @@
             Text="{Binding NoCuentaUsuario.Value}">
                     <Entry.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="TextChanged"
-                Command="{Binding ValidateNombreCommand}"/>
+                Command="{Binding ValidateNoCuentaUsuarioCommand}"/>
                     </Entry.Behaviors>
                 </Entry>
             </Frame>
@@ -60,7 +60,7 @@
             Text="{Binding MailUsuario.Value}">
                     <Entry.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="TextChanged"
-                Command="{Binding ValidateMailCommand}"/>
+                Command="{Binding ValidateMailUsuarioCommand}"/>
                     </Entry.Behaviors>
                 </Entry>
             </Frame>
