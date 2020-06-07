@@ -222,7 +222,6 @@ namespace AppTripEver.ViewModels
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
-
         }
         #endregion Methods
     }

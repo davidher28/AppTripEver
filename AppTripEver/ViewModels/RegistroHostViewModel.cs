@@ -205,6 +205,14 @@ namespace AppTripEver.ViewModels
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
+            else
+            {
+                Message.Message = "Usuario ya registrado como Host";
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
         }
 
         private void ValidateNoCuentaUsuarioUsuarioForm()
