@@ -125,7 +125,7 @@ namespace AppTripEver.ViewModels
 
         public async Task GetHost()
         {
-            await NavigationService.PushPage(new HostView(), Host);
+            await NavigationService.PushPage(new HostTabbedView(), Host);
 
         }
     }

@@ -8,7 +8,9 @@
              x:Class="AppTripEver.Views.HostTabbedView"
              NavigationPage.HasNavigationBar="False"
              BarBackgroundColor="Black"
+             android:TabbedPage.BarSelectedItemColor="#3D70E0"
              BarTextColor="White"
+             android:TabbedPage.BarItemColor="White"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
     <!--Pages can be added as references or inline-->
@@ -17,6 +19,12 @@
             <views:HostView BindingContext="{Binding HostViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage IconImageSource="favorito.png"/>
+    
+    <NavigationPage IconImageSource="mas.png">
+        <x:Arguments>
+            <views:CrearServicioView BindingContext="{Binding CrearServicioViewModel}"/>
+        </x:Arguments>
+    </NavigationPage>
+    
     <ContentPage IconImageSource="calendario.png"/>
-</TabbedPage>
+</TabbedPage>   
