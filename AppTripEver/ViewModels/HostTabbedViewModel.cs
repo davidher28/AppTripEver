@@ -19,7 +19,7 @@ using System.Threading;
 
 namespace AppTripEver.ViewModels
 {
-    public class UsuarioTabbedViewModel : BaseViewModel
+    public class HostTabbedViewModel : BaseViewModel
     {
         #region Request
 
@@ -32,27 +32,23 @@ namespace AppTripEver.ViewModels
 
         #region Properties
 
-        private UsuarioModel usuario;
+        private UsuarioHostModel host;
 
         private CarteraModel cartera;
 
-        public ServicesViewModel ServicesViewModel { get; set; }
-
-        public FavoritosViewModel FavoritosViewModel { get; set; }
-
-        public ReseñasViewModel ReseñasViewModel { get; set; }
+        public HostViewModel HostViewModel { get; set; }
 
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
 
         #region Getters & Setters
-        public UsuarioModel Usuario
+        public UsuarioHostModel Host
         {
-            get { return usuario; }
+            get { return host; }
             set
             {
-                usuario = value;
+                host = value;
                 OnPropertyChanged();
             }
         }
@@ -70,22 +66,23 @@ namespace AppTripEver.ViewModels
         #endregion Getters/Setters
 
         #region Initialize
-        public UsuarioTabbedViewModel()
+        public HostTabbedViewModel()
         {
             //InitializeCommands();
             NavigationService = new NavigationService();
-            ServicesViewModel= new ServicesViewModel();
+            HostViewModel = new HostViewModel();
         }
         public override async Task ConstructorAsync(object parameters)
         {
-            var usuario = parameters as UsuarioModel;
-            Usuario = usuario;
-            await ServicesViewModel.ConstructorAsync(Usuario);
+            var usuario = parameters as UsuarioHostModel;
+            Host = usuario;
+            await HostViewModel.ConstructorAsync(Host);
         }
         #endregion Initialize
 
         #region Methods
 
         #endregion Methods
+
     }
 }

@@ -18,7 +18,7 @@ using AppTripEver.Behaviors;
 
 namespace AppTripEver.ViewModels
 {
-    class FavoritosViewModel : BaseViewModel
+    public class FavoritosViewModel : BaseViewModel
     {
     }
 }
