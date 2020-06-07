@@ -42,7 +42,16 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
+            <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="1" Padding="0" Margin="0,0,0,0">
+                <Picker x:Name="TipoServicio"  SelectedIndex="{Binding TipoServicio.Value}"  HorizontalOptions="FillAndExpand" TextColor="#677BA6" TitleColor="#677BA6" Title="Tipo de Servicio">
+                    <Picker.Items>
+                        <x:String>Hospedaje</x:String>
+                        <x:String>Experiencia</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Frame>
+
             <Frame CornerRadius="5" Grid.ColumnSpan="2" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
                 <Entry
             BackgroundColor="White"
@@ -129,7 +138,7 @@
             TextColor="#677BA6"
             Placeholder="Hora Inicio"
             PlaceholderColor="#677BA6"
-            Text="{Binding FechaInicio.Value}">
+            Text="{Binding HoraInicio.Value}">
                 </Entry>
             </Frame>
 
@@ -139,7 +148,7 @@
             TextColor="#677BA6"
             Placeholder="Hora Final"
             PlaceholderColor="#677BA6"
-            Text="{Binding FechaFinal.Value}">
+            Text="{Binding HoraFinal.Value}">
                 </Entry>
             </Frame>
 
