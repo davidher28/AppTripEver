@@ -77,12 +77,15 @@ namespace AppTripEver.ViewModels
             Host = new UsuarioHostModel(Cartera);
             CrearServicioViewModel = new CrearServicioViewModel();
         }
+
         public override async Task ConstructorAsync(object parameters)
         {
             var usuario = parameters as UsuarioHostModel;
             Host = usuario;
             await HostViewModel.ConstructorAsync(Host);
+            await CrearServicioViewModel.ConstructorAsync(Host);
         }
+
         #endregion Initialize
 
         #region Methods

@@ -19,7 +19,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AppTripEver.ViewModels
 {
-    public class CrearServicioViewModel : HostTabbedViewModel
+    public class CrearServicioViewModel : BaseViewModel
     {
         #region Request
 
@@ -76,6 +76,10 @@ namespace AppTripEver.ViewModels
 
         private MessageModel message;
 
+        private CarteraModel cartera;
+
+        private UsuarioHostModel host;
+
         private bool isCrearEnable;
 
         private bool isTipoServicioEnable;
@@ -103,6 +107,28 @@ namespace AppTripEver.ViewModels
         #endregion Properties
 
         #region Getters & Setters
+
+        public CarteraModel Cartera
+        {
+            get { return cartera; }
+            set
+            {
+                cartera = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public UsuarioHostModel Host
+        {
+            get { return host; }
+            set
+            {
+                host = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public HorarioModel Horario
         {
             get { return horario; }
@@ -247,6 +273,8 @@ namespace AppTripEver.ViewModels
         {
             PopUp = new MessageViewPop();
             Horario = new HorarioModel();
+            Cartera = new CarteraModel();
+            Host = new UsuarioHostModel(Cartera);
             Message = new MessageModel { Message = "Servicio creado correctamente" };
             IsCrearEnable = false;
             IsTipoServicioEnable = false;
@@ -318,6 +346,13 @@ namespace AppTripEver.ViewModels
 
         }
 
+        public override async Task ConstructorAsync(object parameters)
+        {
+            var host = parameters as UsuarioHostModel;
+            Host = host;
+            Console.WriteLine(Host.Nombre);
+        }
+
         #endregion Initialize
 
         #region Methods
@@ -373,7 +408,7 @@ namespace AppTripEver.ViewModels
             }
             else
             {
-                Message.Message = "No se pudo crear el mensaje";
+                Message.Message = "Servicio no creado";
                 MessageViewPop popUp = new MessageViewPop();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
