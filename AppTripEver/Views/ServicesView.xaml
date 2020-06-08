@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#1A3161"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -21,14 +21,59 @@
                  Priority="0"
                  />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Servicios" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Gray"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="Margin" Value="0,0,5,5"></Setter>
+                <Setter Property="HasShadow" Value="True"></Setter>
+                <Setter Property="Padding" Value="0.1"></Setter>
+                <Setter Property="BorderColor" Value="Gray"></Setter>
+            </Style>
+            <Style x:Key="Card" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="3"></Setter>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="TextColor" Value="#1A3161"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <ListView ItemsSource="{Binding Servicios}">
+            <StackLayout Margin="10,10,10,10">
+                <Label Text="Hospedajes" Style="{StaticResource Encabezado}"/>
+                <ListView ItemsSource="{Binding ServiciosHospedaje}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Titulo}"/>
+                                <Frame Style="{StaticResource Servicios}" >
+                                    <StackLayout Style="{StaticResource Card}">
+                                            <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout Margin="10,10,10,10">
+                <Label Text="Experiencias" Style="{StaticResource Encabezado}"/>
+                <ListView ItemsSource="{Binding ServiciosExperiencia}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Style="{StaticResource Servicios}">
+                                    <StackLayout Style="{StaticResource Card}">
+                                        <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
