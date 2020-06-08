@@ -299,17 +299,17 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            CrearServicioCommand = new Command(async () => await CrearServicio(), () => true);
-            //ValidateTipoServicioCommand = new Command(() => ValidateTipoServicioCommandForm(), () => true);
-            //ValidateTituloCommand = new Command(() => ValidateTituloCommandForm(), () => true);
-            //ValidatePaisCommand = new Command(() => ValidatePaisCommandForm(), () => true);
-            //ValidateCiudadCommand = new Command(() => ValidateCiudadCommandForm(), () => true);
-            //ValidateMaxPersonasCommand = new Command(() => ValidateMaxPersonasCommandForm(), () => true);
-            //ValidateDescripcionCommand = new Command(() => ValidateDescripcionCommandForm(), () => true);
-            //ValidateFechaInicioCommand = new Command(() => ValidateFechaInicioCommandForm(), () => true);
-            //ValidateFechaFinalCommand = new Command(() => ValidateFechaFinalCommandoForm(), () => true);
-            //ValidateHoraInicioCommand = new Command(() => ValidateHoraInicioCommandForm(), () => true);
-            //ValidateHoraFinalCommand = new Command(() => ValidateHoraFinalCommandForm(), () => true);
+            CrearServicioCommand = new Command(async () => await CrearServicio(), () => IsCrearEnable);
+            ValidateTipoServicioCommand = new Command(() => ValidateTipoServicioCommandForm(), () => true);
+            ValidateTituloCommand = new Command(() => ValidateTituloCommandForm(), () => true);
+            ValidatePaisCommand = new Command(() => ValidatePaisCommandForm(), () => true);
+            ValidateCiudadCommand = new Command(() => ValidateCiudadCommandForm(), () => true);
+            ValidateMaxPersonasCommand = new Command(() => ValidateMaxPersonasCommandForm(), () => true);
+            ValidateDescripcionCommand = new Command(() => ValidateDescripcionCommandForm(), () => true);
+            ValidateFechaInicioCommand = new Command(() => ValidateFechaInicioCommandForm(), () => true);
+            ValidateFechaFinalCommand = new Command(() => ValidateFechaFinalCommandoForm(), () => true);
+            ValidateHoraInicioCommand = new Command(() => ValidateHoraInicioCommandForm(), () => true);
+            ValidateHoraFinalCommand = new Command(() => ValidateHoraFinalCommandForm(), () => true);
         }
     
 
@@ -409,6 +409,126 @@ namespace AppTripEver.ViewModels
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
+            }
+        }
+
+        private void ValidateTipoServicioCommandForm()
+        {
+            IsTipoServicioEnable = TipoServicio.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateTituloCommandForm()
+        {
+            IsTituloEnable = Titulo.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidatePaisCommandForm()
+        {
+            IsPaisEnable = Pais.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateCiudadCommandForm()
+        {
+            IsCiudadEnable = Ciudad.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateMaxPersonasCommandForm()
+        {
+            IsMaxPersonasEnable = MaxPersonas.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateDescripcionCommandForm()
+        {
+            IsDescripcionEnable = Descripcion.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateFechaInicioCommandForm()
+        {
+            IsFechaInicioEnable = FechaInicio.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateFechaFinalCommandoForm()
+        {
+            IsFechaFinalEnable = FechaFinal.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateHoraInicioCommandForm()
+        {
+            IsHoraInicioEnable = HoraInicio.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
+            }
+        }
+
+        private void ValidateHoraFinalCommandForm()
+        {
+            IsHoraFinalEnable = HoraFinal.Validate();
+
+            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
+            {
+                IsCrearEnable = true;
+                ((Command)CrearServicioCommand).ChangeCanExecute();
             }
         }
 
