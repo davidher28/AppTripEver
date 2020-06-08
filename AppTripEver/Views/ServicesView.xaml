@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="White"
+             BackgroundColor="WhiteSmoke"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -24,17 +24,17 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Servicios" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="Gray"></Setter>
+                <Setter Property="BackgroundColor" Value="White"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
-                <Setter Property="Margin" Value="0,0,5,5"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
                 <Setter Property="HasShadow" Value="True"></Setter>
-                <Setter Property="Padding" Value="0.1"></Setter>
-                <Setter Property="BorderColor" Value="Gray"></Setter>
+                <Setter Property="Padding" Value="0.2"></Setter>
+                <Setter Property="BorderColor" Value="LightGray"></Setter>
             </Style>
             <Style x:Key="Card" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="White"></Setter>
                 <Setter Property="Margin" Value="0"></Setter>
-                <Setter Property="Padding" Value="3"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
             </Style>
@@ -47,55 +47,78 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Margin="10,10,10,10">
-                <Label Text="Hospedajes" Style="{StaticResource Encabezado}"/>
-                <ListView ItemsSource="{Binding ServiciosHospedaje}">
-                    <ListView.ItemTemplate>
+            <StackLayout HeightRequest="1000" Padding="5">
+                <Label Margin="5,5,5,0" Text="Hospedajes" Style="{StaticResource Encabezado}"/>
+                <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
+                <CollectionView ItemsSource="{Binding ServiciosHospedaje}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"    
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start"
+                           ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Frame Style="{StaticResource Servicios}" >
-                                    <StackLayout Style="{StaticResource Card}">
-                                            <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <StackLayout Margin="10,10,10,10">
-                <Label Text="Experiencias" Style="{StaticResource Encabezado}"/>
-                <ListView ItemsSource="{Binding ServiciosExperiencia}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame Style="{StaticResource Servicios}">
-                                    <StackLayout Style="{StaticResource Card}">
+                            <Frame Style="{StaticResource Servicios}" WidthRequest="230">
+                                <StackLayout Style="{StaticResource Card}">
+                                    <Image Source="Hospedajes.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
+                                    <StackLayout Orientation="Vertical" Padding="3">
                                         <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
+                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding PrecioNoche, StringFormat='${0}'}"  FontAttributes="Bold"/>
+                                            <Label Text=" /Por Persona ° " FontAttributes="Italic" TextColor="Black"/>
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic"/>
+                                            <Label Text=" Personas" FontAttributes="Italic" TextColor="Gray"/>
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>
                                     </StackLayout>
-                                </Frame>
-                            </ViewCell>
+                                </StackLayout>
+                            </Frame>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
-            <StackLayout>
-                <Frame CornerRadius="5" BackgroundColor="#393c3e" Padding="0" Margin="0,0,0,0">
-                    <Label      
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    Text="{Binding Usuario.Nombre}"
-                    FontFamily="Lobster"
-                    TextColor="White"                
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
-                </Frame>
-                    <Button
+            <StackLayout HeightRequest="1000" Padding="5">
+                <Label Margin="5,5,5,0" Text="Experiencias" Style="{StaticResource Encabezado}"/>
+                <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
+                <CollectionView ItemsSource="{Binding ServiciosExperiencia}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"    
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start"
+                           ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource Servicios}" WidthRequest="230">
+                                <StackLayout Style="{StaticResource Card}">
+                                    <Image Source="Tour.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
+                                    <StackLayout Orientation="Vertical" Padding="3">
+                                        <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
+                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <!--<<ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/><-->
+                                        <Label TextColor="#677BA6" Text="{Binding NumMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <!--<<StackLayout>
+                <Button
                         BackgroundColor="#393c3e"
                         Text="Crear Usuario"
                         TextColor="White"
                         Command="{Binding CrearHostCommand}"/>
-            </StackLayout>
+            </StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
