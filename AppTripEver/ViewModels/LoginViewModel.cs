@@ -40,8 +40,8 @@ namespace AppTripEver.ViewModels
         #region Properties
         public MessageViewPop PopUp { get; set; }
 
-        public ValidatableObject<string> ContraUsuario { get; set; }
-        public ValidatableObject<string> NombreUsuario { get; set; }
+        private ValidatableObject<string> contraUsuario { get; set; }
+        private ValidatableObject<string> nombreUsuario { get; set; }
 
         private UsuarioModel usuario;
 
@@ -51,6 +51,8 @@ namespace AppTripEver.ViewModels
 
         private MessageModel message;
 
+        private LoginModel loginm;
+
         private bool isUsuarioEnable;
 
         private bool isContraEnable;
@@ -58,8 +60,38 @@ namespace AppTripEver.ViewModels
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
-        
+
         #region Getters & Setters
+
+        public ValidatableObject<string> NombreUsuario
+        {
+            get { return nombreUsuario; }
+            set
+            {
+                nombreUsuario = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ValidatableObject<string> ContraUsuario
+        {
+            get { return contraUsuario; }
+            set
+            {
+                contraUsuario = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public LoginModel LoginM
+        {
+            get { return loginm; }
+            set
+            {
+                loginm = value;
+                OnPropertyChanged();
+            }
+        }
 
         public UsuarioModel Usuario
         {
@@ -125,6 +157,7 @@ namespace AppTripEver.ViewModels
         {
             PopUp = new MessageViewPop();
             Cartera = new CarteraModel();
+            LoginM = new LoginModel();
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
             Message = new MessageModel { Message = "Datos incorrectos" };
@@ -134,6 +167,14 @@ namespace AppTripEver.ViewModels
             InitializeCommands();
             InitializeFields();
             NavigationService = new NavigationService();
+        }
+
+        public override async Task ConstructorAsync(object parameters)
+        {
+            var login = parameters as LoginModel;
+            LoginM = login;
+            NombreUsuario.Value = LoginM.Nombre;
+            ContraUsuario.Value = LoginM.Contra;
         }
 
         public void InitializeRequest()

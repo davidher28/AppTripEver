@@ -16,10 +16,24 @@ namespace AppTripEver.ViewModels
         #region Properties
         private MessageModel message;
 
+        public LoginViewModel LoginViewModel { get; set; }
+
+        private LoginModel login;
+
         public ICommand CloseCommand { get; set; }
         #endregion Properties
 
         #region Getters y Setters
+
+        public LoginModel Login
+        {
+            get { return login; }
+            set
+            {
+                login = value;
+                OnPropertyChanged();
+            }
+        }
 
         public MessageModel Message
         {
@@ -35,6 +49,8 @@ namespace AppTripEver.ViewModels
         public MessageViewModel()
         {
             CloseCommand = new Command(async () => await Close(), () => true);
+            //LoginViewModel = new LoginViewModel();
+            Login = new LoginModel() { Nombre = null, Contra = null };
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -46,6 +62,10 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
+            var context = Application.Current.MainPage.Navigation.NavigationStack[0].BindingContext;
+            await ((BaseViewModel)context).ConstructorAsync(Login);
+            await Application.Current.MainPage.Navigation.PopAsync();
+            //await LoginViewModel.ConstructorAsync(Login);
             //var navigationCount = Application.Current.MainPage.Navigation.NavigationStack.Count - 1 ;
             //Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount]);
             //Application.Current.MainPage.Navigation.RemovePage(Application.Current.MainPage.Navigation.NavigationStack[navigationCount]);
