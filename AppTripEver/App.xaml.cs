@@ -11,7 +11,6 @@ namespace AppTripEver
             InitializeComponent();
             MainPage = new NavigationPage(new LoginView())
             {
-                BarBackgroundColor = Color.FromHex("#000000"),
                 BarTextColor = Color.White
                 //IsVisible = false
             };

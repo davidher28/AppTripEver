@@ -1,6 +1,6 @@
 ﻿namespace AppTripEver.Models
 {
-    public class ReseñasModel
+    public class ResenasModel
     {
         #region Properties
         public long ID { get; set; }

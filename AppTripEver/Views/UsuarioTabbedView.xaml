@@ -9,8 +9,8 @@
              NavigationPage.HasNavigationBar="False"
              BarBackgroundColor="Black"
              android:TabbedPage.BarSelectedItemColor="#3D70E0"
-             BarTextColor="White"
-             android:TabbedPage.BarItemColor="White"
+             android:TabbedPage.BarItemColor="white"
+             BarTextColor="#3D70E0"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
   <!--Pages can be added as references or inline-->
