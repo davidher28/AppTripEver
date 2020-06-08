@@ -29,6 +29,7 @@ namespace AppTripEver.ViewModels
         public ICommand UsuarioHostCommand { get; set; }
         public ICommand UsuarioCommand { get; set; }
 
+        public ICommand CerrarSesionCommand { get; set; }
 
         #endregion Commands
 
@@ -41,12 +42,23 @@ namespace AppTripEver.ViewModels
 
         private UsuarioHostModel host;
 
+        private LoginModel login;
         public NavigationService NavigationService { get; set; }
 
 
         #endregion Properties
 
         #region Getters & Setters
+
+        public LoginModel Login
+        {
+            get { return login; }
+            set
+            {
+                login = value;
+                OnPropertyChanged();
+            }
+        }
 
         public UsuarioModel Usuario
         {
@@ -86,6 +98,7 @@ namespace AppTripEver.ViewModels
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
+            Login = new LoginModel() { Nombre = null, Contra = null };
             NavigationService = new NavigationService();
             InitializeRequest();
             InitializeCommands();
@@ -104,6 +117,7 @@ namespace AppTripEver.ViewModels
         {
             UsuarioHostCommand = new Command(async () => await GetHost(), () => true);
             UsuarioCommand = new Command(async () => await OpenServices(), () => true);
+            CerrarSesionCommand = new Command(async () => await CerrarSesion(), () => true);
 
         }
 
@@ -118,6 +132,16 @@ namespace AppTripEver.ViewModels
         #endregion Initialize
 
         #region Methods
+
+        public async Task CerrarSesion()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+            Application.Current.MainPage = new NavigationPage(new LoginView())
+            {
+                BarTextColor = Color.White
+                //IsVisible = false
+            };
+        }
         public async Task OpenServices()
         {
             await NavigationService.PushPage(new UsuarioTabbedView(), Usuario);

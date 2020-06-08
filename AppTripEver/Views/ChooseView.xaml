@@ -13,6 +13,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
                  IconImageSource="logout.png"
+                 Command="{Binding CerrarSesionCommand}"     
                  Order="Primary"
                  Priority="0"
                  />
