@@ -19,7 +19,8 @@ namespace AppTripEver.ViewModels
     {
 
         #region Request
-        public ElegirRequest<BaseModel> GetServicios { get; set; }
+        public ElegirRequest<BaseModel> GetServiciosHospedaje { get; set; }
+        public ElegirRequest<BaseModel> GetServiciosExperiencia { get; set; }
 
         #endregion Request 
 
@@ -36,7 +37,9 @@ namespace AppTripEver.ViewModels
 
         public NavigationService NavigationService { get; set; }
 
-        private ObservableCollection<ServiciosModel> servicios;
+        private ObservableCollection<ServiciosModel> serviciosHospedaje;
+
+        private ObservableCollection<ServiciosModel> serviciosExperiencia;
 
         #endregion Properties
 
@@ -61,34 +64,49 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public ObservableCollection<ServiciosModel> Servicios
+        public ObservableCollection<ServiciosModel> ServiciosHospedaje
         {
-            get { return servicios; }
+            get { return serviciosHospedaje; }
             set
             {
-                servicios = value;
+                serviciosHospedaje = value;
                 OnPropertyChanged();
             }
         }
 
+        public ObservableCollection<ServiciosModel> ServiciosExperiencia
+        {
+            get { return serviciosExperiencia; }
+            set
+            {
+                serviciosExperiencia = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion Getters/Setters
 
         #region Initialize
         public ServicesViewModel()
         {
-            Servicios = new ObservableCollection<ServiciosModel>();
+            ServiciosHospedaje = new ObservableCollection<ServiciosModel>();
+            ServiciosExperiencia = new ObservableCollection<ServiciosModel>();
             NavigationService = new NavigationService();
             InitializeCommands();
             InitializeRequest();
-            ListaServicios();
+            ListaServiciosHospedaje();
+            ListaServiciosExperiencia();
         }
 
         public void InitializeRequest()
         {
-            string urlServicios = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS;
+            string urlServiciosHospedaje = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_HOSPEDAJE;
+            string urlServiciosExperiencia = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_EXPERIENCIA;
 
-            GetServicios = new ElegirRequest<BaseModel>();
-            GetServicios.ElegirEstrategia("GET", urlServicios);
+            GetServiciosHospedaje = new ElegirRequest<BaseModel>();
+            GetServiciosHospedaje.ElegirEstrategia("GET", urlServiciosHospedaje);
+
+            GetServiciosExperiencia = new ElegirRequest<BaseModel>();
+            GetServiciosExperiencia.ElegirEstrategia("GET", urlServiciosExperiencia);
         }
 
         public void InitializeCommands()
@@ -106,16 +124,16 @@ namespace AppTripEver.ViewModels
 
         #region
 
-        public async Task ListaServicios()
+        public async Task ListaServiciosHospedaje()
         {
             try
             {
-                APIResponse response = await GetServicios.EjecutarEstrategia(null);
+                APIResponse response = await GetServiciosHospedaje.EjecutarEstrategia(null);
                 if (response.IsSuccess)
                 {
                     List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
                         (response.Response);
-                    Servicios = new ObservableCollection<ServiciosModel>(listaServicios);
+                    ServiciosHospedaje = new ObservableCollection<ServiciosModel>(listaServicios);
                 }
                 else
                 {
@@ -128,6 +146,27 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public async Task ListaServiciosExperiencia()
+        {
+            try
+            {
+                APIResponse response = await GetServiciosExperiencia.EjecutarEstrategia(null);
+                if (response.IsSuccess)
+                {
+                    List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
+                        (response.Response);
+                    ServiciosExperiencia = new ObservableCollection<ServiciosModel>(listaServicios);
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
 
         public async Task CrearUsuario()
         {
