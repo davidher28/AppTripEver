@@ -13,6 +13,7 @@
         <ToolbarItem 
                  IconImageSource="billetera.png"
                  Order="Primary"
+                 Text="Cerrar Sesión"
                  Priority="0" />
         <ToolbarItem 
                  IconImageSource="usuario.png"
@@ -20,24 +21,36 @@
                  Priority="0"
                  />
     </ContentPage.ToolbarItems>
-    <Grid Padding="20" RowSpacing="20">
-        <Label      
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            FontAttributes="Bold"
-            FontSize="Large"
-            Text="{Binding Usuario.Nombre}"
-            FontFamily="Lobster"
-            TextColor="White"                
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
-        
-        <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="1" Padding="0" Margin="0,0,0,0">
-            <Button
-            BackgroundColor="#393c3e"
-            Text="Crear Usuario"
-            TextColor="White"
-            Command="{Binding CrearHostCommand}"/>
-        </Frame>
-    </Grid>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <ListView ItemsSource="{Binding Servicios}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Titulo}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Frame CornerRadius="5" BackgroundColor="#393c3e" Padding="0" Margin="0,0,0,0">
+                    <Label      
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="{Binding Usuario.Nombre}"
+                    FontFamily="Lobster"
+                    TextColor="White"                
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                </Frame>
+                    <Button
+                        BackgroundColor="#393c3e"
+                        Text="Crear Usuario"
+                        TextColor="White"
+                        Command="{Binding CrearHostCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

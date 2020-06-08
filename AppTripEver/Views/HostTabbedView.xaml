@@ -9,21 +9,20 @@
              NavigationPage.HasNavigationBar="False"
              BarBackgroundColor="Black"
              android:TabbedPage.BarSelectedItemColor="#3D70E0"
-             BarTextColor="White"
              android:TabbedPage.BarItemColor="White"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
     <!--Pages can be added as references or inline-->
-    <NavigationPage IconImageSource="usuario.png">
+    <NavigationPage Title="Inicio" IconImageSource="navegador.png">
         <x:Arguments>
             <views:HostView BindingContext="{Binding HostViewModel}"/>
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage IconImageSource="mas.png">
+    <NavigationPage Title="Nuevo Servicio" IconImageSource="mas.png">
         <x:Arguments>
             <views:CrearServicioView BindingContext="{Binding CrearServicioViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage IconImageSource="calendario.png"/>
+    <ContentPage Title="Reservas" IconImageSource="calendario.png"/>
 </TabbedPage>   

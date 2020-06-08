@@ -12,11 +12,11 @@
              NavigationPage.HasBackButton="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-                 IconImageSource="usuario.png"
+                 IconImageSource="billetera.png"
                  Order="Primary"
                  Priority="0" />
         <ToolbarItem 
-                 IconImageSource="billetera.png"
+                 IconImageSource="usuario.png"
                  Order="Primary"
                  Priority="0" />
     </ContentPage.ToolbarItems>
