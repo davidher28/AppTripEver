@@ -1,8 +1,13 @@
-﻿using AppTripEver.Models;
+﻿using AppTripEver.Configuration;
+using AppTripEver.Models;
+using AppTripEver.Models.AuxiliarModels;
+using AppTripEver.Services.APIRest;
 using AppTripEver.Services.Navigation;
 using AppTripEver.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,7 +19,7 @@ namespace AppTripEver.ViewModels
     {
 
         #region Request
-
+        public ElegirRequest<BaseModel> GetServicios { get; set; }
 
         #endregion Request 
 
@@ -30,6 +35,8 @@ namespace AppTripEver.ViewModels
         private CarteraModel cartera;
 
         public NavigationService NavigationService { get; set; }
+
+        private ObservableCollection<ServiciosModel> servicios;
 
         #endregion Properties
 
@@ -54,13 +61,34 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public ObservableCollection<ServiciosModel> Servicios
+        {
+            get { return servicios; }
+            set
+            {
+                servicios = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
         public ServicesViewModel()
         {
-            InitializeCommands();
+            Servicios = new ObservableCollection<ServiciosModel>();
             NavigationService = new NavigationService();
+            InitializeCommands();
+            InitializeRequest();
+            ListaServicios();
+        }
+
+        public void InitializeRequest()
+        {
+            string urlServicios = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS;
+
+            GetServicios = new ElegirRequest<BaseModel>();
+            GetServicios.ElegirEstrategia("GET", urlServicios);
         }
 
         public void InitializeCommands()
@@ -76,7 +104,31 @@ namespace AppTripEver.ViewModels
 
         #endregion Initialize
 
-        #region Methods
+        #region
+
+        public async Task ListaServicios()
+        {
+            try
+            {
+                APIResponse response = await GetServicios.EjecutarEstrategia(null);
+                if (response.IsSuccess)
+                {
+                    List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
+                        (response.Response);
+                    Servicios = new ObservableCollection<ServiciosModel>(listaServicios);
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+
         public async Task CrearUsuario()
         {
             await NavigationService.PushPage(new RegistroHostView(), Usuario);
