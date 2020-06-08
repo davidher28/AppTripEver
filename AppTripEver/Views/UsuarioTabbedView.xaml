@@ -10,15 +10,14 @@
              BarBackgroundColor="Black"
              android:TabbedPage.BarSelectedItemColor="#3D70E0"
              android:TabbedPage.BarItemColor="white"
-             BarTextColor="#3D70E0"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
   <!--Pages can be added as references or inline-->
-    <NavigationPage Icon="navegador.png">
+    <NavigationPage Title="Inicio" Icon="navegador.png">
         <x:Arguments>
             <views:ServicesView BindingContext="{Binding ServicesViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage Icon="favorito.png"/>
-    <ContentPage Icon="calendario.png"/>
+    <ContentPage Title="Favoritos" Icon="favorito.png"/>
+    <ContentPage Title="Reservas" Icon="calendario.png"/>
 </TabbedPage>
