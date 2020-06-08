@@ -68,9 +68,13 @@
                                             <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
                                             <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
                                         </StackLayout>
-                                        <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/>
-                                        <Label TextColor="#677BA6" Text="{Binding numMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
-                                        <Label TextColor="#677BA6" Text="{Binding precioNoche, StringFormat='Precio Noche: {0}'}"  FontAttributes="Bold"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding PrecioNoche, StringFormat='${0}'}"  FontAttributes="Bold"/>
+                                            <Label Text=" /Por Persona ° " FontAttributes="Italic" TextColor="Black"/>
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic"/>
+                                            <Label Text=" Personas" FontAttributes="Italic" TextColor="Gray"/>
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
@@ -99,9 +103,8 @@
                                             <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
                                             <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
                                         </StackLayout>
-                                        <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/>
-                                        <Label TextColor="#677BA6" Text="{Binding numMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
-                                        <Label TextColor="#677BA6" Text="{Binding precioNoche, StringFormat='Precio Noche: {0}'}"  FontAttributes="Bold"/>
+                                        <!--<<ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/><-->
+                                        <Label TextColor="#677BA6" Text="{Binding NumMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
