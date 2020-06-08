@@ -13,6 +13,7 @@
         <ToolbarItem 
                  IconImageSource="billetera.png"
                  Order="Primary"
+                 Text="Cerrar Sesión"
                  Priority="0" />
         <ToolbarItem 
                  IconImageSource="usuario.png"

@@ -10,6 +10,13 @@
              BackgroundColor="#1A3161"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="logout.png"
+                 Order="Primary"
+                 Priority="0"
+                 />
+    </ContentPage.ToolbarItems>
     <Grid Padding="20" RowSpacing="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="120" />
