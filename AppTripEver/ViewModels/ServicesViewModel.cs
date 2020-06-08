@@ -99,14 +99,14 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlServiciosHospedaje = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_HOSPEDAJE;
-            string urlServiciosExperiencia = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_EXPERIENCIA;
+            string urlServiciosId = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_ID;
+     
 
             GetServiciosHospedaje = new ElegirRequest<BaseModel>();
-            GetServiciosHospedaje.ElegirEstrategia("GET", urlServiciosHospedaje);
+            GetServiciosHospedaje.ElegirEstrategia("GET", urlServiciosId);
 
             GetServiciosExperiencia = new ElegirRequest<BaseModel>();
-            GetServiciosExperiencia.ElegirEstrategia("GET", urlServiciosExperiencia);
+            GetServiciosExperiencia.ElegirEstrategia("GET", urlServiciosId);
         }
 
         public void InitializeCommands()
@@ -128,7 +128,9 @@ namespace AppTripEver.ViewModels
         {
             try
             {
-                APIResponse response = await GetServiciosHospedaje.EjecutarEstrategia(null);
+                ParametersRequest parametros = new ParametersRequest();
+                parametros.Parametros.Add("1");
+                APIResponse response = await GetServiciosHospedaje.EjecutarEstrategia(null, parametros);
                 if (response.IsSuccess)
                 {
                     List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
@@ -150,7 +152,9 @@ namespace AppTripEver.ViewModels
         {
             try
             {
-                APIResponse response = await GetServiciosExperiencia.EjecutarEstrategia(null);
+                ParametersRequest parametros = new ParametersRequest();
+                parametros.Parametros.Add("2");
+                APIResponse response = await GetServiciosExperiencia.EjecutarEstrategia(null, parametros);
                 if (response.IsSuccess)
                 {
                     List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
