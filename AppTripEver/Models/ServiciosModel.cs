@@ -15,7 +15,7 @@ namespace AppTripEver.Models
         private string descripcion { get; set; }
         private HorarioModel fecha { get; set; }
         private int precio { get; set; }
-        private List<ReseñasModel> reseñas { get; set; }
+        private List<ResenasModel> reseñas { get; set; }
         
         public UsuarioHostModel Creador { get; set; }
 
@@ -76,7 +76,7 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
-        public List<ReseñasModel> Reseñas
+        public List<ResenasModel> Reseñas
         {
             get { return reseñas; }
             set

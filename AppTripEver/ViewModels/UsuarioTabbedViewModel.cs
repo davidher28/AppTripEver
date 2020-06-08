@@ -40,7 +40,7 @@ namespace AppTripEver.ViewModels
 
         public FavoritosViewModel FavoritosViewModel { get; set; }
 
-        public ReseñasViewModel ReseñasViewModel { get; set; }
+        public ResenasViewModel ResenasViewModel { get; set; }
 
         public NavigationService NavigationService { get; set; }
 
