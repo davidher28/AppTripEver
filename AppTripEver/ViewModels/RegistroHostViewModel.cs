@@ -204,6 +204,9 @@ namespace AppTripEver.ViewModels
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
+                var navigationCount = Application.Current.MainPage.Navigation.NavigationStack.Count - 1;
+                var navigationStack = Application.Current.MainPage.Navigation.NavigationStack;
+                Application.Current.MainPage.Navigation.RemovePage(navigationStack[1]);
             }
             else
             {
