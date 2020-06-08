@@ -19,12 +19,11 @@
             <views:HostView BindingContext="{Binding HostViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    
+
     <NavigationPage IconImageSource="mas.png">
         <x:Arguments>
             <views:CrearServicioView BindingContext="{Binding CrearServicioViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    
     <ContentPage IconImageSource="calendario.png"/>
 </TabbedPage>   
