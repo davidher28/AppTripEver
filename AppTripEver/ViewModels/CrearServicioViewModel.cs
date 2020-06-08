@@ -74,11 +74,11 @@ namespace AppTripEver.ViewModels
 
         private HorarioModel horario;
 
+        private MessageModel message;
+
         private CarteraModel cartera;
 
         private UsuarioHostModel host;
-
-        private MessageModel message;
 
         private bool isCrearEnable;
 
@@ -107,15 +107,6 @@ namespace AppTripEver.ViewModels
         #endregion Properties
 
         #region Getters & Setters
-        public HorarioModel Horario
-        {
-            get { return horario; }
-            set
-            {
-                horario = value;
-                OnPropertyChanged();
-            }
-        }
 
         public CarteraModel Cartera
         {
@@ -127,22 +118,34 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public MessageModel Message
-        {
-            get { return message; }
-            set
-            {
-                message = value;
-                OnPropertyChanged();
-            }
-        }
-
         public UsuarioHostModel Host
         {
             get { return host; }
             set
             {
                 host = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public HorarioModel Horario
+        {
+            get { return horario; }
+            set
+            {
+                horario = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public MessageModel Message
+        {
+            get { return message; }
+            set
+            {
+                message = value;
                 OnPropertyChanged();
             }
         }
@@ -269,9 +272,9 @@ namespace AppTripEver.ViewModels
         public CrearServicioViewModel()
         {
             PopUp = new MessageViewPop();
+            Horario = new HorarioModel();
             Cartera = new CarteraModel();
             Host = new UsuarioHostModel(Cartera);
-            Horario = new HorarioModel();
             Message = new MessageModel { Message = "Servicio creado correctamente" };
             IsCrearEnable = false;
             IsTipoServicioEnable = false;
@@ -311,7 +314,7 @@ namespace AppTripEver.ViewModels
             ValidateHoraInicioCommand = new Command(() => ValidateHoraInicioCommandForm(), () => true);
             ValidateHoraFinalCommand = new Command(() => ValidateHoraFinalCommandForm(), () => true);
         }
-    
+
 
         public void InitializeFields()
         {
@@ -345,8 +348,9 @@ namespace AppTripEver.ViewModels
 
         public override async Task ConstructorAsync(object parameters)
         {
-            var usuario = parameters as UsuarioHostModel;
-            Host = usuario;
+            var host = parameters as UsuarioHostModel;
+            Host = host;
+            Console.WriteLine(Host.Nombre);
         }
 
         #endregion Initialize
@@ -368,13 +372,13 @@ namespace AppTripEver.ViewModels
                 Descripcion = Descripcion.Value,
                 Precio = (int)Precio.Value
             };
-            if (TipoServicio.Value == "0") 
+            if (TipoServicio.Value == "0")
             {
-                TipoServicio.Value = "1"; 
+                TipoServicio.Value = "1";
             }
             else if (TipoServicio.Value == "1")
             {
-                TipoServicio.Value = "2"; 
+                TipoServicio.Value = "2";
             }
             JObject vals =
                 new JObject(
@@ -392,7 +396,7 @@ namespace AppTripEver.ViewModels
                     new JProperty("HoraFin", Horario.HoraFinal)
                     );
             string Json = vals.ToString();
-            APIResponse response = await CrearNuevoServicio.EjecutarEstrategia(servicio,null,Json);
+            APIResponse response = await CrearNuevoServicio.EjecutarEstrategia(servicio, null, Json);
             if (response.IsSuccess)
             {
                 Console.WriteLine("Todo bien");
@@ -404,7 +408,7 @@ namespace AppTripEver.ViewModels
             }
             else
             {
-                Message.Message = "Usuario host ya existente";
+                Message.Message = "Servicio no creado";
                 MessageViewPop popUp = new MessageViewPop();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
@@ -416,7 +420,7 @@ namespace AppTripEver.ViewModels
         {
             IsTipoServicioEnable = TipoServicio.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -428,7 +432,7 @@ namespace AppTripEver.ViewModels
         {
             IsTituloEnable = Titulo.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                  IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -440,7 +444,7 @@ namespace AppTripEver.ViewModels
         {
             IsPaisEnable = Pais.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -452,7 +456,7 @@ namespace AppTripEver.ViewModels
         {
             IsCiudadEnable = Ciudad.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                  IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -464,7 +468,7 @@ namespace AppTripEver.ViewModels
         {
             IsMaxPersonasEnable = MaxPersonas.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -476,7 +480,7 @@ namespace AppTripEver.ViewModels
         {
             IsDescripcionEnable = Descripcion.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                  IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -488,7 +492,7 @@ namespace AppTripEver.ViewModels
         {
             IsFechaInicioEnable = FechaInicio.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -500,7 +504,7 @@ namespace AppTripEver.ViewModels
         {
             IsFechaFinalEnable = FechaFinal.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                  IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -512,7 +516,7 @@ namespace AppTripEver.ViewModels
         {
             IsHoraInicioEnable = HoraInicio.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                 IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
@@ -524,14 +528,13 @@ namespace AppTripEver.ViewModels
         {
             IsHoraFinalEnable = HoraFinal.Validate();
 
-            if (IsTipoServicioEnable && IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
+            if ( IsTituloEnable && IsPaisEnable && IsCiudadEnable && IsDescripcionEnable &&
                  IsFechaInicioEnable && IsFechaFinalEnable && IsHoraInicioEnable && IsHoraFinalEnable)
             {
                 IsCrearEnable = true;
                 ((Command)CrearServicioCommand).ChangeCanExecute();
             }
         }
-
         #endregion Methods
     }
 }
