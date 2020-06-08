@@ -38,6 +38,8 @@ namespace AppTripEver.ViewModels
 
         public HostViewModel HostViewModel { get; set; }
 
+        public CrearServicioViewModel CrearServicioViewModel { get; set; }
+
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
@@ -71,6 +73,7 @@ namespace AppTripEver.ViewModels
             //InitializeCommands();
             NavigationService = new NavigationService();
             HostViewModel = new HostViewModel();
+            CrearServicioViewModel = new CrearServicioViewModel();
         }
         public override async Task ConstructorAsync(object parameters)
         {

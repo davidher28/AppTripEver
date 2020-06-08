@@ -531,7 +531,6 @@ namespace AppTripEver.ViewModels
                 ((Command)CrearServicioCommand).ChangeCanExecute();
             }
         }
-
         #endregion Methods
     }
 }
