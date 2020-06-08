@@ -73,6 +73,8 @@ namespace AppTripEver.ViewModels
             //InitializeCommands();
             NavigationService = new NavigationService();
             HostViewModel = new HostViewModel();
+            Cartera = new CarteraModel();
+            Host = new UsuarioHostModel(Cartera);
             CrearServicioViewModel = new CrearServicioViewModel();
         }
         public override async Task ConstructorAsync(object parameters)
