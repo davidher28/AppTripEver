@@ -12,11 +12,11 @@ namespace AppTripEver.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ServiceInfoViewPop
     {
-        //MessageViewModel context = new MessageViewModel();
+        ServiceInformationViewModel context = new ServiceInformationViewModel();
         public ServiceInfoViewPop()
         {
             InitializeComponent();
-            //BindingContext = context;
+            BindingContext = context;
         }
     }
 }

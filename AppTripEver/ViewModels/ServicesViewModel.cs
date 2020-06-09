@@ -5,6 +5,7 @@ using AppTripEver.Services.APIRest;
 using AppTripEver.Services.Navigation;
 using AppTripEver.Views;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -179,7 +180,7 @@ namespace AppTripEver.ViewModels
         {
             ServiceInfoViewPop popUp = new ServiceInfoViewPop();
             var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
             await PopupNavigation.Instance.PushAsync(popUp);
         }
 

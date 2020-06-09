@@ -229,6 +229,7 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion Methods
     }
