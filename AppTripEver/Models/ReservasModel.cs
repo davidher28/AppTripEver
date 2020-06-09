@@ -9,12 +9,14 @@ namespace AppTripEver.Models
         public long IdReservas { get; set; }
         public int NumPersonas { get; set; }
         private EstadoModel estado { get; set; }
-        public UsuarioClienteModel Cliente { get; set; }
+        public UsuarioModel Cliente { get; set; }
         public ServiciosModel Servicio { get; set; }
+        private string fechaInicio { get; set; }
+        private string fechaFin { get; set; }
         #endregion Properties
 
         #region Initialize
-        public ReservasModel(EstadoModel estado, ServiciosModel Servicio, UsuarioClienteModel Cliente)
+        public ReservasModel(EstadoModel estado, ServiciosModel Servicio, UsuarioModel Cliente)
         {
             this.estado = estado;
             this.Servicio = Servicio;
@@ -29,6 +31,26 @@ namespace AppTripEver.Models
             set
             {
                 estado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FechaInicio
+        {
+            get { return fechaInicio; }
+            set
+            {
+                fechaInicio = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FechaFin
+        {
+            get { return fechaFin; }
+            set
+            {
+                fechaFin = value;
                 OnPropertyChanged();
             }
         }

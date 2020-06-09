@@ -43,6 +43,7 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="TextColor" Value="#1A3161"></Setter>
             </Style>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -50,7 +51,7 @@
             <StackLayout HeightRequest="1000" Padding="5">
                 <Label Margin="5,5,5,0" Text="Hospedajes" Style="{StaticResource Encabezado}"/>
                 <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
-                <CollectionView ItemsSource="{Binding ServiciosHospedaje}">
+                <CollectionView ItemsSource="{Binding ServiciosHospedaje}" SelectedItem="{Binding ServicioActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
                            SnapPointsType="MandatorySingle"
@@ -69,10 +70,12 @@
                                             <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="Black" Text="{Binding PrecioNoche, StringFormat='${0}'}"  FontAttributes="Bold"/>
-                                            <Label Text=" /Por Persona ° " FontAttributes="Italic" TextColor="Black"/>
+                                            <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold"/>
+                                            <Label Text="/Noche" FontAttributes="Italic" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
                                             <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic"/>
-                                            <Label Text=" Personas" FontAttributes="Italic" TextColor="Gray"/>
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray"/>
                                             <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
                                         </StackLayout>
                                     </StackLayout>
@@ -103,8 +106,15 @@
                                             <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
                                             <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
                                         </StackLayout>
-                                        <!--<<ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/><-->
-                                        <Label TextColor="#677BA6" Text="{Binding NumMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold"/>
+                                            <Label Text="/Persona" FontAttributes="Italic" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic"/>
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray"/>
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>                                    
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>

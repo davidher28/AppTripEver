@@ -18,6 +18,8 @@ namespace AppTripEver.Configuration
         public static readonly string CREAR_SERVICIO = "/createServicio";
         public static readonly string CONSULTAR_ALL_SERVICIOS = "/getServicios";
         public static readonly string CONSULTAR_ALL_SERVICIOS_ID = "/getServiciosId";
+        public static readonly string CONSULTAR_ALL_SERVICIOS_ID_HOST = "/getServiciosIdHost";
+        public static readonly string CREAR_RESERVA = "/createReserva";
 
     }
 }

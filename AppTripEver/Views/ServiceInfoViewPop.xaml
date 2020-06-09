@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="AppTripEver.Views.ServiceInfoViewPop"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"></Setter>
+                <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
+                <Setter Property="Margin" Value="40,0,40,0"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style>
+            
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="Title"></Setter>
+                <Setter Property="TextColor" Value="#1A3161"></Setter>
+            </Style>
+
+            <Style x:Key="Ciudad" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="#1A3161"></Setter>
+            </Style>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Frame Padding="0,0,0,0">
+            <StackLayout>
+                <StackLayout >
+                    <AbsoluteLayout >
+                        <Image HeightRequest="250" Source="Travel.jpg" Aspect="AspectFill" Margin="0,0,0,0"/>
+                    </AbsoluteLayout>
+                </StackLayout>
+                <StackLayout Margin="40,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                    <Label HorizontalOptions="StartAndExpand" Style="{StaticResource Encabezado}" Text="{Binding Service.Titulo}"/>
+                </StackLayout>
+                <StackLayout Margin="50,-5,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                    <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Ciudad, StringFormat='{0},'}"/>
+                    <Label Style="{StaticResource Ciudad}" Text="{Binding Service.Pais}"/>
+                </StackLayout>
+                <BoxView BackgroundColor="#1A3161" HeightRequest="1" Margin="10,10,10,0"/>
+                <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                    <Image HeightRequest="250" Source="descripcion.png" Aspect="AspectFill" Margin="0,0,0,0"/>
+                    <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Descripcion}"/>
+                </StackLayout>
+                <BoxView BackgroundColor="#1A3161" HeightRequest="1" Margin="10,10,10,0"/>
+                <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                    <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.NumMaxPersonas, StringFormat='Personas - {0}'}"/>
+                    <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Precio}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="300">
+                        <Image Source="Hospedaje.png" Aspect="AspectFill"/>
+                        <AbsoluteLayout AbsoluteLayout.LayoutBounds="1,1,1,.50" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#66000000" Margin="10,10,10,10">
+                            <Button Text="Aceptar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                        </AbsoluteLayout>
+                    </AbsoluteLayout>
+                    <Label Text="{Binding Usuario.Nombre}"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

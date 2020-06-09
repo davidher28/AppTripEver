@@ -5,6 +5,7 @@ using AppTripEver.Services.APIRest;
 using AppTripEver.Services.Navigation;
 using AppTripEver.Views;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,19 +28,27 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearHostCommand { get; set; }
 
+        public ICommand SelectServiceCommand { get; set; }
+
         #endregion Commands
 
         #region Properties
 
         private UsuarioModel usuario;
 
+        private UsuarioHostModel usuarioHost;
+
         private CarteraModel cartera;
+
+        private HorarioModel horario;
 
         public NavigationService NavigationService { get; set; }
 
         private ObservableCollection<ServiciosModel> serviciosHospedaje;
 
         private ObservableCollection<ServiciosModel> serviciosExperiencia;
+
+        private ServiciosModel servicioActual;
 
         #endregion Properties
 
@@ -54,12 +63,42 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public UsuarioHostModel UsuarioHost
+        {
+            get { return usuarioHost; }
+            set
+            {
+                usuarioHost = value;
+                OnPropertyChanged();
+            }
+        }
+
         public CarteraModel Cartera
         {
             get { return cartera; }
             set
             {
                 cartera = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public HorarioModel Horario
+        {
+            get { return horario; }
+            set
+            {
+                horario = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ServiciosModel ServicioActual
+        {
+            get { return servicioActual; }
+            set
+            {
+                servicioActual = value;
                 OnPropertyChanged();
             }
         }
@@ -88,6 +127,10 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public ServicesViewModel()
         {
+            Cartera = new CarteraModel();
+            Horario = new HorarioModel();
+            UsuarioHost = new UsuarioHostModel(Cartera);
+            Usuario = new UsuarioModel(Cartera);
             ServiciosHospedaje = new ObservableCollection<ServiciosModel>();
             ServiciosExperiencia = new ObservableCollection<ServiciosModel>();
             NavigationService = new NavigationService();
@@ -100,8 +143,6 @@ namespace AppTripEver.ViewModels
         public void InitializeRequest()
         {
             string urlServiciosId = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_ID;
-     
-
             GetServiciosHospedaje = new ElegirRequest<BaseModel>();
             GetServiciosHospedaje.ElegirEstrategia("GET", urlServiciosId);
 
@@ -112,6 +153,7 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             CrearHostCommand = new Command(async () => await CrearUsuario(), () => true);
+            SelectServiceCommand = new Command(async () => await SelectService(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -170,6 +212,14 @@ namespace AppTripEver.ViewModels
             {
 
             }
+        }
+
+        public async Task SelectService()
+        {
+            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ServicioActual);
+            await PopupNavigation.Instance.PushAsync(popUp);
         }
 
         public async Task CrearUsuario()

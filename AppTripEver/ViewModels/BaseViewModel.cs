@@ -12,5 +12,10 @@ namespace AppTripEver.ViewModels
         {
             await Task.FromResult(true);
         }
+
+        public virtual async Task ConstructorAsync2(object parameters, object parameters2)
+        {
+            await Task.FromResult(true);
+        }
     }
 }
