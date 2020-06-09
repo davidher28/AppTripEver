@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="AppTripEver.Views.ServiceInfoViewPop"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+            </Style>
+
+            <Style x:Key="Container" TargetType="FlexLayout" >
+                <Setter Property="AlignItems" Value="Center"></Setter>
+                <Setter Property="JustifyContent" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="Modal" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
+                <Setter Property="Margin" Value="0,0,0,0"></Setter>
+                <Setter Property="Padding" Value="30"></Setter>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+                <Setter Property="CornerRadius" Value="20"></Setter>
+            </Style>
+
+            <Style x:Key="Message" TargetType="Label">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="TextColor" Value="#3C3C3B"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0,0,0,20"></Setter>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"></Setter>
+                <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
+                <Setter Property="Margin" Value="40,0,40,0"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Frame Style="{StaticResource Modal}">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="300">
+                    <Image Source="Hospedaje.png" Aspect="AspectFill" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="1,1,1,.50" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#66000000" Margin="10,10,10,10">
+                        <Button Text="Aceptar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+                <Label Text="{Binding Servicio.Descripcion}"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>
