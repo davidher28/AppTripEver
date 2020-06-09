@@ -50,7 +50,7 @@
             <StackLayout HeightRequest="1000" Padding="5">
                 <Label Margin="5,5,5,0" Text="Hospedajes" Style="{StaticResource Encabezado}"/>
                 <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
-                <CollectionView ItemsSource="{Binding ServiciosHospedaje}">
+                <CollectionView ItemsSource="{Binding ServiciosHospedaje}" SelectionMode="Single" SelectedItem="{Binding SelectServiceCommand, Mode=TwoWay}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
                            SnapPointsType="MandatorySingle"
