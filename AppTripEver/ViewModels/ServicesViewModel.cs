@@ -177,7 +177,10 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectService()
         {
-            await NavigationService.PushPage(new ServiceInformation());
+            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+            await PopupNavigation.Instance.PushAsync(popUp);
         }
 
         public async Task CrearUsuario()
