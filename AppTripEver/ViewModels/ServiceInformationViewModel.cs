@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using AppTripEver.Models;
 using AppTripEver.Services.APIRest;
@@ -108,17 +109,12 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
 
-            GetUsuarioHost = new ElegirRequest<BaseModel>();
-            GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
 
         }
         public void InitializeCommands()
         {
-            UsuarioHostCommand = new Command(async () => await GetHost(), () => true);
-            UsuarioCommand = new Command(async () => await OpenServices(), () => true);
-            CerrarSesionCommand = new Command(async () => await CerrarSesion(), () => true);
+
 
         }
 
@@ -134,24 +130,6 @@ namespace AppTripEver.ViewModels
 
         #region Methods
 
-        public async Task CerrarSesion()
-        {
-            await Application.Current.MainPage.Navigation.PopAsync();
-            Application.Current.MainPage = new NavigationPage(new LoginView())
-            {
-                BarTextColor = Color.White
-                //IsVisible = false
-            };
-        }
-        public async Task OpenServices()
-        {
-            await NavigationService.PushPage(new UsuarioTabbedView(), Usuario);
-        }
-
-        public async Task GetHost()
-        {
-            await NavigationService.PushPage(new HostTabbedView(), Host);
-
-        }
+        #endregion
     }
 }
