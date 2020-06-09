@@ -12,9 +12,12 @@ namespace AppTripEver.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ServicesView : ContentPage
     {
+        ServicesViewModel context = new ServicesViewModel();
         public ServicesView()
         {
             InitializeComponent();
+            BindingContext = context;
+
         }
     }
 }

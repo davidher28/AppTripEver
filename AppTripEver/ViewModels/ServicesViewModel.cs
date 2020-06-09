@@ -177,7 +177,7 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectService()
         {
-            await NavigationService.PushPage(new ServiceInformationView(), Usuario);
+            await NavigationService.PushPage(new ServiceInformation());
         }
 
         public async Task CrearUsuario()
