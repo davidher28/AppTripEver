@@ -97,8 +97,7 @@ namespace AppTripEver.ViewModels
             NavigationService = new NavigationService();
             InitializeCommands();
             InitializeRequest();
-            ListaServiciosHospedajeHost();
-            ListaServiciosExperienciaHost();
+            
         }
 
         public void InitializeRequest()
@@ -122,6 +121,8 @@ namespace AppTripEver.ViewModels
         {
             var host = parameters as UsuarioHostModel;
             Host = host;
+            ListaServiciosHospedajeHost();
+            ListaServiciosExperienciaHost();
             Console.WriteLine(Host.Nombre);
         }
 
