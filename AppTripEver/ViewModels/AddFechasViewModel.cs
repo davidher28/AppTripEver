@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AppTripEver.Configuration;
@@ -56,6 +57,10 @@ namespace AppTripEver.ViewModels
         public ValidatableObject<string> FechaFinal { get; set; }
 
         public ValidatableObject<string> NumPersonas { get; set; }
+
+        public int NumNoches { get; set; }
+
+        public int Valor { get; set; }
 
         public NavigationService NavigationService { get; set; }
 
@@ -162,11 +167,6 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlBoking = Endpoints.URL_SERVIDOR + Endpoints.CREAR_RESERVA;
-
-
-            PostBooking = new ElegirRequest<BaseModel>();
-            PostBooking.ElegirEstrategia("POST", urlBoking);
 
         }
 
@@ -201,32 +201,52 @@ namespace AppTripEver.ViewModels
             Booking.FechaInicio = FechaInicio.Value;
             Booking.FechaFin = FechaFinal.Value;
             BookingState.IdEstado = 1;
-            JObject vals =
-                new JObject(
-                    new JProperty("numPersonas", NumPersonas.Value),
-                    new JProperty("IdEstado", Booking.Estado.IdEstado),
-                    new JProperty("IdUsuario", Booking.Cliente.IdUsuario),
-                    new JProperty("IdServicio", Booking.Servicio.IdServicio),
-                    new JProperty("fechaInicio", FechaInicio.Value),
-                    new JProperty("fechaFin", FechaFinal.Value)
-                    );
-            string Json = vals.ToString();
-            APIResponse response = await PostBooking.EjecutarEstrategia(Booking, null, Json);
-            if (response.IsSuccess)
+            var splitListInicio = FechaInicio.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+            var splitListFin = FechaFinal.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+            Booking.NumPersonas = Int32.Parse(NumPersonas.Value);
+            var mesInicio = Int32.Parse(splitListInicio[1]);
+            var diaInicio = Int32.Parse(splitListInicio[2]);
+            var mesFin = Int32.Parse(splitListFin[1]);
+            var diaFin = Int32.Parse(splitListFin[2]);
+            var diferenciaMes = mesFin - mesInicio;
+            if (mesInicio != mesFin & diferenciaMes==1)
             {
-                MessageViewPop popUp = new MessageViewPop();
-                var viewModel = popUp.BindingContext;
-                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
-                await PopupNavigation.Instance.PushAsync(popUp);
+                if(mesInicio == 1 | mesInicio == 3 | mesInicio == 5 | mesInicio == 7 | mesInicio == 8 | mesInicio == 10 | mesInicio == 12)
+                {
+                    NumNoches = (31 - diaInicio) + diaFin;
+                }
+                else if(mesInicio == 2)
+                {
+                    NumNoches = (28 - diaInicio) + diaFin;
+                }
+                else
+                {
+                    NumNoches = (30 - diaInicio) + diaFin;
+                }
             }
-            else
+            else if (mesInicio != mesFin & diferenciaMes > 1)
             {
-                Message.Message = "Sus datos son erróneos";
-                MessageViewPop popUp = new MessageViewPop();
-                var viewModel = popUp.BindingContext;
-                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
-                await PopupNavigation.Instance.PushAsync(popUp);
+                var dir = mesFin - mesInicio;
+
+                NumNoches = 30*(dir-1) + (30 - diaInicio) + diaFin;
             }
+
+            else if (mesInicio == mesFin)
+            {
+                NumNoches = diaFin - diaInicio;
+            }
+
+            Valor = NumNoches * Service.Precio;
+
+            Booking.NumNoches = NumNoches;
+            Booking.Valor = Valor;
+            Booking.Servicio = Service;
+            Booking.Cliente = Usuario;
+
+            CheckOutView popUp = new CheckOutView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
+            await PopupNavigation.Instance.PushAsync(popUp);
         }
 
 

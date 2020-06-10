@@ -13,8 +13,8 @@ namespace AppTripEver.Models
         public ServiciosModel Servicio { get; set; }
         private string fechaInicio { get; set; }
         private string fechaFin { get; set; }
-        public int valor { get; set; }
-        public int numNoches { get; set; }
+        private int valor { get; set; }
+        private int numNoches { get; set; }
         #endregion Properties
 
         #region Initialize
@@ -53,6 +53,26 @@ namespace AppTripEver.Models
             set
             {
                 fechaFin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NumNoches
+        {
+            get { return numNoches; }
+            set
+            {
+                numNoches = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Valor
+        {
+            get { return valor; }
+            set
+            {
+                valor = value;
                 OnPropertyChanged();
             }
         }
