@@ -23,7 +23,7 @@
                 <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
                 <Setter Property="Margin" Value="0,0,0,0"></Setter>
                 <Setter Property="WidthRequest" Value="250"></Setter>
-                <Setter Property="HeightRequest" Value="345"></Setter>
+                <Setter Property="HeightRequest" Value="300"></Setter>
                 <Setter Property="Padding" Value="30"></Setter>
                 <Setter Property="CornerRadius" Value="20"></Setter>
             </Style>
@@ -49,7 +49,7 @@
         <FlexLayout Style="{StaticResource Container}">
             <Frame Style="{StaticResource Modal}">
                 <StackLayout>
-                    <Label Text="Ingresa la siguiente información!" Style="{StaticResource Message}" TextColor="#677BA6"/>
+                    <Label Text="Ingrese la siguiente información" Style="{StaticResource Message}" TextColor="#677BA6"/>
                     <Frame CornerRadius="5" BackgroundColor="White" Padding="0" Margin="0,0,0,0">
                         <Entry
                         BackgroundColor="White"
@@ -74,8 +74,18 @@
                         PlaceholderColor="#677BA6">
                         </Entry>
                     </Frame>
-                        <Button Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
-                        <Button Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Frame HorizontalOptions="CenterAndExpand" Grid.Column="0" Padding="-20,10,30,10" BackgroundColor="Transparent">
+                            <Button Opacity="0.9" BackgroundColor="#D86B19" Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                        </Frame>
+                        <Frame HorizontalOptions="CenterAndExpand" Grid.Column="1" Padding="-100,10,-30,10" BackgroundColor="Transparent">
+                            <Button Opacity="0.9" BackgroundColor="#284B94" Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
+                        </Frame>
+                    </Grid>
                 </StackLayout>
             </Frame>
         </FlexLayout>
