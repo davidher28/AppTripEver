@@ -7,20 +7,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#4AAFDB"
+             BackgroundColor="WhiteSmoke"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
                  IconImageSource="billetera.png"
                  Order="Primary"
+                 Text="Cerrar Sesión"
                  Priority="0" />
         <ToolbarItem 
                  IconImageSource="usuario.png"
                  Order="Primary"
-                 Priority="0" />
+                 Priority="0"
+                 />
     </ContentPage.ToolbarItems>
-    <ContentPage.Resources>
+   <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Servicios" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"></Setter>
