@@ -416,7 +416,11 @@ namespace AppTripEver.ViewModels
                 FechaFinal.Value = null;
                 HoraInicio.Value = null;
                 HoraFinal.Value = null;
+                //var context = Application.Current.MainPage.Navigation.NavigationStack[].BindingContext;
+                //await ((BaseViewModel)context)..BindingContext;
+                //await ((BaseViewModel)context).ListaServiciosExperienciaHost();
             }
+
             else
             {
                 Message.Message = "Servicio no creado";
