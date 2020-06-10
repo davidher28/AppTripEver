@@ -32,6 +32,8 @@ namespace AppTripEver.ViewModels
 
         public ICommand CarteraCommand { get; set; }
 
+        public ICommand SelectHospedajeServiceCommand { get; set; }
+
         #endregion Commands
 
         #region Properties
@@ -52,9 +54,22 @@ namespace AppTripEver.ViewModels
 
         private ServiciosModel servicioActual;
 
+        private ServiciosModel servicioExperienciaActual;
+
         #endregion Properties
 
         #region Getters & Setters
+
+        public ServiciosModel ServicioExperienciaActual
+        {
+            get { return servicioExperienciaActual; }
+            set
+            {
+                servicioExperienciaActual = value;
+                OnPropertyChanged();
+            }
+        }
+
         public UsuarioModel Usuario
         {
             get { return usuario; }
@@ -157,6 +172,7 @@ namespace AppTripEver.ViewModels
             CrearHostCommand = new Command(async () => await CrearUsuario(), () => true);
             SelectServiceCommand = new Command(async () => await SelectService(), () => true);
             CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
+            SelectHospedajeServiceCommand = new Command(async () => await SelectHospedajeService(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -167,7 +183,7 @@ namespace AppTripEver.ViewModels
 
         #endregion Initialize
 
-        #region
+        #region Methods
 
         public async Task ListaServiciosHospedaje()
         {
@@ -217,6 +233,15 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public async Task SelectHospedajeService()
+        {
+            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ServicioExperienciaActual);
+            await PopupNavigation.Instance.PushAsync(popUp);
+        }
+
+
         public async Task SelectService()
         {
             ServiceInfoViewPop popUp = new ServiceInfoViewPop();
@@ -224,6 +249,7 @@ namespace AppTripEver.ViewModels
             await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ServicioActual);
             await PopupNavigation.Instance.PushAsync(popUp);
         }
+
 
         public async Task CrearUsuario()
         {

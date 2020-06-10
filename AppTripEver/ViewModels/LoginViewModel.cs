@@ -235,7 +235,7 @@ namespace AppTripEver.ViewModels
                             APIResponse response2 = await GetUsuarioHost.EjecutarEstrategia(null, parametros2);
                             if (response2.IsSuccess)
                             {
-                                Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response.Response);
+                                Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response2.Response);
                                 Host.Cartera = Cartera;
                                 Host.IdUsuario = Usuario.IdUsuario;
                                 Host.Nombre = Usuario.Nombre;
