@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="#1A3161"
+             BackgroundColor="WhiteSmoke"
              NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,24 +25,25 @@
         <Grid Padding="20" RowSpacing="20">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <Label Text="Registrate!" FontSize="Title" TextColor="#677BA6" FontAttributes="Bold" Margin="0" Padding="0"/>
 
             <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="1" Padding="0" Margin="0,0,0,0">
             <Entry
-            BackgroundColor="White"
-            TextColor="#677BA6"
+            TextColor="Black"
             Placeholder="Nombre"
             PlaceholderColor="#677BA6"
+            BackgroundColor="White"
             Text="{Binding NombreUsuario.Value}">
             <Entry.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="TextChanged"
@@ -149,12 +150,12 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="9" Padding="0" Margin="0,0,0,0">
-            <Button
-            BackgroundColor="#393c3e"
-            Text="Crear Usuario"
-            TextColor="White"
-            Command="{Binding CrearUsuarioCommand}"/>
+            <Frame CornerRadius="5" BackgroundColor="#393c3e" Grid.Row="9" VerticalOptions="End" Padding="0" Margin="0,0,0,0">
+                <Button
+                BackgroundColor="#393c3e"
+                Text="Crear Usuario"
+                TextColor="White"
+                Command="{Binding CrearUsuarioCommand}"/>
             </Frame>
 
         </Grid>
