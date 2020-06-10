@@ -41,6 +41,7 @@
                         <StackLayout >
                             <AbsoluteLayout >
                                 <Image HeightRequest="250" Source="Travel.jpg" Aspect="AspectFill" Margin="0,0,0,0"/>
+                                <ImageButton Source="cerrar.png" Margin="8,8,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand}"/>
                             </AbsoluteLayout>
                         </StackLayout>
                         <StackLayout Margin="40,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
@@ -64,7 +65,7 @@
                                 <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.NumMaxPersonas, StringFormat='Personas: {0}'}"/>
                                 <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
                                     <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Precio, StringFormat='${0}'}" FontAttributes="Bold"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="/Noche-Persona"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelTipo, StringFormat='/{0}'}"/>
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>

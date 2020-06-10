@@ -49,6 +49,8 @@ namespace AppTripEver.ViewModels
 
         private MessageModel message;
 
+        public int NumDias;
+
         public ValidatableObject<string> FechaInicio { get; set; }
 
         public ValidatableObject<string> FechaFinal { get; set; }

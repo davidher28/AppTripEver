@@ -58,6 +58,8 @@ namespace AppTripEver.ViewModels
 
         public NavigationService NavigationService { get; set; }
 
+        private string labelTipo;
+
         #endregion Properties
 
         #region Getters & Setters
@@ -142,6 +144,16 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public string LabelTipo
+        {
+            get { return labelTipo; }
+            set
+            {
+                labelTipo = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
@@ -189,6 +201,14 @@ namespace AppTripEver.ViewModels
             var service = parameters2 as ServiciosModel;
             Usuario = usuario;
             Service = service;
+            if (Service.TipoServicio == 1){
+                LabelTipo = "Noche";
+            }
+            else
+            {
+                LabelTipo = "Persona";
+            }
+              
         }
 
         #endregion Initialize

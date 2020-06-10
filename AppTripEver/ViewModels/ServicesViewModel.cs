@@ -30,6 +30,8 @@ namespace AppTripEver.ViewModels
 
         public ICommand SelectServiceCommand { get; set; }
 
+        public ICommand SelectHospedajeServiceCommand { get; set; }
+
         #endregion Commands
 
         #region Properties
@@ -49,6 +51,8 @@ namespace AppTripEver.ViewModels
         private ObservableCollection<ServiciosModel> serviciosExperiencia;
 
         private ServiciosModel servicioActual;
+
+        private ServiciosModel servicioExperienciaActual;
 
         #endregion Properties
 
@@ -102,7 +106,15 @@ namespace AppTripEver.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        public ServiciosModel ServicioExperienciaActual
+        {
+            get { return servicioExperienciaActual; }
+            set
+            {
+                servicioExperienciaActual = value;
+                OnPropertyChanged();
+            }
+        }
         public ObservableCollection<ServiciosModel> ServiciosHospedaje
         {
             get { return serviciosHospedaje; }
@@ -153,7 +165,8 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             CrearHostCommand = new Command(async () => await CrearUsuario(), () => true);
-            SelectServiceCommand = new Command(async () => await SelectService(), () => true);
+            SelectServiceCommand = new Command(async () => await SelectHospedajeService(), () => true);
+            SelectHospedajeServiceCommand = new Command(async () => await SelectExperienciaService(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -214,11 +227,19 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public async Task SelectService()
+        public async Task SelectHospedajeService()
         {
             ServiceInfoViewPop popUp = new ServiceInfoViewPop();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ServicioActual);
+            await PopupNavigation.Instance.PushAsync(popUp);
+        }
+
+        public async Task SelectExperienciaService()
+        {
+            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ServicioExperienciaActual);
             await PopupNavigation.Instance.PushAsync(popUp);
         }
 
