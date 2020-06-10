@@ -27,7 +27,7 @@
             <Style x:Key="Servicios" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
-                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
                 <Setter Property="HasShadow" Value="True"></Setter>
                 <Setter Property="Padding" Value="0.2"></Setter>
                 <Setter Property="BorderColor" Value="LightGray"></Setter>
@@ -42,38 +42,43 @@
             <Style x:Key="Encabezado" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
                 <Setter Property="FontSize" Value="Large"></Setter>
-                <Setter Property="TextColor" Value="#1A3161"></Setter>
-            </Style>
+                <Setter Property="TextColor" Value="#DBA016"></Setter>
+            </Style>          
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            <StackLayout HeightRequest="1000" Padding="5">
-                <Label Margin="5,5,5,0" Text="Mis Hospedajes" Style="{StaticResource Encabezado}"/>
-                <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
-                <CollectionView ItemsSource="{Binding ServiciosHospedajeHost}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand , Mode=TwoWay}">
+            <StackLayout Padding="0,0,0,10" BackgroundColor="WhiteSmoke" Margin="0,8,0,0" Opacity="0.95" HeightRequest="305">
+                <StackLayout Padding="5,5,5,0" >
+                <Label Text="Hospedajes" Style="{StaticResource Encabezado}"/>
+                </StackLayout>
+                <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                <CollectionView ItemsSource="{Binding ServiciosHospedajeHost}" SelectedItem="{Binding ServicioActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
                            SnapPointsType="MandatorySingle"
                            SnapPointsAlignment="Start"
-                           ItemSpacing="10"/>
+                           ItemSpacing="5"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Style="{StaticResource Servicios}" WidthRequest="230">
+                            <Frame Style="{StaticResource Servicios}" WidthRequest="230" >
                                 <StackLayout Style="{StaticResource Card}">
                                     <Image Source="Hospedajes.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Padding="3">
-                                        <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                    <StackLayout Orientation="Vertical" Padding="6,0,0,0" Margin="0">
+                                        <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold" Opacity="0.85"/>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
-                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
+                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic" Margin="0" Padding="0" />
+                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="Black" Text="{Binding PrecioNoche, StringFormat='${0}'}"  FontAttributes="Bold"/>
-                                            <Label Text=" /Por Persona ° " FontAttributes="Italic" TextColor="Black"/>
-                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic"/>
-                                            <Label Text=" Personas" FontAttributes="Italic" TextColor="Gray"/>
+                                            <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold" Opacity="0.85"/>
+                                            <Label Text="/Noche" FontAttributes="Italic" TextColor="Black" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic" />
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray" />
                                             <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
                                         </StackLayout>
                                     </StackLayout>
@@ -83,15 +88,17 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-            <StackLayout HeightRequest="1000" Padding="5">
-                <Label Margin="5,5,5,0" Text="Mis Experiencias" Style="{StaticResource Encabezado}"/>
-                <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
-                <CollectionView ItemsSource="{Binding ServiciosExperienciaHost}">
+            <StackLayout Padding="0,0,0,10" Margin="0,0,0,10" BackgroundColor="WhiteSmoke" Opacity="0.95" HeightRequest="305">
+                <StackLayout Padding="5,5,5,0" >
+                    <Label Text="Experiencias" Style="{StaticResource Encabezado}" />
+                </StackLayout>
+                <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                <CollectionView ItemsSource="{Binding ServiciosExperienciaHost}" SelectedItem="{Binding ServicioActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
                            SnapPointsType="MandatorySingle"
                            SnapPointsAlignment="Start"
-                           ItemSpacing="10"/>
+                           ItemSpacing="5"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -99,13 +106,20 @@
                                 <StackLayout Style="{StaticResource Card}">
                                     <Image Source="Tour.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
                                     <StackLayout Orientation="Vertical" Padding="3">
-                                        <Label TextColor="#677BA6" Text="{Binding Titulo}"  FontAttributes="Bold"/>
+                                        <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold"  Opacity="0.85"/>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic"/>
-                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic"/>
+                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic" />
+                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic" />
                                         </StackLayout>
-                                        <!--<<ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="28" WidthRequest="28" Padding="2" BackgroundColor="Transparent"/><-->
-                                        <Label TextColor="#677BA6" Text="{Binding NumMaxPersonas, StringFormat='Número Má personas: {0}'}"  FontAttributes="Bold"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold" Opacity="0.85"/>
+                                            <Label Text="/Persona" FontAttributes="Italic" TextColor="Black" FontSize="Caption"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic" />
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray" />
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>                                    
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
@@ -121,5 +135,6 @@
                         Command="{Binding CrearHostCommand}"/>
             </StackLayout>-->
         </StackLayout>
+    </ScrollView>
     </ContentPage.Content>
 </ContentPage>
