@@ -30,6 +30,8 @@ namespace AppTripEver.ViewModels
 
         public ICommand SelectServiceCommand { get; set; }
 
+        public ICommand CarteraCommand { get; set; }
+
         #endregion Commands
 
         #region Properties
@@ -154,6 +156,7 @@ namespace AppTripEver.ViewModels
         {
             CrearHostCommand = new Command(async () => await CrearUsuario(), () => true);
             SelectServiceCommand = new Command(async () => await SelectService(), () => true);
+            CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -225,6 +228,14 @@ namespace AppTripEver.ViewModels
         public async Task CrearUsuario()
         {
             await NavigationService.PushPage(new RegistroHostView(), Usuario);
+        }
+
+        public async Task DisplayCartera()
+        {
+            CarteraView popUp = new CarteraView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
+            await PopupNavigation.Instance.PushAsync(popUp);
         }
         #endregion Methods
     }

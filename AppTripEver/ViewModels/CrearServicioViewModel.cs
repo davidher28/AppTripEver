@@ -69,7 +69,7 @@ namespace AppTripEver.ViewModels
         public ValidatableObject<string> HoraFinal { get; set; }
 
 
-        private HostTabbedViewModel hostTabbedViewModel { get; set; }
+        //private HostTabbedViewModel hostTabbedViewModel { get; set; }
         public long IdUsuario { get; set; }
 
         public long IdHost { get; set; }
@@ -110,15 +110,16 @@ namespace AppTripEver.ViewModels
 
         #region Getters & Setters
 
-        public HostTabbedViewModel HostTabbedViewModel
-        {
-            get { return hostTabbedViewModel; }
-            set
-            {
-                hostTabbedViewModel = value;
-                OnPropertyChanged();
-            }
-        }
+        //public HostTabbedViewModel HostTabbedViewModel
+        //{
+        //    get { return hostTabbedViewModel; }
+        //    set
+        //    {
+        //        hostTabbedViewModel = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         public CarteraModel Cartera
         {
             get { return cartera; }
@@ -282,7 +283,7 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public CrearServicioViewModel()
         {
-            HostTabbedViewModel = new HostTabbedViewModel();
+            //HostTabbedViewModel = new HostTabbedViewModel();
             PopUp = new MessageServicioView();
             Horario = new HorarioModel();
             Cartera = new CarteraModel();
@@ -428,11 +429,12 @@ namespace AppTripEver.ViewModels
                 FechaFinal.Value = null;
                 HoraInicio.Value = null;
                 HoraFinal.Value = null;
-                var context = Application.Current.MainPage.Navigation.NavigationStack[-1].BindingContext as HostTabbedViewModel;
-                HostTabbedViewModel = context;
-                await HostTabbedViewModel.HostViewModel.ListaServiciosExperienciaHost();
-                await HostTabbedViewModel.HostViewModel.ListaServiciosHospedajeHost();
-
+                // Obtengo la penultima
+                //int index = Application.Current.MainPage.Navigation.NavigationStack.Count - 1;
+                //var context = Application.Current.MainPage.Navigation.NavigationStack[index - 1].BindingContext as HostTabbedViewModel;
+                //var hostcontext = context.HostViewModel as HostViewModel;
+                //await hostcontext.ListaServiciosExperienciaHost();
+                //await hostcontext.ListaServiciosHospedajeHost();
                 //await ((BaseViewModel)context).ListaServiciosExperienciaHost();
             }
             else
