@@ -22,9 +22,10 @@
             <Style x:Key="Modal" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
                 <Setter Property="Margin" Value="0,0,0,0"></Setter>
-                <Setter Property="WidthRequest" Value="250"></Setter>
-                <Setter Property="HeightRequest" Value="300"></Setter>
-                <Setter Property="Padding" Value="30"></Setter>
+                <Setter Property="WidthRequest" Value="300"></Setter>
+                <Setter Property="HeightRequest" Value="450"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="BackgroundColor" Value="#E7E6ED"></Setter>
                 <Setter Property="CornerRadius" Value="20"></Setter>
             </Style>
 
@@ -38,7 +39,7 @@
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
                 <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
-                <Setter Property="Margin" Value="40,0,40,0"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
             </Style>
 
@@ -47,9 +48,27 @@
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource Container}">
             <Frame Style="{StaticResource Modal}">
-                <StackLayout Orientation="Vertical">
-                    <Label Text="{Binding Usuario.Cartera.MontoTotal}" Style="{StaticResource Message}" TextColor="#677BA6"/>
-                    <Button Command="{Binding CloseCommand}" Text="Cerrar" TextColor="White" ></Button>
+                <StackLayout Orientation="Vertical" HeightRequest="500">
+                    <ImageButton Source="cerrarB.png" Margin="8,8,0,0" VerticalOptions="Start" Opacity="0.3" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand}"/>
+                    <Label TextColor="Gray" FontAttributes="Bold" Text="Cartera" 
+                           HorizontalOptions="CenterAndExpand" FontSize = "25" 
+                           CharacterSpacing="0.8"/>
+                    <Frame Padding="0" HeightRequest="100" BackgroundColor="Transparent" HasShadow="True">
+                        <Image Source="Wallet.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
+                    </Frame>
+                    <Frame Opacity="0.8" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Padding="0,5,5,0">
+                        <StackLayout Margin="0,20,0,0">
+                            <Label TextColor="Black" Text="{Binding Usuario.Cartera.MontoTotal, StringFormat='${0}'}" 
+                               Margin="0" HorizontalOptions="Center" 
+                               VerticalOptions="CenterAndExpand" FontSize = "25"/>
+                            <Label Text="Balance" 
+                               Margin="0" HorizontalOptions="Center" FontSize = "20" TextColor="Gray" FontAttributes="Italic"/>
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout VerticalOptions="EndAndExpand" Margin="0,0,0,20" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button Command="{Binding CloseCommand}" Grid.Column="0" Text="Recargar" TextColor="White" Margin="0,0,10,0" WidthRequest="120"></Button>
+                        <Button Command="{Binding CloseCommand}" Text="Canjear" Grid.Column="1" TextColor="White" Margin="10,0,0,0" WidthRequest="120"></Button>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
         </FlexLayout>
