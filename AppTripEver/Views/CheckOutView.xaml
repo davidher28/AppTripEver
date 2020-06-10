@@ -48,7 +48,7 @@
         <FlexLayout Style="{StaticResource Container}">
             <Frame Style="{StaticResource Modal}">
                 <StackLayout>
-                    <Label Text="{Binding Message.Message}" Style="{StaticResource Message}" TextColor="#677BA6"/>
+                    <Label Text="{Binding Usuario.Cartera.MontoTotal}" Style="{StaticResource Message}" TextColor="#677BA6"/>
                     <Button Text="Aceptar" Command="{Binding CloseCommand}" TextColor="White"></Button>
                 </StackLayout>
             </Frame>
