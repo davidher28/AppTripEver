@@ -11,29 +11,16 @@ using Xamarin.Forms;
 
 namespace AppTripEver.ViewModels
 {
-    public class MessageViewModel : BaseViewModel
+    public class MessageServicioViewModel : BaseViewModel
     {
+
         #region Properties
         private MessageModel message;
-
-        public LoginViewModel LoginViewModel { get; set; }
-
-        private LoginModel login;
 
         public ICommand CloseCommand { get; set; }
         #endregion Properties
 
         #region Getters y Setters
-
-        public LoginModel Login
-        {
-            get { return login; }
-            set
-            {
-                login = value;
-                OnPropertyChanged();
-            }
-        }
 
         public MessageModel Message
         {
@@ -46,14 +33,13 @@ namespace AppTripEver.ViewModels
         }
         #endregion Getters y Setters
 
-        public MessageViewModel()
+        public MessageServicioViewModel()
         {
             CloseCommand = new Command(async () => await Close(), () => true);
-            Login = new LoginModel() { Nombre = null, Contra = null };
             Message = new MessageModel();
         }
 
-        public async Task ConstructorAsync(object parameters)
+        public override async Task ConstructorAsync(object parameters)
         {
             var message = parameters as MessageModel;
             Message = message;
@@ -62,9 +48,8 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            var context = Application.Current.MainPage.Navigation.NavigationStack[0].BindingContext;
-            await ((BaseViewModel)context).ConstructorAsync(Login);
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PushAsync(new HostTabbedView());
         }
     }
 }
+

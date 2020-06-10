@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AppTripEver.Configuration;
+﻿using AppTripEver.Configuration;
 using AppTripEver.Models;
 using AppTripEver.Models.AuxiliarModels;
 using AppTripEver.Services.APIRest;
@@ -11,6 +8,9 @@ using AppTripEver.Validation.Rules;
 using AppTripEver.Views;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -54,7 +54,7 @@ namespace AppTripEver.ViewModels
         #endregion Commands
 
         #region Properties
-        public MessageViewPop PopUp { get; set; }
+        public MessageServicioView PopUp { get; set; }
 
         public ValidatableObject<string> TipoServicio { get; set; }
         public ValidatableObject<string> Titulo { get; set; }
@@ -271,7 +271,7 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public CrearServicioViewModel()
         {
-            PopUp = new MessageViewPop();
+            PopUp = new MessageServicioView();
             Horario = new HorarioModel();
             Cartera = new CarteraModel();
             Host = new UsuarioHostModel(Cartera);
@@ -401,7 +401,7 @@ namespace AppTripEver.ViewModels
             {
                 Console.WriteLine("Todo bien");
                 //Host.Servicios.Add(servicio);
-                MessageViewPop popUp = new MessageViewPop();
+                MessageServicioView popUp = new MessageServicioView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
@@ -409,7 +409,7 @@ namespace AppTripEver.ViewModels
             else
             {
                 Message.Message = "Servicio no creado";
-                MessageViewPop popUp = new MessageViewPop();
+                MessageServicioView popUp = new MessageServicioView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
