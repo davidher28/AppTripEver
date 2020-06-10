@@ -53,7 +53,7 @@ namespace AppTripEver.ViewModels
             Message = new MessageModel();
         }
 
-        public async Task ConstructorAsync(object parameters)
+        public override async Task ConstructorAsync(object parameters)
         {
             var message = parameters as MessageModel;
             Message = message;
@@ -66,5 +66,5 @@ namespace AppTripEver.ViewModels
             await ((BaseViewModel)context).ConstructorAsync(Login);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
-    }
+    } 
 }

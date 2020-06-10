@@ -23,7 +23,7 @@
                 <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
                 <Setter Property="Margin" Value="0,0,0,0"></Setter>
                 <Setter Property="WidthRequest" Value="250"></Setter>
-                <Setter Property="HeightRequest" Value="700"></Setter>
+                <Setter Property="HeightRequest" Value="345"></Setter>
                 <Setter Property="Padding" Value="30"></Setter>
                 <Setter Property="CornerRadius" Value="20"></Setter>
             </Style>
@@ -49,27 +49,33 @@
         <FlexLayout Style="{StaticResource Container}">
             <Frame Style="{StaticResource Modal}">
                 <StackLayout>
-                    <Entry
+                    <Label Text="Ingresa la siguiente información!" Style="{StaticResource Message}" TextColor="#677BA6"/>
+                    <Frame CornerRadius="5" BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                        <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
                         Placeholder="Fecha inicial"
                         PlaceholderColor="#677BA6">
-                    </Entry>
-                    <Entry
+                        </Entry>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                        <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
                         Placeholder="Fecha final"
                         PlaceholderColor="#677BA6">
-                    </Entry>
-                    <Entry
+                        </Entry>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                        <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
-                        Placeholder="Número de personas a reservar"
+                        Placeholder="Número de personas"
                         PlaceholderColor="#677BA6">
-                    </Entry>
-                    <Button Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
-
-                    <Button Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
+                        </Entry>
+                    </Frame>
+                        <Button Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                        <Button Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
                 </StackLayout>
             </Frame>
         </FlexLayout>

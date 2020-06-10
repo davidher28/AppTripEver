@@ -200,7 +200,7 @@ namespace AppTripEver.ViewModels
             AddFechasView view = new AddFechasView();
             var context = view.BindingContext;
             await ((BaseViewModel)context).ConstructorAsync2(Usuario, Service);
-            await Application.Current.MainPage.Navigation.PushAsync(view);
+            PopupNavigation.Instance.PushAsync(view);
 
         }
 
