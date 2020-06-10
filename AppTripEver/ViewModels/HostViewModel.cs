@@ -5,6 +5,7 @@ using AppTripEver.Services.APIRest;
 using AppTripEver.Services.Navigation;
 using AppTripEver.Views;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,8 @@ namespace AppTripEver.ViewModels
         private CarteraModel cartera;
 
         private UsuarioHostModel host;
+
+        private ServiciosModel servicioActual;
 
         public NavigationService NavigationService { get; set; }
 
@@ -90,6 +93,16 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public ServiciosModel ServicioActual
+        {
+            get { return servicioActual; }
+            set
+            {
+                servicioActual = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
@@ -119,6 +132,7 @@ namespace AppTripEver.ViewModels
         public void InitializeCommands()
         {
             CrearServicioCommand = new Command(async () => await CrearServicio(), () => true);
+            SelectServiceCommand = new Command(async () => await SelectService(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -187,6 +201,14 @@ namespace AppTripEver.ViewModels
             {
 
             }
+        }
+
+        public async Task SelectService()
+        {
+            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync2(Host, ServicioActual);
+            await PopupNavigation.Instance.PushAsync(popUp);
         }
 
         #endregion Methods
