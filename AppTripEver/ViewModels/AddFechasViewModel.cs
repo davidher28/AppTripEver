@@ -175,7 +175,6 @@ namespace AppTripEver.ViewModels
             FechaInicio = new ValidatableObject<string>();
             FechaFinal = new ValidatableObject<string>();
             NumPersonas = new ValidatableObject<string>();
-
         }
 
         public void InitializeCommands()
@@ -236,10 +235,10 @@ namespace AppTripEver.ViewModels
                 NumNoches = diaFin - diaInicio;
             }
 
-            Valor = NumNoches * Service.Precio;
+            var Total = NumNoches * Service.Precio;
 
             Booking.NumNoches = NumNoches;
-            Booking.Valor = Valor;
+            Booking.Valor = Total;
             Booking.Servicio = Service;
             Booking.Cliente = Usuario;
 

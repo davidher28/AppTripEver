@@ -54,6 +54,7 @@
                         <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
+                        Text="{Binding FechaInicio.Value}"
                         Placeholder="Fecha inicial"
                         PlaceholderColor="#677BA6">
                         </Entry>
@@ -62,6 +63,7 @@
                         <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
+                        Text="{Binding FechaFinal.Value}"
                         Placeholder="Fecha final"
                         PlaceholderColor="#677BA6">
                         </Entry>
@@ -70,6 +72,7 @@
                         <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
+                        Text="{Binding NumPersonas.Value}"
                         Placeholder="Número de personas"
                         PlaceholderColor="#677BA6">
                         </Entry>
