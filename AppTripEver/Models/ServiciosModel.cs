@@ -42,7 +42,10 @@ namespace AppTripEver.Models
         public UsuarioHostModel Creador { get; set; }
 
         //[JsonIgnore]
-        public ReservasModel Reserva { get; set; } 
+        public ReservasModel Reserva { get; set; }
+
+        [JsonProperty("IdTipoServicio")]
+        public int TipoServicio { get; set; }
         #endregion Properties
 
         #region Initialize
