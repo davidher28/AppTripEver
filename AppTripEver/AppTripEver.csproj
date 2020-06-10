@@ -27,6 +27,9 @@
     <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddFechasView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ChooseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -68,6 +71,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddFechasView.xaml.cs">
+      <DependentUpon>AddFechasView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MessageViewPop.xaml.cs">
       <DependentUpon>MessageViewPop.xaml</DependentUpon>
     </Compile>

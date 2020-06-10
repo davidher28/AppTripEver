@@ -17,9 +17,8 @@ using Xamarin.Forms;
 
 namespace AppTripEver.ViewModels
 {
-    public class ServiceInformationViewModel : BaseViewModel
-    {
-
+    public class AddFechasViewModel : BaseViewModel
+    { 
         #region Request
         public ElegirRequest<BaseModel> PostBooking { get; set; }
 
@@ -145,7 +144,7 @@ namespace AppTripEver.ViewModels
         #endregion Getters/Setters
 
         #region Initialize
-        public ServiceInformationViewModel()
+        public AddFechasViewModel()
         {
             BookingState = new EstadoModel();
             Horario = new HorarioModel();
@@ -179,7 +178,7 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            BookingCommand = new Command(async () => await Book(), () => true);
+            BookingCommand = new Command(async () => await BookServiceForm(), () => true);
             CloseCommand = new Command(async () => await Close(), () => true);
         }
 
@@ -195,18 +194,44 @@ namespace AppTripEver.ViewModels
 
         #region
 
-        public async Task Book()
+        public async Task BookServiceForm()
         {
-            AddFechasView view = new AddFechasView();
-            var context = view.BindingContext;
-            await ((BaseViewModel)context).ConstructorAsync2(Usuario, Service);
-            await Application.Current.MainPage.Navigation.PushAsync(view);
-
+            Booking.FechaInicio = FechaInicio.Value;
+            Booking.FechaFin = FechaFinal.Value;
+            BookingState.IdEstado = 1;
+            JObject vals =
+                new JObject(
+                    new JProperty("numPersonas", NumPersonas.Value),
+                    new JProperty("IdEstado", Booking.Estado.IdEstado),
+                    new JProperty("IdUsuario", Booking.Cliente.IdUsuario),
+                    new JProperty("IdServicio", Booking.Servicio.IdServicio),
+                    new JProperty("fechaInicio", FechaInicio.Value),
+                    new JProperty("fechaFin", FechaFinal.Value)
+                    );
+            string Json = vals.ToString();
+            APIResponse response = await PostBooking.EjecutarEstrategia(Booking, null, Json);
+            if (response.IsSuccess)
+            {
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
+            else
+            {
+                Message.Message = "Sus datos son erróneos";
+                MessageViewPop popUp = new MessageViewPop();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
         }
+
 
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
+            //await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion Methods
     }
