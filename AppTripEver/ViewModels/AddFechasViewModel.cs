@@ -165,11 +165,6 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlBoking = Endpoints.URL_SERVIDOR + Endpoints.CREAR_RESERVA;
-
-
-            PostBooking = new ElegirRequest<BaseModel>();
-            PostBooking.ElegirEstrategia("POST", urlBoking);
 
         }
 
