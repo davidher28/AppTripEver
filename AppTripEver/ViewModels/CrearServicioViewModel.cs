@@ -405,6 +405,17 @@ namespace AppTripEver.ViewModels
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
+                TipoServicio.Value = null;
+                Titulo.Value = null;
+                Pais.Value = null;
+                Ciudad.Value = null;
+                MaxPersonas.Value = null;
+                Descripcion.Value = null;
+                Precio.Value = null;
+                FechaInicio.Value = null;
+                FechaFinal.Value = null;
+                HoraInicio.Value = null;
+                HoraFinal.Value = null;
             }
             else
             {

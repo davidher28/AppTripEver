@@ -22,6 +22,7 @@ namespace AppTripEver.ViewModels
 
         #region Getters y Setters
 
+
         public MessageModel Message
         {
             get { return message; }
@@ -48,7 +49,6 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            await Application.Current.MainPage.Navigation.PushAsync(new HostTabbedView());
         }
     }
 }
