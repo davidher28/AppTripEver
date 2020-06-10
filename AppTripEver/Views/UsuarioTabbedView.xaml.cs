@@ -17,7 +17,7 @@ namespace AppTripEver.Views
         public UsuarioTabbedView()
         {
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.Android>().SetBarSelectedItemColor(Color.FromHex("#3D70E0"));
+            On<Xamarin.Forms.PlatformConfiguration.Android>().SetBarSelectedItemColor(Color.FromHex("#3281F0"));
             BindingContext = context;
         }
     }

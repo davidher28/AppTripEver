@@ -8,7 +8,7 @@
              x:Class="AppTripEver.Views.UsuarioTabbedView"
              NavigationPage.HasNavigationBar="False"
              BarBackgroundColor="Black"
-             android:TabbedPage.BarSelectedItemColor="#3D70E0"
+             android:TabbedPage.BarSelectedItemColor="#3281F0"
              android:TabbedPage.BarItemColor="white"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
