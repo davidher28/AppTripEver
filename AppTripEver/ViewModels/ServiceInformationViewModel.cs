@@ -56,10 +56,6 @@ namespace AppTripEver.ViewModels
 
         public ValidatableObject<string> NumPersonas { get; set; }
 
-        public int valor { get; set; }
-
-        public int numNoches { get; set; }
-
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
