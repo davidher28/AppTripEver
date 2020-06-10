@@ -412,6 +412,13 @@ namespace AppTripEver.ViewModels
             APIResponse response = await CrearNuevoServicio.EjecutarEstrategia(servicio, null, Json);
             if (response.IsSuccess)
             {
+                // Obtengo la penultima
+                int index = Application.Current.MainPage.Navigation.NavigationStack.Count;
+                var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+                var hostcontext = context.HostViewModel as HostViewModel;
+                await hostcontext.ListaServiciosExperienciaHost();
+                await hostcontext.ListaServiciosHospedajeHost();
                 Console.WriteLine("Todo bien");
                 //Host.Servicios.Add(servicio);
                 MessageServicioView popUp = new MessageServicioView();
@@ -429,13 +436,6 @@ namespace AppTripEver.ViewModels
                 FechaFinal.Value = null;
                 HoraInicio.Value = null;
                 HoraFinal.Value = null;
-                // Obtengo la penultima
-                //int index = Application.Current.MainPage.Navigation.NavigationStack.Count - 1;
-                //var context = Application.Current.MainPage.Navigation.NavigationStack[index - 1].BindingContext as HostTabbedViewModel;
-                //var hostcontext = context.HostViewModel as HostViewModel;
-                //await hostcontext.ListaServiciosExperienciaHost();
-                //await hostcontext.ListaServiciosHospedajeHost();
-                //await ((BaseViewModel)context).ListaServiciosExperienciaHost();
             }
             else
             {
