@@ -52,22 +52,24 @@
                     <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
-                        Placeholder="Nombre"
+                        Placeholder="Fecha inicial"
                         PlaceholderColor="#677BA6">
                     </Entry>
                     <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
-                        Placeholder="Nombre"
+                        Placeholder="Fecha final"
                         PlaceholderColor="#677BA6">
                     </Entry>
                     <Entry
                         BackgroundColor="White"
                         TextColor="#677BA6"
-                        Placeholder="Nombre"
+                        Placeholder="Número de personas a reservar"
                         PlaceholderColor="#677BA6">
                     </Entry>
-                    <Button Text="Confirmar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                    <Button Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+
+                    <Button Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
                 </StackLayout>
             </Frame>
         </FlexLayout>

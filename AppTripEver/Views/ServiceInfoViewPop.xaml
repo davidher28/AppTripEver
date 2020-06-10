@@ -68,7 +68,7 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Button Text="Reservar" Command="{Binding ReservarCommand}" WidthRequest="1000" TextColor="White"></Button>
+                        <Button Text="Reservar" Command="{Binding BookingCommand}" WidthRequest="1000" TextColor="White"></Button>
                     </StackLayout>
                 </StackLayout>
             </Frame>
