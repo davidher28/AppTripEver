@@ -201,7 +201,6 @@ namespace AppTripEver.ViewModels
             var context = view.BindingContext;
             await ((BaseViewModel)context).ConstructorAsync2(Usuario, Service);
             PopupNavigation.Instance.PushAsync(view);
-
         }
 
         public async Task Close()
