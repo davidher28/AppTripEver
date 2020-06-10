@@ -47,7 +47,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="1000" Padding="5">
-                <Label Margin="5,5,5,0" Text="Hospedajes" Style="{StaticResource Encabezado}"/>
+                <Label Margin="5,5,5,0" Text="Mis Hospedajes" Style="{StaticResource Encabezado}"/>
                 <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
                 <CollectionView ItemsSource="{Binding ServiciosHospedajeHost}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand , Mode=TwoWay}">
                     <CollectionView.ItemsLayout>
@@ -82,7 +82,7 @@
                 </CollectionView>
             </StackLayout>
             <StackLayout HeightRequest="1000" Padding="5">
-                <Label Margin="5,5,5,0" Text="Experiencias" Style="{StaticResource Encabezado}"/>
+                <Label Margin="5,5,5,0" Text="Mis Experiencias" Style="{StaticResource Encabezado}"/>
                 <BoxView BackgroundColor="Gray" CornerRadius="5" HeightRequest="1.5"/>
                 <CollectionView ItemsSource="{Binding ServiciosExperienciaHost}">
                     <CollectionView.ItemsLayout>

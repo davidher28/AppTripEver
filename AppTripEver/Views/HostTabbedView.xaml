@@ -25,4 +25,5 @@
         </x:Arguments>
     </NavigationPage>
     <ContentPage Title="Reservas" IconImageSource="calendario.png"/>
+    
 </TabbedPage>   
