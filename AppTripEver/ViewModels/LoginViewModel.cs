@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using AppTripEver.Behaviors;
+using Newtonsoft.Json.Linq;
 
 namespace AppTripEver.ViewModels
 {
@@ -220,7 +221,11 @@ namespace AppTripEver.ViewModels
                 APIResponse response = await GetUsuario_Name.EjecutarEstrategia(null, parametros);
                 if (response.IsSuccess)
                 {
+                    JToken token = JObject.Parse(response.Response);
                     Usuario = JsonConvert.DeserializeObject<UsuarioModel>(response.Response);
+                    Cartera.IdCartera = (long)token.SelectToken("IdCartera");
+                    Cartera.MontoTotal = (int)token.SelectToken("Monto");
+                    Usuario.Cartera = Cartera;
                     if (Usuario.IsHost == 1)
                     {
                         try
@@ -230,7 +235,8 @@ namespace AppTripEver.ViewModels
                             APIResponse response2 = await GetUsuarioHost.EjecutarEstrategia(null, parametros2);
                             if (response2.IsSuccess)
                             {
-                                Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response2.Response);
+                                Host = JsonConvert.DeserializeObject<UsuarioHostModel>(response.Response);
+                                Host.Cartera = Cartera;
                                 Host.IdUsuario = Usuario.IdUsuario;
                                 Host.Nombre = Usuario.Nombre;
                                 Host.Email = Usuario.Email;

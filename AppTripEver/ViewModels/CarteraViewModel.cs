@@ -18,7 +18,7 @@ using AppTripEver.Behaviors;
 
 namespace AppTripEver.ViewModels
 {
-    public class ChooseViewModel : BaseViewModel
+    public class CarteraViewModel : BaseViewModel
     {
         #region Request
         public ElegirRequest<BaseModel> GetUsuarioHost { get; set; }
@@ -26,10 +26,9 @@ namespace AppTripEver.ViewModels
         #endregion Request 
 
         #region Commands
-        public ICommand UsuarioHostCommand { get; set; }
-        public ICommand UsuarioCommand { get; set; }
-
-        public ICommand CerrarSesionCommand { get; set; }
+        public ICommand RecargarCommand { get; set; }
+        public ICommand CanjearCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
 
         #endregion Commands
 
@@ -42,7 +41,6 @@ namespace AppTripEver.ViewModels
 
         private UsuarioHostModel host;
 
-        private LoginModel login;
         public NavigationService NavigationService { get; set; }
 
 
@@ -50,15 +48,6 @@ namespace AppTripEver.ViewModels
 
         #region Getters & Setters
 
-        public LoginModel Login
-        {
-            get { return login; }
-            set
-            {
-                login = value;
-                OnPropertyChanged();
-            }
-        }
 
         public UsuarioModel Usuario
         {
@@ -93,32 +82,29 @@ namespace AppTripEver.ViewModels
         #endregion Getters/Setters
 
         #region Initialize
-        public ChooseViewModel()
+        public CarteraViewModel()
         {
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
-            Login = new LoginModel() { Nombre = null, Contra = null };
             NavigationService = new NavigationService();
             InitializeRequest();
             InitializeCommands();
-
         }
 
         public void InitializeRequest()
         {
-            string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
+            //string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
 
-            GetUsuarioHost = new ElegirRequest<BaseModel>();
-            GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
-
+            //GetUsuarioHost = new ElegirRequest<BaseModel>();
+            //GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
         }
+
         public void InitializeCommands()
         {
-            UsuarioHostCommand = new Command(async () => await GetHost(), () => true);
-            UsuarioCommand = new Command(async () => await OpenServices(), () => true);
-            CerrarSesionCommand = new Command(async () => await CerrarSesion(), () => true);
-
+            RecargarCommand = new Command(async () => await Recargar(), () => true);
+            CanjearCommand = new Command(async () => await Canjear(), () => true);
+            CloseCommand = new Command(async () => await Close(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -133,25 +119,20 @@ namespace AppTripEver.ViewModels
 
         #region Methods
 
-        public async Task CerrarSesion()
+        public async Task Recargar()
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
-            Application.Current.MainPage = new NavigationPage(new LoginView())
-            {
-                BarTextColor = Color.White
-                //IsVisible = false
-            };
+
         }
-        public async Task OpenServices()
+        public async Task Canjear()
         {
-            await NavigationService.PushPage(new UsuarioTabbedView(), Usuario);
+
         }
 
-        public async Task GetHost()
+        public async Task Close()
         {
-            await NavigationService.PushPage(new HostTabbedView(), Host);
+            await PopupNavigation.Instance.PopAsync();
         }
+
+        #endregion Methods
     }
-
-    #endregion Methods
 }
