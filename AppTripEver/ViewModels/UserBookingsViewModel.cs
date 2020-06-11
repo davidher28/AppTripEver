@@ -32,7 +32,7 @@ namespace AppTripEver.ViewModels
 
         public ICommand UsuarioInfoCommand { get; set; }
 
-        public ICommand SelectHospedajeServiceCommand { get; set; }
+        public ICommand SelectReservaCommand { get; set; }
 
         #endregion Commands
 
@@ -44,7 +44,7 @@ namespace AppTripEver.ViewModels
 
         public NavigationService NavigationService { get; set; }
 
-        private ObservableCollection<ReservasSimpleModel> reservas;
+        private ObservableCollection<ReservasModel> reservas;
 
         private ReservasSimpleModel reservaActual;
 
@@ -83,7 +83,7 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public ObservableCollection<ReservasSimpleModel> Reservas
+        public ObservableCollection<ReservasModel> Reservas
         {
             get { return reservas; }
             set
@@ -100,11 +100,11 @@ namespace AppTripEver.ViewModels
         {
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
-            Reservas = new ObservableCollection<ReservasSimpleModel>();
+            Reservas = new ObservableCollection<ReservasModel>();
             NavigationService = new NavigationService();
             InitializeCommands();
             InitializeRequest();
-            ListaReserva();
+            
         }
 
         public void InitializeRequest()
@@ -119,7 +119,7 @@ namespace AppTripEver.ViewModels
         {
             SelectServiceCommand = new Command(async () => await SelectService(), () => true);
             CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
-            SelectHospedajeServiceCommand = new Command(async () => await SelectHospedajeService(), () => true);
+            SelectReservaCommand = new Command(async () => await SelectReserva(), () => true);
             UsuarioInfoCommand = new Command(async () => await DisplayUsuario(), () => true);
         }
 
@@ -127,6 +127,7 @@ namespace AppTripEver.ViewModels
         {
             var usuario = parameters as UsuarioModel;
             Usuario = usuario;
+            ListaReserva();
         }
 
         #endregion Initialize
@@ -142,9 +143,8 @@ namespace AppTripEver.ViewModels
                 APIResponse response = await GetReservas.EjecutarEstrategia(null, parametros);
                 if (response.IsSuccess)
                 {
-                    List<ReservasSimpleModel> listaReservas = JsonConvert.DeserializeObject<List<ReservasSimpleModel>>
-                        (response.Response);
-                    Reservas = new ObservableCollection<ReservasSimpleModel>(listaReservas);
+                    List<ReservasModel> listaReservas = JsonConvert.DeserializeObject<List<ReservasModel>>(response.Response);
+                    Reservas = new ObservableCollection<ReservasModel>(listaReservas);
                 }
                 else
                 {
@@ -157,7 +157,7 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public async Task SelectHospedajeService()
+        public async Task SelectReserva()
         {
             ServiceInfoViewPop popUp = new ServiceInfoViewPop();
             var viewModel = popUp.BindingContext;

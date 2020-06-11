@@ -1,16 +1,20 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace AppTripEver.Models
 {
     public class ReservasSimpleModel : BaseModel
     {
         #region Properties
         public long IdReserva { get; set; }
+
+        [JsonProperty("numPersonas")]
         public int NumPersonas { get; set; }
-        public long Idestado { get; set; }
+        public long IdEstado { get; set; }
         private string fechaInicio { get; set; }
         private string fechaFin { get; set; }
-        private int valor { get; set; }
-        private int numNoches { get; set; }
+        private string valor { get; set; }
+        private string numNoches { get; set; }
         private string titulo { get; set; }
         #endregion Properties
 
@@ -40,7 +44,7 @@ namespace AppTripEver.Models
             }
         }
 
-        public int NumNoches
+        public string NumNoches
         {
             get { return numNoches; }
             set
@@ -50,7 +54,7 @@ namespace AppTripEver.Models
             }
         }
 
-        public int Valor
+        public string Valor
         {
             get { return valor; }
             set

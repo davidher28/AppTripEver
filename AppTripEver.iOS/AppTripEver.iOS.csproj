@@ -275,7 +275,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\AppTripEver\AppTripEver.csproj">
-      <Project>{BC0A5F30-94E1-40DC-B310-FA8A7FB77189}</Project>
+      <Project>{5DC1A51D-DFC4-44B9-B23A-137E505747F3}</Project>
       <Name>AppTripEver</Name>
     </ProjectReference>
   </ItemGroup>

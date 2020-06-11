@@ -1,4 +1,5 @@
 ﻿using AppTripEver.Services.Propagation;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace AppTripEver.Models
@@ -6,16 +7,36 @@ namespace AppTripEver.Models
     public class ReservasModel : BaseModel
     {
         #region Properties
+        [JsonProperty("IdReserva")]
         public long IdReservas { get; set; }
+
+        [JsonProperty("numPersonas")]
         public int NumPersonas { get; set; }
+
+        [JsonIgnore]
         private EstadoModel estado { get; set; }
+
+        [JsonIgnore]
         public UsuarioModel Cliente { get; set; }
+
+        [JsonIgnore]
         public ServiciosModel Servicio { get; set; }
+
+        [JsonProperty("fechaInicio")]
         private string fechaInicio { get; set; }
+
+        [JsonProperty("fechaFin")]
         private string fechaFin { get; set; }
+
+        [JsonProperty("valor")]
         private int valor { get; set; }
+
+        [JsonProperty("numNoches")]
         private int numNoches { get; set; }
-        private string titulo { get; set; }
+
+        [JsonProperty("titulo")]
+        public string Titulo { get; set; }
+
         #endregion Properties
 
         #region Initialize
@@ -74,16 +95,6 @@ namespace AppTripEver.Models
             set
             {
                 valor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Titulo
-        {
-            get { return titulo; }
-            set
-            {
-                titulo = value;
                 OnPropertyChanged();
             }
         }
