@@ -136,6 +136,7 @@ namespace AppTripEver.ViewModels
         #region Initialize
         public CheckOutViewModel()
         {
+            Message = new MessageModel { Message = "Reserva creada correctamente" };
             InitializeCommands();
             InitializeRequest();
         }
@@ -165,14 +166,14 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-            string urlPostBooking = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_ID;
-            string urlUpdateWallet = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_ID;
+            string urlPostBooking = Endpoints.URL_SERVIDOR + Endpoints.CREAR_RESERVA;
+            string urlUpdateWallet = Endpoints.URL_SERVIDOR + Endpoints.ACTUALIZAR_CARTERA;
 
             PostBooking = new ElegirRequest<BaseModel>();
             PostBooking.ElegirEstrategia("POST", urlPostBooking);
 
             UpdateWallet = new ElegirRequest<BaseModel>();
-            UpdateWallet.ElegirEstrategia("POST", urlUpdateWallet);
+            UpdateWallet.ElegirEstrategia("PUT", urlUpdateWallet);
 
         }
 
@@ -215,11 +216,10 @@ namespace AppTripEver.ViewModels
                         );
                     string Json2 = vals2.ToString();
                     ParametersRequest parametros = new ParametersRequest();
-                    parametros.Parametros.Add(Usuario.IdUsuario.ToString());
+                    parametros.Parametros.Add(Usuario.Cartera.IdCartera.ToString());
                     APIResponse response1 = await UpdateWallet.EjecutarEstrategia(Cartera, parametros, Json2);
                     if (response1.IsSuccess)
                     {
-                        Message.Message = "Reserva realizada exitosamente";
                         MessageViewPop popUp = new MessageViewPop();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);
