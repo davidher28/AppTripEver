@@ -209,7 +209,6 @@ namespace AppTripEver.ViewModels
                 if (response.IsSuccess)
                 {
                     Usuario.Cartera.MontoTotal = Usuario.Cartera.MontoTotal - Booking.Valor;
-
                     JObject vals2 =
                         new JObject(
                         new JProperty("Monto", Usuario.Cartera.MontoTotal),
@@ -221,6 +220,10 @@ namespace AppTripEver.ViewModels
                     APIResponse response1 = await UpdateWallet.EjecutarEstrategia(Cartera, parametros, Json2);
                     if (response1.IsSuccess)
                     {
+                        var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                        var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
+                        var hostcontext = context.UserBookingsViewModel as UserBookingsViewModel;
+                        await hostcontext.ListaReserva();
                         PopGeneralView popUp = new PopGeneralView();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);

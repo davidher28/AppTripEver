@@ -266,6 +266,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>3.3.10</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Rg.Plugins.Popup">
@@ -280,26 +283,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\hospedar.png.imageset\" />
+    <Folder Include="Assets.xcassets\billetera.png.imageset\" />
+    <Folder Include="Assets.xcassets\calendario.png.imageset\" />
+    <Folder Include="Assets.xcassets\cerrar.png.imageset\" />
+    <Folder Include="Assets.xcassets\cerrarB.png.imageset\" />
+    <Folder Include="Assets.xcassets\descripcion.png.imageset\" />
+    <Folder Include="Assets.xcassets\favorito.png.imageset\" />
+    <Folder Include="Assets.xcassets\fondo_login.JPEG.imageset\" />
     <Folder Include="Assets.xcassets\Hospedajes.jpg.imageset\" />
+    <Folder Include="Assets.xcassets\hospedar.png.imageset\" />
+    <Folder Include="Assets.xcassets\mas.png.imageset\" />
+    <Folder Include="Assets.xcassets\navegador.png.imageset\" />
+    <Folder Include="Assets.xcassets\people.png.imageset\" />
     <Folder Include="Assets.xcassets\reservar.png.imageset\" />
+    <Folder Include="Assets.xcassets\salida.png.imageset\" />
+    <Folder Include="Assets.xcassets\splash.png.imageset\" />
     <Folder Include="Assets.xcassets\Tour.jpg.imageset\" />
     <Folder Include="Assets.xcassets\Travel.jpg.imageset\" />
-    <Folder Include="Assets.xcassets\navegador.png.imageset\" />
-    <Folder Include="Assets.xcassets\splash.png.imageset\" />
     <Folder Include="Assets.xcassets\tripever_logo_3.png.imageset\" />
-    <Folder Include="Assets.xcassets\calendario.png.imageset\" />
-    <Folder Include="Assets.xcassets\mas.png.imageset\" />
-    <Folder Include="Assets.xcassets\favorito.png.imageset\" />
     <Folder Include="Assets.xcassets\user.png.imageset\" />
     <Folder Include="Assets.xcassets\usuario.png.imageset\" />
-    <Folder Include="Assets.xcassets\cerrar.png.imageset\" />
     <Folder Include="Assets.xcassets\Wallet.png.imageset\" />
-    <Folder Include="Assets.xcassets\billetera.png.imageset\" />
-    <Folder Include="Assets.xcassets\cerrarB.png.imageset\" />
-    <Folder Include="Assets.xcassets\fondo_login.JPEG.imageset\" />
-    <Folder Include="Assets.xcassets\people.png.imageset\" />
-    <Folder Include="Assets.xcassets\descripcion.png.imageset\" />
-    <Folder Include="Assets.xcassets\salida.png.imageset\" />
   </ItemGroup>
 </Project>
