@@ -46,7 +46,6 @@ namespace AppTripEver.ViewModels
 
         public ICommand ValidateContraCommand { get; set; }
 
-        
         #endregion Commands
 
         #region Properties

@@ -121,18 +121,6 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\fondo_login.JPEG">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\hospedar.png.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -211,7 +199,58 @@
     <ImageAsset Include="Assets.xcassets\usuario.png.imageset\user2.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera2.png">
+    <ImageAsset Include="Assets.xcassets\cerrar.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Wallet.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cerrar.png.imageset\cerrar2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Wallet.png.imageset\Wallet.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\billetera.png.imageset\billetera.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\billetera.png.imageset\billetera2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\billetera.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cerrarB.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cerrarB.png.imageset\cerrarB.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\fondo_login.JPEG.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\fondo_login.JPEG.imageset\fondo_login.JPEG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\fondo_login.JPEG.imageset\fondo_login-1.JPEG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\people.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\people.png.imageset\people.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\descripcion.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\descripcion.png.imageset\descripcion.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\salida.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\salida.png.imageset\salida2.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
@@ -241,8 +280,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\biletera.png.imageset\" />
-    <Folder Include="Assets.xcassets\fondo_login.JEPG.imageset\" />
     <Folder Include="Assets.xcassets\hospedar.png.imageset\" />
     <Folder Include="Assets.xcassets\Hospedajes.jpg.imageset\" />
     <Folder Include="Assets.xcassets\reservar.png.imageset\" />
@@ -256,5 +293,13 @@
     <Folder Include="Assets.xcassets\favorito.png.imageset\" />
     <Folder Include="Assets.xcassets\user.png.imageset\" />
     <Folder Include="Assets.xcassets\usuario.png.imageset\" />
+    <Folder Include="Assets.xcassets\cerrar.png.imageset\" />
+    <Folder Include="Assets.xcassets\Wallet.png.imageset\" />
+    <Folder Include="Assets.xcassets\billetera.png.imageset\" />
+    <Folder Include="Assets.xcassets\cerrarB.png.imageset\" />
+    <Folder Include="Assets.xcassets\fondo_login.JPEG.imageset\" />
+    <Folder Include="Assets.xcassets\people.png.imageset\" />
+    <Folder Include="Assets.xcassets\descripcion.png.imageset\" />
+    <Folder Include="Assets.xcassets\salida.png.imageset\" />
   </ItemGroup>
 </Project>
