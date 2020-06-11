@@ -23,6 +23,7 @@ namespace AppTripEver.ViewModels
 
         #endregion Request
 
+
         #region Commands
 
         public ICommand ValidateNombreCommand { get; set; }
@@ -46,6 +47,7 @@ namespace AppTripEver.ViewModels
         public ICommand UpdateUserCommand { get; set; }
 
         #endregion Commands
+
 
         #region Properties
 
@@ -81,6 +83,7 @@ namespace AppTripEver.ViewModels
         private bool isContraEnable;
 
         #endregion Properties
+
 
         #region Getters & Setters
 
@@ -190,12 +193,14 @@ namespace AppTripEver.ViewModels
         }
         #endregion Getters/Setters
 
+
+        #region Initialize
+
         public InfoUserViewModel()
         {
             InitializeCommands();
             InitializeRequest();
             InitializeFields();
-
             NombreUsuario.Value = Usuario.Nombre;
             MailUsuario.Value = Usuario.Email;
             TelUsuario.Value = Usuario.Telefono;
@@ -206,8 +211,6 @@ namespace AppTripEver.ViewModels
             ContraUsuario.Value = Usuario.Contrasena;
 
         }
-
-        #region Initialize
 
         public void InitializeRequest()
         {
@@ -252,6 +255,7 @@ namespace AppTripEver.ViewModels
         }
 
         #endregion Initialize
+
 
         #region Methods
 

@@ -138,7 +138,7 @@
                             <Button Opacity="0.9" BackgroundColor="#D86B19" Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
                         </Frame>
                         <Frame HorizontalOptions="CenterAndExpand" Grid.Column="1" Padding="-100,10,-30,10" BackgroundColor="Transparent">
-                            <Button Opacity="0.9" BackgroundColor="#284B94" Text="Guardar cambios" Command="{Binding BookingCommand}" TextColor="White"></Button>
+                            <Button Opacity="0.9" BackgroundColor="#284B94" Text="Guardar cambios" Command="{Binding UpdateUserCommand}" TextColor="White"></Button>
                         </Frame>
                     </Grid>
                 </StackLayout>
