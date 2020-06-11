@@ -1,16 +1,12 @@
-﻿using AppTripEver.Services.Propagation;
-using System.Collections.Generic;
-
+﻿using System;
 namespace AppTripEver.Models
 {
-    public class ReservasModel : BaseModel
+    public class ReservasSimpleModel : BaseModel
     {
         #region Properties
-        public long IdReservas { get; set; }
+        public long IdReserva { get; set; }
         public int NumPersonas { get; set; }
-        private EstadoModel estado { get; set; }
-        public UsuarioModel Cliente { get; set; }
-        public ServiciosModel Servicio { get; set; }
+        public long Idestado { get; set; }
         private string fechaInicio { get; set; }
         private string fechaFin { get; set; }
         private int valor { get; set; }
@@ -18,25 +14,11 @@ namespace AppTripEver.Models
         private string titulo { get; set; }
         #endregion Properties
 
-        #region Initialize
-        public ReservasModel(EstadoModel estado, ServiciosModel Servicio, UsuarioModel Cliente)
+        public ReservasSimpleModel()
         {
-            this.estado = estado;
-            this.Servicio = Servicio;
-            this.Cliente = Cliente;
         }
-        #endregion Initialize
 
         #region Getters & Setters
-        public EstadoModel Estado
-        {
-            get { return estado; }
-            set
-            {
-                estado = value;
-                OnPropertyChanged();
-            }
-        }
 
         public string FechaInicio
         {
@@ -87,6 +69,8 @@ namespace AppTripEver.Models
                 OnPropertyChanged();
             }
         }
+
+
         #endregion Getters & Setters
     }
 }

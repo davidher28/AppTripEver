@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -89,8 +89,13 @@
     <Compile Update="Views\InfoUserView.xaml.cs">
       <DependentUpon>InfoUserView.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Update="Views\PopGeneralView.xaml.cs">
       <DependentUpon>PopGeneralView.xaml</DependentUpon>
+=======
+    <Compile Update="Views\UserBookingsView.xaml.cs">
+      <DependentUpon>UserBookingsView.xaml</DependentUpon>
+>>>>>>> 5f476cf... traer reserva1.0
     </Compile>
   </ItemGroup>
 </Project>

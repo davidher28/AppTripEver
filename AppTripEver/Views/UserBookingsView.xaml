@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             x:Class="AppTripEver.Views.UserBookingsView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             mc:Ignorable="d"
+             BackgroundColor="WhiteSmoke"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="billetera.png"
+                 Order="Primary"
+                 Text="Cerrar Sesión"
+                 Priority="0"
+                 Command="{Binding CarteraCommand}"/>
+        <ToolbarItem 
+                 IconImageSource="usuario.png"
+                 Order="Primary"
+                 Priority="0"
+                 />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Servicios" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="HasShadow" Value="True"></Setter>
+                <Setter Property="Padding" Value="0.2"></Setter>
+                <Setter Property="BorderColor" Value="LightGray"></Setter>
+            </Style>
+            <Style x:Key="Card" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="TextColor" Value="#DBA016"></Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="0,0,0,10" BackgroundColor="WhiteSmoke" Margin="0,8,0,0" Opacity="0.95" HeightRequest="305">
+                <StackLayout Padding="5,5,5,0" >
+                <Label Text="Proximas Reservas" Style="{StaticResource Encabezado}"/>
+                </StackLayout>
+                <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                <CollectionView ItemsSource="{Binding Reservas}" SelectedItem="{Binding ServicioActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"    
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start"
+                           ItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource Servicios}" WidthRequest="230" >
+                                <StackLayout Style="{StaticResource Card}">
+                                    <Image Source="Hospedajes.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
+                                    <StackLayout Orientation="Vertical" Padding="6,0,0,0" Margin="0">
+                                        <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold" Opacity="0.85"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding numNoches}"  FontAttributes="Italic" Margin="0" Padding="0" />
+                                            <Label TextColor="Black" Text="{Binding fechaInicio, StringFormat='- {0}'}"  FontAttributes="Italic" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding valor, StringFormat='${0}'}"  FontAttributes="Bold" Opacity="0.85"/>
+                                            <Label Text="/Noche" FontAttributes="Italic" TextColor="Black" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Gray" Text="{Binding NumPersonas}"  FontAttributes="Italic" />
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray" />
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Padding="0,0,0,10" Margin="0,0,0,10" BackgroundColor="WhiteSmoke" Opacity="0.95" HeightRequest="305">
+                <StackLayout Padding="5,5,5,0" >
+                    <Label Text="Experiencias" Style="{StaticResource Encabezado}" />
+                </StackLayout>
+                <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                <CollectionView ItemsSource="{Binding ServiciosExperiencia}" SelectedItem="{Binding ServicioExperienciaActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectHospedajeServiceCommand}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"    
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start"
+                           ItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource Servicios}" WidthRequest="230">
+                                <StackLayout Style="{StaticResource Card}">
+                                    <Image Source="Tour.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
+                                    <StackLayout Orientation="Vertical" Padding="3">
+                                        <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold"  Opacity="0.85"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic" />
+                                            <Label TextColor="Black" Text="{Binding Ciudad, StringFormat='- {0}'}"  FontAttributes="Italic" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold" Opacity="0.85"/>
+                                            <Label Text="/Persona" FontAttributes="Italic" TextColor="Black" FontSize="Caption"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic" />
+                                            <Label Text="Personas" FontAttributes="Italic" TextColor="Gray" />
+                                            <ImageButton Source="favorito2.png" HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" Padding="2" BackgroundColor="Transparent"/>
+                                        </StackLayout>                                    
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <!--<<StackLayout>
+                <Button
+                        BackgroundColor="#393c3e"
+                        Text="Crear Usuario"
+                        TextColor="White"
+                        Command="{Binding CrearHostCommand}"/>
+            </StackLayout>-->
+        </StackLayout>
+    </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -19,5 +19,10 @@
         </x:Arguments>
     </NavigationPage>
     <ContentPage Title="Favoritos" Icon="favorito.png"/>
-    <ContentPage Title="Reservas" Icon="calendario.png"/>
+
+    <NavigationPage Title="Reservas" Icon="calendario.png">
+        <x:Arguments>
+            <views:ServicesView BindingContext="{Binding UserBookingsViewModel}"/>
+        </x:Arguments>
+    </NavigationPage>
 </TabbedPage>

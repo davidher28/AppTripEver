@@ -241,6 +241,7 @@ namespace AppTripEver.ViewModels
             Booking.Valor = Total;
             Booking.Servicio = Service;
             Booking.Cliente = Usuario;
+            Booking.Titulo = Service.Titulo;
 
             CheckOutView popUp = new CheckOutView();
             var viewModel = popUp.BindingContext;

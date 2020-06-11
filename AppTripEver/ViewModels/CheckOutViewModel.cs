@@ -201,7 +201,8 @@ namespace AppTripEver.ViewModels
                     new JProperty("fechaInicio", Booking.FechaInicio),
                     new JProperty("fechaFin", Booking.FechaFin),
                     new JProperty("valor", Booking.Valor),
-                    new JProperty("numNoches", Booking.NumNoches)
+                    new JProperty("numNoches", Booking.NumNoches),
+                    new JProperty("titulo", Booking.Titulo)
                     );
                 string Json = vals.ToString();
                 APIResponse response = await PostBooking.EjecutarEstrategia(Booking, null, Json);
@@ -220,7 +221,7 @@ namespace AppTripEver.ViewModels
                     APIResponse response1 = await UpdateWallet.EjecutarEstrategia(Cartera, parametros, Json2);
                     if (response1.IsSuccess)
                     {
-                        PopGeneralView popUp = new PopGeneralView();
+                        MessageViewPop popUp = new MessageViewPop();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                         await PopupNavigation.Instance.PushAsync(popUp);
@@ -228,7 +229,7 @@ namespace AppTripEver.ViewModels
                     else
                     {
                         Message.Message = "Reserva no creada";
-                        PopGeneralView popUp = new PopGeneralView();
+                        MessageViewPop popUp = new MessageViewPop();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                         await PopupNavigation.Instance.PushAsync(popUp);
@@ -237,7 +238,7 @@ namespace AppTripEver.ViewModels
                 else
                 {
                     Message.Message = "Reserva no creada";
-                    PopGeneralView popUp = new PopGeneralView();
+                    MessageViewPop popUp = new MessageViewPop();
                     var viewModel = popUp.BindingContext;
                     await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                     await PopupNavigation.Instance.PushAsync(popUp);
@@ -246,7 +247,7 @@ namespace AppTripEver.ViewModels
             else
             {
                 Message.Message = "Fondos Insuficientes";
-                PopGeneralView popUp = new PopGeneralView();
+                MessageViewPop popUp = new MessageViewPop();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
