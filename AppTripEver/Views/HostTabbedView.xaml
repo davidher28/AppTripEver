@@ -24,6 +24,10 @@
             <views:CrearServicioView BindingContext="{Binding CrearServicioViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage Title="Reservas" IconImageSource="calendario.png"/>
+    <NavigationPage Title="Reservas" IconImageSource="calendario.png">
+        <x:Arguments>
+            <views:HostBookingsView BindingContext="{Binding HostBookingsViewModel}"/>
+        </x:Arguments>
+    </NavigationPage>
     
 </TabbedPage>   

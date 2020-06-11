@@ -22,6 +22,7 @@ namespace AppTripEver.Configuration
         public static readonly string CREAR_RESERVA = "/createReserva";
         public static readonly string ACTUALIZAR_CARTERA = "/updateCartera";
         public static readonly string CONSULTAR_RESERVAS_USER = "/getReservaUser";
+        public static readonly string CONSULTAR_RESERVAS_HOST = "/getReservaHost";
 
     }
 }

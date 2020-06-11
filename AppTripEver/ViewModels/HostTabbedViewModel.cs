@@ -40,6 +40,8 @@ namespace AppTripEver.ViewModels
 
         public CrearServicioViewModel CrearServicioViewModel { get; set; }
 
+        public HostBookingsViewModel HostBookingsViewModel { get; set; }
+
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
@@ -76,6 +78,7 @@ namespace AppTripEver.ViewModels
             Cartera = new CarteraModel();
             Host = new UsuarioHostModel(Cartera);
             CrearServicioViewModel = new CrearServicioViewModel();
+            HostBookingsViewModel = new HostBookingsViewModel();
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -84,6 +87,7 @@ namespace AppTripEver.ViewModels
             Host = usuario;
             await HostViewModel.ConstructorAsync(Host);
             await CrearServicioViewModel.ConstructorAsync(Host);
+            await HostBookingsViewModel.ConstructorAsync(Host);
         }
 
         #endregion Initialize
