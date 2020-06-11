@@ -11,7 +11,7 @@
         <ResourceDictionary>
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="BackgroundColor" Value="#80000000"></Setter>
             </Style>
 
             <Style x:Key="Container" TargetType="FlexLayout" >
