@@ -48,6 +48,10 @@ namespace AppTripEver.ViewModels
 
         private ReservasSimpleModel reservaActual;
 
+        private string imagen;
+
+        private int listReservas;
+
 
         #endregion Properties
 
@@ -59,6 +63,26 @@ namespace AppTripEver.ViewModels
             set
             {
                 reservaActual = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Imagen
+        {
+            get { return imagen; }
+            set
+            {
+                imagen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int ListReservas
+        {
+            get { return listReservas; }
+            set
+            {
+                listReservas = value;
                 OnPropertyChanged();
             }
         }
@@ -145,10 +169,29 @@ namespace AppTripEver.ViewModels
                 {
                     List<ReservasModel> listaReservas = JsonConvert.DeserializeObject<List<ReservasModel>>(response.Response);
                     Reservas = new ObservableCollection<ReservasModel>(listaReservas);
+                    if (Reservas.Count==0)
+                    {
+                        Imagen = "True";
+                        ListReservas = 0;
+                    }
+                    else
+                    {
+                        Imagen = "False";
+                        ListReservas = Reservas.Count*200;
+                    }
                 }
                 else
                 {
-
+                    if (Reservas.Count == 0)
+                    {
+                        Imagen = "True";
+                        ListReservas = 0;
+                    }
+                    else
+                    {
+                        Imagen = "False";
+                        ListReservas = Reservas.Count * 200;
+                    }
                 }
             }
             catch (Exception)
