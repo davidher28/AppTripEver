@@ -17,30 +17,12 @@ namespace AppTripEver.ViewModels
     {
         #region Request
 
-        public ElegirRequest<BaseModel> PostBooking { get; set; }
-
         public ElegirRequest<BaseModel> UpdateUser { get; set; }
 
         #endregion Request
 
 
         #region Commands
-
-        public ICommand ValidateNombreCommand { get; set; }
-
-        public ICommand ValidateMailCommand { get; set; }
-
-        public ICommand ValidateTelefonoCommand { get; set; }
-
-        public ICommand ValidateFechaCommand { get; set; }
-
-        public ICommand ValidateTipoIdentificacionCommand { get; set; }
-
-        public ICommand ValidateIdentificacionCommand { get; set; }
-
-        public ICommand ValidateUsuarioCommand { get; set; }
-
-        public ICommand ValidateContraCommand { get; set; }
 
         public ICommand CloseCommand { get; set; }
 
@@ -65,22 +47,6 @@ namespace AppTripEver.ViewModels
         public ValidatableObject<string> IdentUsuario { get; set; }
         public ValidatableObject<string> UserUsuario { get; set; }
         public ValidatableObject<string> ContraUsuario { get; set; }
-
-        private bool isNombreEnable;
-
-        private bool isMailEnable;
-
-        private bool isTelEnable;
-
-        private bool isFechaEnable;
-
-        private bool isTipoIdentEnable;
-
-        private bool isIdentEnable;
-
-        private bool isUsuarioEnable;
-
-        private bool isContraEnable;
 
         #endregion Properties
 
@@ -117,80 +83,6 @@ namespace AppTripEver.ViewModels
             }
         }
 
-        public bool IsNombreEnable
-        {
-            get { return isNombreEnable; }
-            set
-            {
-                isNombreEnable = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsMailEnable
-        {
-            get { return isMailEnable; }
-            set
-            {
-                isMailEnable = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsTelEnable
-        {
-            get { return isTelEnable; }
-            set
-            {
-                isTelEnable = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsFechaEnable
-        {
-            get { return isFechaEnable; }
-            set
-            {
-                isFechaEnable = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsTipoIdentEnable
-        {
-            get { return isTipoIdentEnable; }
-            set
-            {
-                isTipoIdentEnable = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsIdentEnable
-        {
-            get { return isIdentEnable; }
-            set
-            {
-                isIdentEnable = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsUsuarioEnable
-        {
-            get { return isUsuarioEnable; }
-            set
-            {
-                isUsuarioEnable = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsContraEnable
-        {
-            get { return isContraEnable; }
-            set
-            {
-                isContraEnable = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion Getters/Setters
 
 
@@ -198,6 +90,8 @@ namespace AppTripEver.ViewModels
 
         public InfoUserViewModel()
         {
+            Cartera = new CarteraModel();
+            Usuario = new UsuarioModel(cartera);
             InitializeCommands();
             InitializeRequest();
             InitializeFields();
@@ -237,21 +131,12 @@ namespace AppTripEver.ViewModels
         {
             UpdateUserCommand = new Command(async () => await UpdateUserForm(), () => true);
             CloseCommand = new Command(async () => await Close(), () => true);
-            ValidateNombreCommand = new Command(() => ValidateNombreUsuarioForm(), () => true);
-            ValidateMailCommand = new Command(() => ValidateMailUsuarioForm(), () => true);
-            ValidateTelefonoCommand = new Command(() => ValidateTelUsuarioForm(), () => true);
-            ValidateFechaCommand = new Command(() => ValidateFechaUsuarioForm(), () => true);
-            ValidateTipoIdentificacionCommand = new Command(() => ValidateTipoIdentUsuarioForm(), () => true);
-            ValidateIdentificacionCommand = new Command(() => ValidateIdentUsuarioForm(), () => true);
-            ValidateUsuarioCommand = new Command(() => ValidateUserUsuarioForm(), () => true);
-            ValidateContraCommand = new Command(() => ValidateContraUsuarioForm(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
         {
             var usuario = parameters as UsuarioModel;
             Usuario = usuario;
-
         }
 
         #endregion Initialize
@@ -299,47 +184,8 @@ namespace AppTripEver.ViewModels
             //await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private void ValidateNombreUsuarioForm()
-        {
-            IsNombreEnable = NombreUsuario.Validate();          
-        }
 
-        private void ValidateMailUsuarioForm()
-        {
-            IsMailEnable = MailUsuario.Validate();
-        }
 
-        private void ValidateTelUsuarioForm()
-        {
-            IsTelEnable = TelUsuario.Validate();           
-        }
-
-        private void ValidateFechaUsuarioForm()
-        {
-            IsFechaEnable = FechaUsuario.Validate();           
-        }
-
-        private void ValidateTipoIdentUsuarioForm()
-        {
-            IsTipoIdentEnable = TipoIdentUsuario.Validate();       
-        }
-
-        private void ValidateIdentUsuarioForm()
-        {
-            IsIdentEnable = IdentUsuario.Validate();
-
-        }
-
-        private void ValidateUserUsuarioForm()
-        {
-            IsUsuarioEnable = UserUsuario.Validate();
-
-        }
-
-        private void ValidateContraUsuarioForm()
-        {
-            IsContraEnable = ContraUsuario.Validate();
-        }
         #endregion Methods
     }
 }
