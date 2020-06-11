@@ -207,13 +207,12 @@ namespace AppTripEver.ViewModels
             else
             {
                 LabelTipo = "Persona";
-            }
-              
+            }             
         }
 
         #endregion Initialize
 
-        #region
+        #region Methods
 
         public async Task Book()
         {
@@ -226,6 +225,11 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
+            //var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+            //var page2 = page.Pages.<>3_source[0] as NavigationPage;
+            //var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
+            //var hostcontext = context.ServicesViewModel as ServicesViewModel;
+            //Device.BeginInvokeOnMainThread(() => hostcontext.CollectionView.SelectedItem = null);
         }
         #endregion Methods
     }

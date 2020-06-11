@@ -32,6 +32,8 @@ namespace AppTripEver.ViewModels
 
         public ICommand CarteraCommand { get; set; }
 
+        public ICommand UsuarioInfoCommand { get; set; }
+
         public ICommand SelectHospedajeServiceCommand { get; set; }
 
         #endregion Commands
@@ -173,6 +175,7 @@ namespace AppTripEver.ViewModels
             SelectServiceCommand = new Command(async () => await SelectService(), () => true);
             CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
             SelectHospedajeServiceCommand = new Command(async () => await SelectHospedajeService(), () => true);
+            UsuarioInfoCommand = new Command(async () => await DisplayUsuario(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -259,6 +262,14 @@ namespace AppTripEver.ViewModels
         public async Task DisplayCartera()
         {
             CarteraView popUp = new CarteraView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
+            await PopupNavigation.Instance.PushAsync(popUp);
+        }
+
+        public async Task DisplayUsuario()
+        {
+            InfoUserView popUp = new InfoUserView();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
             await PopupNavigation.Instance.PushAsync(popUp);
