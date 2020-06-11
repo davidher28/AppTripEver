@@ -28,6 +28,8 @@ namespace AppTripEver.ViewModels
 
         public ICommand UpdateUserCommand { get; set; }
 
+        public ICommand CreateHost { get; set; }
+
         #endregion Commands
 
 
@@ -92,6 +94,7 @@ namespace AppTripEver.ViewModels
         {
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(cartera);
+            Message = new MessageModel() { Message = "Actualización exitosa" };
             InitializeCommands();
             InitializeRequest();
             InitializeFields();
@@ -131,6 +134,7 @@ namespace AppTripEver.ViewModels
         {
             UpdateUserCommand = new Command(async () => await UpdateUserForm(), () => true);
             CloseCommand = new Command(async () => await Close(), () => true);
+            CreateHost = new Command(async () => await NewHost(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -148,9 +152,9 @@ namespace AppTripEver.ViewModels
         {
             JObject vals =
                 new JObject(
-                    new JProperty("Mail", MailUsuario.Value),
-                    new JProperty("Telefono", TelUsuario.Value),
-                    new JProperty("Contrasena", ContraUsuario.Value)
+                    new JProperty("Mail", MailUsuario.Value ?? Usuario.Email),
+                    new JProperty("Telefono", TelUsuario.Value ?? Usuario.Telefono),
+                    new JProperty("Contrasena", ContraUsuario.Value ?? Usuario.Contrasena)
                     );
             string Json = vals.ToString();
             ParametersRequest parametros = new ParametersRequest();
@@ -162,8 +166,7 @@ namespace AppTripEver.ViewModels
                 Usuario.Telefono = TelUsuario.Value;
                 Usuario.Contrasena = ContraUsuario.Value;
 
-                Message.Message = "Actualización exitosamente";
-                MessageViewPop popUp = new MessageViewPop();
+                PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
@@ -171,7 +174,7 @@ namespace AppTripEver.ViewModels
             else
             {
                 Message.Message = "Actualización no exitosa";
-                MessageViewPop popUp = new MessageViewPop();
+                PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
@@ -181,10 +184,16 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            //await Application.Current.MainPage.Navigation.PopAsync();
         }
 
+        public async Task NewHost()
+        {
+            RegistroHostView popUp = new RegistroHostView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
+            await PopupNavigation.Instance.PushAsync(popUp);
 
+        }
 
         #endregion Methods
     }

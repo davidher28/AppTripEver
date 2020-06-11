@@ -42,7 +42,7 @@ namespace AppTripEver.Services.APIRest
                     respuesta.Response = await HttpResponse.Content.ReadAsStringAsync();
                 }
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 respuesta.Response = "Error al momento de llamar al servidor";
 

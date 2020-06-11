@@ -258,6 +258,8 @@ namespace AppTripEver.ViewModels
                     else if (Usuario.IsHost == 0)
                     {
                         Console.WriteLine("HOLAAAAAA");
+                        NombreUsuario.Value = null;
+                        ContraUsuario.Value = null;
                         await NavigationService.PushPage(new UsuarioTabbedView(), Usuario);
 
                     }

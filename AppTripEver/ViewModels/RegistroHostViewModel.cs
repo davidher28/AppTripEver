@@ -29,9 +29,12 @@ namespace AppTripEver.ViewModels
         #region Commands
         public ICommand CrearHostCommand { get; set; }
 
-        public ICommand ValidateMailUsuarioCommand { get; set; }
+        //public ICommand ValidateMailUsuarioCommand { get; set; }
 
-        public ICommand ValidateNoCuentaUsuarioCommand { get; set; }
+        //public ICommand ValidateNoCuentaUsuarioCommand { get; set; }
+
+        public ICommand CloseCommand { get; set; }
+
 
         #endregion Commands
 
@@ -138,13 +141,13 @@ namespace AppTripEver.ViewModels
             Usuario = new UsuarioModel(Cartera);
             Host = new UsuarioHostModel(Cartera);
             Message = new MessageModel { Message = "Usuario Host creado correctamente" };
-            isCrearEnable = false;
-            isMailUsuarioEnable = false;
-            isNoCuentaUsuarioEnable = false;
+            //isCrearEnable = false;
+            //isMailUsuarioEnable = false;
+            //isNoCuentaUsuarioEnable = false;
             InitializeRequest();
             InitializeCommands();
             InitializeFields();
-            AddValidations();
+            //AddValidations();
         }
 
         public void InitializeRequest()
@@ -156,25 +159,25 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            CrearHostCommand = new Command(async () => await CrearHost(), () => isCrearEnable);
-            ValidateMailUsuarioCommand = new Command(() => ValidateMailUsuarioForm(), () => true);
-            ValidateNoCuentaUsuarioCommand = new Command(() => ValidateNoCuentaUsuarioUsuarioForm(), () => true);
+            CrearHostCommand = new Command(async () => await CrearHost(), () => true);
+            //ValidateMailUsuarioCommand = new Command(() => ValidateMailUsuarioForm(), () => true);
+            //ValidateNoCuentaUsuarioCommand = new Command(() => ValidateNoCuentaUsuarioUsuarioForm(), () => true);
+            CloseCommand = new Command(async () => await CancelCommand(), () => true);
         }
 
         public void InitializeFields()
         {
             MailUsuario = new ValidatableObject<string>();
             NoCuentaUsuario = new ValidatableObject<string>();
-
         }
 
-        public void AddValidations()
-        {
-            NoCuentaUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El numero de cuenta es Obligatorio" });
-            NoCuentaUsuario.Validation.Add(new TenDigitsRule<string> { ValidationMessage = "El numero de cuenta debe ser de 10 digitos" });
-            MailUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El mail es Obligatorio" });
-            MailUsuario.Validation.Add(new EmailRule<string> { ValidationMessage = "Debe introducir un Email" });
-        }
+        //public void AddValidations()
+        //{
+        //    NoCuentaUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El numero de cuenta es Obligatorio" });
+        //    NoCuentaUsuario.Validation.Add(new TenDigitsRule<string> { ValidationMessage = "El numero de cuenta debe ser de 10 digitos" });
+        //    MailUsuario.Validation.Add(new RequiredRule<string> { ValidationMessage = "El mail es Obligatorio" });
+        //    MailUsuario.Validation.Add(new EmailRule<string> { ValidationMessage = "Debe introducir un Email" });
+        //}
 
         public override async Task ConstructorAsync(object parameters)
         {
@@ -188,57 +191,58 @@ namespace AppTripEver.ViewModels
 
         public async Task CrearHost()
         {
-            UsuarioHostModel host = new UsuarioHostModel(Cartera)
-            {
-                IdUsuario = Usuario.IdUsuario,
-                NoCuenta = NoCuentaUsuario.Value,
-                MailHost = MailUsuario.Value,
-                IdHost = null,
-                IsHost = null
-            };
-
-            APIResponse response = await CrearNuevoHost.EjecutarEstrategia(host);
+            Cartera = new CarteraModel();
+            Host = new UsuarioHostModel(Cartera);
+            Host.IdUsuario = Usuario.IdUsuario;
+            Host.NoCuenta = NoCuentaUsuario.Value;
+            Host.MailHost = MailUsuario.Value;
+            Host.Cartera = Usuario.Cartera;
+            Host.IdHost = null;
+            Host.IsHost = null;
+            APIResponse response = await CrearNuevoHost.EjecutarEstrategia(Host);
             if (response.IsSuccess)
             {
-                MessageViewPop popUp = new MessageViewPop();
+                MessageNewHostView popUp = new MessageNewHostView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
-                var navigationCount = Application.Current.MainPage.Navigation.NavigationStack.Count - 1;
-                var navigationStack = Application.Current.MainPage.Navigation.NavigationStack;
-                Application.Current.MainPage.Navigation.RemovePage(navigationStack[1]);
             }
             else
             {
                 Message.Message = "Usuario ya registrado como Host";
-                MessageViewPop popUp = new MessageViewPop();
+                PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
         }
 
-        private void ValidateNoCuentaUsuarioUsuarioForm()
+        public async Task CancelCommand()
         {
-            IsNoCuentaUsuarioEnable = NoCuentaUsuario.Validate();
-
-            if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
-            {
-                IsCrearEnable = true;
-                ((Command)CrearHostCommand).ChangeCanExecute();
-            }
+            await PopupNavigation.Instance.PopAsync();
         }
 
-        private void ValidateMailUsuarioForm()
-        {
-            IsMailUsuarioEnable = MailUsuario.Validate();
+        //private void ValidateNoCuentaUsuarioUsuarioForm()
+        //{
+        //    IsNoCuentaUsuarioEnable = NoCuentaUsuario.Validate();
 
-            if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
-            {
-                IsCrearEnable = true;
-                ((Command)CrearHostCommand).ChangeCanExecute();
-            }
-        }
+        //    if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
+        //    {
+        //        IsCrearEnable = true;
+        //        ((Command)CrearHostCommand).ChangeCanExecute();
+        //    }
+        //}
+
+        //private void ValidateMailUsuarioForm()
+        //{
+        //    IsMailUsuarioEnable = MailUsuario.Validate();
+
+        //    if (IsMailUsuarioEnable && IsNoCuentaUsuarioEnable)
+        //    {
+        //        IsCrearEnable = true;
+        //        ((Command)CrearHostCommand).ChangeCanExecute();
+        //    }
+        //}
 
         #endregion Methods
     }
