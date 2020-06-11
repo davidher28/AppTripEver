@@ -54,6 +54,9 @@
     <EmbeddedResource Update="Views\MessageViewPop.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopGeneralView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\RegistroHostView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -85,6 +88,9 @@
     </Compile>
     <Compile Update="Views\InfoUserView.xaml.cs">
       <DependentUpon>InfoUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PopGeneralView.xaml.cs">
+      <DependentUpon>PopGeneralView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

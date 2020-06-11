@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="AppTripEver.Views.PopGeneralView"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+            </Style>
+
+            <Style x:Key="Container" TargetType="FlexLayout" >
+                <Setter Property="AlignItems" Value="Center"></Setter>
+                <Setter Property="JustifyContent" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="Modal" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
+                <Setter Property="Margin" Value="0,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="250"></Setter>
+                <Setter Property="Padding" Value="30"></Setter>
+                <Setter Property="CornerRadius" Value="20"></Setter>
+            </Style>
+
+            <Style x:Key="Message" TargetType="Label">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="TextColor" Value="#3C3C3B"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0,0,0,20"></Setter>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"></Setter>
+                <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
+                <Setter Property="Margin" Value="40,0,40,0"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <FlexLayout Style="{StaticResource Container}">
+            <Frame Style="{StaticResource Modal}">
+                <StackLayout>
+                    <Label Text="{Binding Message.Message}" Style="{StaticResource Message}" TextColor="#677BA6"/>
+                    <Button Text="Aceptar" Command="{Binding CloseCommand}" TextColor="White"></Button>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

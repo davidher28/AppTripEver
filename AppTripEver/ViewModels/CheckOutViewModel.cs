@@ -220,7 +220,7 @@ namespace AppTripEver.ViewModels
                     APIResponse response1 = await UpdateWallet.EjecutarEstrategia(Cartera, parametros, Json2);
                     if (response1.IsSuccess)
                     {
-                        MessageViewPop popUp = new MessageViewPop();
+                        PopGeneralView popUp = new PopGeneralView();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                         await PopupNavigation.Instance.PushAsync(popUp);
@@ -228,7 +228,7 @@ namespace AppTripEver.ViewModels
                     else
                     {
                         Message.Message = "Reserva no creada";
-                        MessageViewPop popUp = new MessageViewPop();
+                        PopGeneralView popUp = new PopGeneralView();
                         var viewModel = popUp.BindingContext;
                         await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                         await PopupNavigation.Instance.PushAsync(popUp);
@@ -237,7 +237,7 @@ namespace AppTripEver.ViewModels
                 else
                 {
                     Message.Message = "Reserva no creada";
-                    MessageViewPop popUp = new MessageViewPop();
+                    PopGeneralView popUp = new PopGeneralView();
                     var viewModel = popUp.BindingContext;
                     await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                     await PopupNavigation.Instance.PushAsync(popUp);
@@ -246,7 +246,7 @@ namespace AppTripEver.ViewModels
             else
             {
                 Message.Message = "Fondos Insuficientes";
-                MessageViewPop popUp = new MessageViewPop();
+                PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(popUp);

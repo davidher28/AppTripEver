@@ -6,7 +6,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              mc:Ignorable="d"
              x:Class="AppTripEver.Views.CheckOutView"
-             CloseWhenBackgroundIsClicked="True">
+             CloseWhenBackgroundIsClicked="False">
     <ContentPage.Resources>
         <ResourceDictionary>
 
