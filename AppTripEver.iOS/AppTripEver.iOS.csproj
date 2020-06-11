@@ -121,37 +121,99 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera.png" />
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\fondo_login.JPEG" />
-    <ImageAsset Include="Assets.xcassets\hospedar.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\hospedar.png.imageset\hospedar.png" />
-    <ImageAsset Include="Assets.xcassets\Hospedajes.jpg.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Hospedajes.jpg.imageset\Hospedajes.jpg" />
-    <ImageAsset Include="Assets.xcassets\reservar.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\reservar.png.imageset\reservar.png" />
-    <ImageAsset Include="Assets.xcassets\Tour.jpg.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Tour.jpg.imageset\Tour.jpg" />
-    <ImageAsset Include="Assets.xcassets\Travel.jpg.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Travel.jpg.imageset\Travel.jpg" />
-    <ImageAsset Include="Assets.xcassets\navegador.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\splash.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\splash.png.imageset\splash.png" />
-    <ImageAsset Include="Assets.xcassets\tripever_logo_3.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\tripever_logo_3.png.imageset\tripever_logo_3.png" />
-    <ImageAsset Include="Assets.xcassets\navegador.png.imageset\navegador5.png" />
-    <ImageAsset Include="Assets.xcassets\calendario.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\calendario.png.imageset\calendario2.png" />
-    <ImageAsset Include="Assets.xcassets\mas.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\mas.png.imageset\mas2.png" />
-    <ImageAsset Include="Assets.xcassets\favorito.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\favorito.png.imageset\favorito3.png" />
-    <ImageAsset Include="Assets.xcassets\user.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\user.png.imageset\user2.png" />
-    <ImageAsset Include="Assets.xcassets\usuario.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\usuario.png.imageset\user2.png" />
-    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera2.png" />
+    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\fondo_login.JEPG.imageset\fondo_login.JPEG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\hospedar.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\hospedar.png.imageset\hospedar.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Hospedajes.jpg.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Hospedajes.jpg.imageset\Hospedajes.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\reservar.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\reservar.png.imageset\reservar.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Tour.jpg.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Tour.jpg.imageset\Tour.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Travel.jpg.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Travel.jpg.imageset\Travel.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\navegador.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splash.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splash.png.imageset\splash.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\tripever_logo_3.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\tripever_logo_3.png.imageset\tripever_logo_3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\navegador.png.imageset\navegador5.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\calendario.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\calendario.png.imageset\calendario2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\mas.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\mas.png.imageset\mas2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorito.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorito.png.imageset\favorito3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\user.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\user.png.imageset\user2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\usuario.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\usuario.png.imageset\user2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\biletera.png.imageset\billetera2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -34,9 +34,9 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Frame Padding="0,0,0,0">
+        <Frame Padding="0,0,0,0" >
             <StackLayout Orientation="Vertical">
-                <ScrollView>
+                <ScrollView  VerticalOptions="FillAndExpand">
                     <StackLayout>
                         <StackLayout >
                             <AbsoluteLayout >
@@ -71,9 +71,9 @@
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
-                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  Margin="0" HasShadow="True">
                     <Button Text="Reservar" Command="{Binding BookingCommand}" WidthRequest="1000" TextColor="White"></Button>
-                </StackLayout>
+                </Frame>
         </StackLayout>
         </Frame>
 

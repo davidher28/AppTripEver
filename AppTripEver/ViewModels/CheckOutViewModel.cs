@@ -35,6 +35,14 @@ namespace AppTripEver.ViewModels
 
         private MessageModel message;
 
+        private int precio;
+
+        private string tipo;
+
+        private int labelTipo;
+
+        private string labelServicio;
+
         public ICommand CloseCommand { get; set; }
 
         public ICommand BookingCommand { get; set; }
@@ -62,6 +70,36 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public int Precio
+        {
+            get { return precio; }
+            set
+            {
+                precio = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int LabelTipo
+        {
+            get { return labelTipo; }
+            set
+            {
+                labelTipo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelServicio
+        {
+            get { return labelServicio; }
+            set
+            {
+                labelServicio = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ReservasModel Booking
         {
             get { return booking; }
@@ -82,6 +120,16 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public string Tipo
+        {
+            get { return tipo; }
+            set
+            {
+                tipo = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         #endregion Getters/Setters
 
@@ -98,6 +146,21 @@ namespace AppTripEver.ViewModels
             var booking = parameters2 as ReservasModel;
             Usuario = usuario;
             Booking = booking;
+            if (Booking.Servicio.TipoServicio == 1)
+            {
+               Precio = Booking.Valor / Booking.NumNoches;
+               Tipo = "noche";
+               LabelTipo = Booking.NumNoches;
+               LabelServicio = "Hospedaje";
+            }
+            else if (Booking.Servicio.TipoServicio == 2)
+            {
+                Precio = Booking.Valor / Booking.NumPersonas;
+                Tipo = "persona";
+                LabelTipo = Booking.NumPersonas;
+                LabelServicio = "Experiencia";
+            }
+            
         }
 
         public void InitializeRequest()
