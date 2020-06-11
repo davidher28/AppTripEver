@@ -34,7 +34,7 @@ namespace AppTripEver.ViewModels
         #region Properties
 
         private UsuarioModel usuario;
-            
+
         private CarteraModel cartera;
 
         private MessageModel message;
@@ -144,7 +144,7 @@ namespace AppTripEver.ViewModels
 
         #region Methods
 
-        public  async Task UpdateUserForm()
+        public async Task UpdateUserForm()
         {
             JObject vals =
                 new JObject(
