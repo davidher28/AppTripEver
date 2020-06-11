@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "576705631968",
+    "firebase_url": "https://tripever-8ab88.firebaseio.com",
+    "project_id": "tripever-8ab88",
+    "storage_bucket": "tripever-8ab88.appspot.com"
+  },
+  "client": [
+      {
+      "client_info": {
+        "mobilesdk_app_id": "1:576705631968:android:ea6020858cd14ba5966285",
+        "android_client_info": {
+          "package_name": "com.companyname.apptripever"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576705631968-a5dh6kmadaoq3sntn8hqto7ue0nh366i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrpdvkLn8Pf0qK7o8Q0i_IrOapxzJPhO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576705631968-a5dh6kmadaoq3sntn8hqto7ue0nh366i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
