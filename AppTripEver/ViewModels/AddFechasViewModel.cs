@@ -251,7 +251,6 @@ namespace AppTripEver.ViewModels
                 {
                     VerificadorFecha = true;
                 }
-
                 if (mesInicio != mesFin & diferenciaMes == 1)
                 {
                     if (mesInicio == 1 | mesInicio == 3 | mesInicio == 5 | mesInicio == 7 | mesInicio == 8 | mesInicio == 10 | mesInicio == 12)
@@ -308,7 +307,7 @@ namespace AppTripEver.ViewModels
                 await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
-            else
+            else if (VerificadorFecha == false)
             {
                 PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;

@@ -12,13 +12,45 @@
              android:TabbedPage.BarItemColor="white"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
-  <!--Pages can be added as references or inline-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Servicios" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="2"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0.2"></Setter>
+            </Style>
+            <Style x:Key="Card" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="TextColor" Value="#DBA016"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--Pages can be added as references or inline-->
     <NavigationPage Title="Inicio" Icon="navegador.png">
         <x:Arguments>
             <views:ServicesView BindingContext="{Binding ServicesViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage Title="Favoritos" Icon="favorito.png"/>
+    <ContentPage Title="Favoritos" Icon="favorito.png">
+        <Frame Style="{StaticResource Servicios}" WidthRequest="360" >
+            <StackLayout Style="{StaticResource Card}">
+                <Image Source="Hospedajes.jpg" HeightRequest="180" WidthRequest="140" Margin="0" Aspect="AspectFill"/>
+                <StackLayout Orientation="Vertical" Padding="6,0,0,0" Margin="0">
+                    <Label TextColor="Black" Text="Tip TripEver" FontAttributes="Bold" Opacity="0.85"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage>
     <NavigationPage Title="Reservas" Icon="calendario.png">
         <x:Arguments>
             <views:UserBookingsView BindingContext="{Binding UserBookingsViewModel}"/>

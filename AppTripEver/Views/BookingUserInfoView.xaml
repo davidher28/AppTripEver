@@ -54,8 +54,8 @@
                 <StackLayout Orientation="Vertical">
                     <ScrollView  VerticalOptions="FillAndExpand">
                         <StackLayout>
+                            <ImageButton Source="cerrarB.png" Margin="15,15,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand} " Opacity="0.25" BackgroundColor="Transparent"/>
                             <AbsoluteLayout HeightRequest="150" BackgroundColor="{Binding Background}">
-                                <ImageButton Source="cerrarB.png" Margin="15,15,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand} " Opacity="0.25" BackgroundColor="Transparent"/>
                                 <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Center">
                                     <Label
                                            Text="ESTADO ACTUAL"

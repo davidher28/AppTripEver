@@ -305,13 +305,15 @@ namespace AppTripEver.ViewModels
 
         public async Task Close()
         {
+            var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+            var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
+            var hostcontext = context.ServicesViewModel as ServicesViewModel;
+            await hostcontext.ListaServiciosHospedaje();
+            await hostcontext.ListaServiciosExperiencia();
             await PopupNavigation.Instance.PopAsync();
-            //var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
-            //var page2 = page.Pages.<>3_source[0] as NavigationPage;
-            //var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
-            //var hostcontext = context.ServicesViewModel as ServicesViewModel;
-            //Device.BeginInvokeOnMainThread(() => hostcontext.CollectionView.SelectedItem = null);
         }
+
         #endregion Methods
     }
+
 }

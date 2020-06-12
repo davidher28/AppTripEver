@@ -307,6 +307,7 @@ namespace AppTripEver.ViewModels
                 }
                 else
                 {
+
                 }
             }
             catch (Exception)
@@ -316,6 +317,10 @@ namespace AppTripEver.ViewModels
 
         public async Task Close()
         {
+            var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+            var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+            var hostcontext = context.HostBookingsViewModel as HostBookingsViewModel;
+            await hostcontext.ListaReserva();
             await PopupNavigation.Instance.PopAsync();
         }
         #endregion Methods
