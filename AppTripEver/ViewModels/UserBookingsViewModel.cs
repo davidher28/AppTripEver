@@ -46,7 +46,7 @@ namespace AppTripEver.ViewModels
 
         private ObservableCollection<ReservasModel> reservas;
 
-        private ReservasSimpleModel reservaActual;
+        private ReservasModel reservaActual;
 
         private string imagen;
 
@@ -57,7 +57,7 @@ namespace AppTripEver.ViewModels
 
         #region Getters & Setters
 
-        public ReservasSimpleModel ReservaActual
+        public ReservasModel ReservaActual
         {
             get { return reservaActual; }
             set
@@ -202,7 +202,7 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectReserva()
         {
-            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            BookingUserInfoView popUp = new BookingUserInfoView();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ReservaActual);
             await PopupNavigation.Instance.PushAsync(popUp);

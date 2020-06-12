@@ -99,5 +99,8 @@
     <Compile Update="Views\BookingInfoViewPop.xaml.cs">
       <DependentUpon>BookingInfoViewPop.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\BookingUserInfoView.xaml.cs">
+      <DependentUpon>BookingUserInfoView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

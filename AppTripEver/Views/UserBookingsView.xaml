@@ -6,9 +6,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
              BackgroundColor="WhiteSmoke"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="billetera.png"
+                 Order="Primary"
+                 Text="Cerrar Sesión"
+                 Priority="0"
+                 Command="{Binding CarteraCommand}"/>
+        <ToolbarItem 
+                 IconImageSource="usuario.png"
+                 Order="Primary"
+                 Priority="0"
+                 />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Servicios" TargetType="Frame">
@@ -40,7 +54,12 @@
                     <Label Text="Proximas Reservas" Style="{StaticResource Encabezado}"/>
                 </StackLayout>
             <ScrollView>
-                <ListView  ItemsSource="{Binding Reservas}" HasUnevenRows="true" SeparatorVisibility="None" HeightRequest="{Binding ListReservas}">
+                <ListView  ItemsSource="{Binding Reservas}" HasUnevenRows="true" SeparatorVisibility="None"
+                           HeightRequest="{Binding ListReservas}" SelectedItem="{Binding ReservaActual}">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemSelected"
+                        Command="{Binding SelectReservaCommand}" />       
+                    </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -97,7 +116,7 @@
                                            TextColor="White" FontSize="15" Opacity="0.95"/>
 
                                             <Label
-                                           Text="{Binding Valor, StringFormat='${0}'}"
+                                           Text="{Binding Valor}"
                                            VerticalOptions="End"
                                            FontAttributes="Bold"
                                            HorizontalOptions="EndAndExpand"
