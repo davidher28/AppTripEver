@@ -139,8 +139,8 @@ namespace AppTripEver.ViewModels
             APIResponse response = await UpdateHost.EjecutarEstrategia(Host, parametros, Json);
             if (response.IsSuccess)
             {
-                Host.NoCuenta = NoCuentaHost.Value;
-                Host.MailHost = MailHost.Value;
+                Host.NoCuenta = NoCuentaHost.Value ?? Host.NoCuenta;
+                Host.MailHost = MailHost.Value ?? Host.MailHost;
 
                 PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;

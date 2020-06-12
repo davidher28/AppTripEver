@@ -23,6 +23,12 @@ namespace AppTripEver.ViewModels
 
         public ElegirRequest<BaseModel> UpdateWallet { get; set; }
 
+        public ElegirRequest<BaseModel> GetUser { get; set; }
+
+        public ElegirRequest<BaseModel> UpdateHostWallet { get; set; }
+
+      
+
         #endregion Request
 
         #region Properties
@@ -168,6 +174,9 @@ namespace AppTripEver.ViewModels
         {
             string urlPostBooking = Endpoints.URL_SERVIDOR + Endpoints.CREAR_RESERVA;
             string urlUpdateWallet = Endpoints.URL_SERVIDOR + Endpoints.ACTUALIZAR_CARTERA;
+            string urlGetUser = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_IDUSER_HOST;
+            string urlUpdateService = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_SERVICIO;
+            
 
             PostBooking = new ElegirRequest<BaseModel>();
             PostBooking.ElegirEstrategia("POST", urlPostBooking);
@@ -175,6 +184,11 @@ namespace AppTripEver.ViewModels
             UpdateWallet = new ElegirRequest<BaseModel>();
             UpdateWallet.ElegirEstrategia("PUT", urlUpdateWallet);
 
+            GetUser = new ElegirRequest<BaseModel>();
+            GetUser.ElegirEstrategia("GET", urlGetUser);
+
+            UpdateHostWallet = new ElegirRequest<BaseModel>();
+            UpdateHostWallet.ElegirEstrategia("PUT", urlUpdateService);
         }
 
         public void InitializeCommands()
@@ -218,7 +232,16 @@ namespace AppTripEver.ViewModels
                     ParametersRequest parametros = new ParametersRequest();
                     parametros.Parametros.Add(Usuario.Cartera.IdCartera.ToString());
                     APIResponse response1 = await UpdateWallet.EjecutarEstrategia(Cartera, parametros, Json2);
-                    if (response1.IsSuccess)
+
+                    JObject vals3 =
+                        new JObject(
+                        new JProperty("Monto", Booking.Valor)
+                        );
+                    string Json3 = vals3.ToString();
+                    ParametersRequest parametros2 = new ParametersRequest();
+                    parametros.Parametros.Add(Booking.Servicio.IdServicio.ToString());
+                    APIResponse response2 = await UpdateHostWallet.EjecutarEstrategia(null, parametros2, Json3);
+                    if (response1.IsSuccess && response2.IsSuccess)
                     {
                         var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
                         var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;

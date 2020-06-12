@@ -162,9 +162,9 @@ namespace AppTripEver.ViewModels
             APIResponse response = await UpdateUser.EjecutarEstrategia(Usuario, parametros, Json);
             if (response.IsSuccess)
             {
-                Usuario.Email = MailUsuario.Value;
-                Usuario.Telefono = TelUsuario.Value;
-                Usuario.Contrasena = ContraUsuario.Value;
+                Usuario.Email = MailUsuario.Value ?? Usuario.Email;
+                Usuario.Telefono = TelUsuario.Value ?? Usuario.Telefono;
+                Usuario.Contrasena = ContraUsuario.Value ?? Usuario.Contrasena;
 
                 PopGeneralView popUp = new PopGeneralView();
                 var viewModel = popUp.BindingContext;
