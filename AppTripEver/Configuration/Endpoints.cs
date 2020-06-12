@@ -24,6 +24,7 @@ namespace AppTripEver.Configuration
         public static readonly string CONSULTAR_RESERVAS_USER = "/getReservaUser";
         public static readonly string CONSULTAR_RESERVAS_HOST = "/getReservaHost";
         public static readonly string CONSULTAR_FECHA = "/getHorarioServicio";
+        public static readonly string EDITAR_SERVICIO = "/updateServicio";
 
     }
 }
