@@ -63,6 +63,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <StackLayout BackgroundColor="White">
                                 <Frame HeightRequest="155" CornerRadius="5" HasShadow="True" Margin="15,0,15,10" BackgroundColor="#364057"
                                        Opacity="0.9">
                                     <StackLayout>
@@ -124,6 +125,7 @@
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
