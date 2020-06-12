@@ -91,13 +91,13 @@
                     <StackLayout Margin="10,10,10,0" Orientation="Horizontal">
                         <Label Text="{Binding Tipo, StringFormat='Precio por {0}:'}" Margin="0" TextColor="#181C26" 
                                FontAttributes="Bold" HorizontalOptions="StartAndExpand" Opacity="0.80" FontSize="17"/>
-                        <Label Text="{Binding Precio, StringFormat='${0}:'}" Margin="0"  HorizontalOptions="EndAndExpand" 
+                        <Label Text="{Binding Precio, StringFormat='${0}'}" Margin="0"  HorizontalOptions="EndAndExpand" 
                                TextColor="#181C26" FontSize="17"/>
                     </StackLayout>
                     <StackLayout Margin="10,0,10,10" Orientation="Horizontal">
                         <Label Text="Total a pagar:" Margin="0" TextColor="#181C26" 
                                FontAttributes="Bold" HorizontalOptions="StartAndExpand" Opacity="0.80" FontSize="17"/>
-                        <Label Text="{Binding Booking.Valor, StringFormat='${0}:'}" Margin="0"  HorizontalOptions="EndAndExpand" 
+                        <Label Text="{Binding Booking.Valor, StringFormat='${0}'}" Margin="0"  HorizontalOptions="EndAndExpand" 
                                TextColor="#181C26" FontSize="17"/>
                     </StackLayout>
                             <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,0,10,0"/>
