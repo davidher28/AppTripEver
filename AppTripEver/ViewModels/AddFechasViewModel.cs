@@ -300,27 +300,33 @@ namespace AppTripEver.ViewModels
                 Booking.Cliente = Usuario;
                 Booking.Titulo = Service.Titulo;
             }
-            if (VerificadorFecha)
+            if (Service.TipoServicio == 1)
+            {
+                if (VerificadorFecha)
+                {
+                    CheckOutView popUp = new CheckOutView();
+                    var viewModel = popUp.BindingContext;
+                    await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
+                    await PopupNavigation.Instance.PushAsync(popUp);
+                }else if (VerificadorFecha == false)
+                {
+                    PopGeneralView popUp = new PopGeneralView();
+                    var viewModel = popUp.BindingContext;
+                    await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                    await PopupNavigation.Instance.PushAsync(popUp);
+                }
+            }else
             {
                 CheckOutView popUp = new CheckOutView();
                 var viewModel = popUp.BindingContext;
                 await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
                 await PopupNavigation.Instance.PushAsync(popUp);
             }
-            else if (VerificadorFecha == false)
-            {
-                PopGeneralView popUp = new PopGeneralView();
-                var viewModel = popUp.BindingContext;
-                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
-                await PopupNavigation.Instance.PushAsync(popUp);
-            }
         }
-
 
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            //await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion Methods
     }
