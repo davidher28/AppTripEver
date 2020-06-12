@@ -12,13 +12,72 @@
              android:TabbedPage.BarItemColor="white"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
-  <!--Pages can be added as references or inline-->
+    <!--Pages can be added as references or inline-->
     <NavigationPage Title="Inicio" Icon="navegador.png">
         <x:Arguments>
             <views:ServicesView BindingContext="{Binding ServicesViewModel}"/>
         </x:Arguments>
     </NavigationPage>
-    <ContentPage Title="Favoritos" Icon="favorito.png"/>
+    <ContentPage Title="Información" Icon="info.png" BackgroundColor="White">
+        <StackLayout Padding="10, 10">
+            <Label Text="Tips TripEver" FontAttributes="Bold" HorizontalOptions="Start" TextColor="Black" Opacity="0.9" FontSize="25"/>
+            <ScrollView>
+                <StackLayout Padding="10, 10" Orientation="Vertical">
+                    <Frame BackgroundColor="White" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Reservaciones:" FontAttributes="Bold" TextColor="Black" FontSize="17"/>
+                            <Label FontSize="17">
+                                <Label.Text >
+                                    Reserva tu vuelo con al menos 1 o 2 meses de anticipación, dependiendo si se trata de un viaje nacional o internacional. Es este artículo sobre cómo encontrar vuelos baratos, te explicamos más sobre el tema.
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" HasShadow="True" >
+                        <StackLayout>
+                            <Label Text="Ahorra dinero:" FontAttributes="Bold" TextColor="Black" FontSize="17"/>
+                            <Label FontSize="17">
+                                <Label.Text>
+                                    Gana puntos y millas y cámbialas por tiquetes de vuelo y hospedaje en hoteles.
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Sigue al del saco o traje:" FontAttributes="Bold" TextColor="Black" FontSize="17"/>
+                            <Label FontSize="17">
+                                <Label.Text>
+                                    Las personas que visten saco o traje usualmente viajan por negocios y generalmente saben lo que están haciendo, debido a que lo han hecho una y mil veces. Si no estás seguro de algo, guíate por lo que ellos hacen o pídeles que por favor te expliquen.
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Zapatos / Zapatillas:" FontAttributes="Bold" TextColor="Black" FontSize="17"/>
+                            <Label FontSize="17">
+                                <Label.Text>
+                                    Si hay algo que es imprescindible a la hora de empacar, es un buen par de zapatillas o zapatos (dependiendo del motivo de tu viaje). Debido al alto costo de algunos tipos de transporte y al hecho de que, aunque sea un viaje de negocios, todos queremos conocer algo del lugar que visitamos, quizá te toque caminar bastante. Entonces, un par de zapatos cómodos es un ítem que no puede faltar en tu equipaje.
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Implementos para equipo tecnológico:" FontAttributes="Bold" TextColor="Black" FontSize="17"/>
+                            <Label FontSize="17">
+                                <Label.Text>
+                                    Si como muchos, viajas con celular, laptop, cámara fotográfica, etc., es necesario que mantengas (especialmente en viajes de negocios) baterías y memorias adicionales, al igual que un adaptador de corriente.
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage>
+
     <NavigationPage Title="Reservas" Icon="calendario.png">
         <x:Arguments>
             <views:UserBookingsView BindingContext="{Binding UserBookingsViewModel}"/>
