@@ -263,6 +263,7 @@ namespace AppTripEver.ViewModels
             APIResponse response1 = await EditService.EjecutarEstrategia(Cartera, parametros, Json2);
             if (response1.IsSuccess)
             {
+                Message.Message = "Servicio editado correctamente";
                 PopGeneralView view = new PopGeneralView();
                 var context = view.BindingContext;
                 await ((BaseViewModel)context).ConstructorAsync(Message);

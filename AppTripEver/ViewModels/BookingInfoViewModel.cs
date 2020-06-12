@@ -239,7 +239,7 @@ namespace AppTripEver.ViewModels
                 IsAcceptEnable = false;
                 IsCancelEnable = true;
             }
-            else if (Booking.Estado.IdEstado == 2)
+            else if (Booking.Estado.IdEstado == 3)
             {
                 IsAcceptEnable = false;
                 IsCancelEnable = false;
