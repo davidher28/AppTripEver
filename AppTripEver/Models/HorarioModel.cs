@@ -1,4 +1,5 @@
 ﻿using AppTripEver.Services.Propagation;
+using Newtonsoft.Json;
 
 namespace AppTripEver.Models
 {
@@ -8,8 +9,13 @@ namespace AppTripEver.Models
         public long IdHorario { get; set; }
         public ServiciosModel Servicio { get; set; } 
         private string fechaInicio { get; set; }
+
+        [JsonProperty("FechaFin")]
         private string fechaFinal { get; set; }
+
         private string horaInicio { get; set; }
+
+        [JsonProperty("HoraFin")]
         private string horaFinal { get; set; }
 
         #endregion Properties

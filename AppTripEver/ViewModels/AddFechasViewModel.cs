@@ -23,6 +23,8 @@ namespace AppTripEver.ViewModels
         #region Request
         public ElegirRequest<BaseModel> PostBooking { get; set; }
 
+        public ElegirRequest<BaseModel> GetFecha { get; set; }
+
         #endregion Request 
 
         #region Commands
@@ -61,6 +63,8 @@ namespace AppTripEver.ViewModels
         public int NumNoches { get; set; }
 
         public int Valor { get; set; }
+
+        private bool fechaEnable;
 
         public NavigationService NavigationService { get; set; }
 
@@ -148,11 +152,22 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public bool FechaEnable
+        {
+            get { return fechaEnable; }
+            set
+            {
+                fechaEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
         public AddFechasViewModel()
         {
+            
             BookingState = new EstadoModel();
             Horario = new HorarioModel();
             Cartera = new CarteraModel();
@@ -167,7 +182,9 @@ namespace AppTripEver.ViewModels
 
         public void InitializeRequest()
         {
-
+            string urlGetFecha = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_FECHA;
+            GetFecha = new ElegirRequest<BaseModel>();
+            GetFecha.ElegirEstrategia("GET", urlGetFecha);
         }
 
         public void InitializeFields()
@@ -189,6 +206,14 @@ namespace AppTripEver.ViewModels
             var service = parameters2 as ServiciosModel;
             Usuario = usuario;
             Service = service;
+            if(Service.TipoServicio == 1)
+            {
+                FechaEnable = true;
+            }
+            else if (Service.TipoServicio == 2)
+            {
+                FechaEnable = false;
+            }
         }
 
         #endregion Initialize
@@ -197,52 +222,89 @@ namespace AppTripEver.ViewModels
 
         public async Task BookServiceForm()
         {
-            Booking.FechaInicio = FechaInicio.Value;
-            Booking.FechaFin = FechaFinal.Value;
-            BookingState.IdEstado = 1;
-            var splitListInicio = FechaInicio.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
-            var splitListFin = FechaFinal.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
-            Booking.NumPersonas = Int32.Parse(NumPersonas.Value);
-            var mesInicio = Int32.Parse(splitListInicio[1]);
-            var diaInicio = Int32.Parse(splitListInicio[2]);
-            var mesFin = Int32.Parse(splitListFin[1]);
-            var diaFin = Int32.Parse(splitListFin[2]);
-            var diferenciaMes = mesFin - mesInicio;
-            if (mesInicio != mesFin & diferenciaMes==1)
-            {
-                if(mesInicio == 1 | mesInicio == 3 | mesInicio == 5 | mesInicio == 7 | mesInicio == 8 | mesInicio == 10 | mesInicio == 12)
+            
+            if (Service.TipoServicio == 1)
+            {               
+                Booking.FechaInicio = FechaInicio.Value;
+                Booking.FechaFin = FechaFinal.Value;
+                BookingState.IdEstado = 1;
+                var splitListInicio = FechaInicio.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+                var splitListFin = FechaFinal.Value.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+                Booking.NumPersonas = Int32.Parse(NumPersonas.Value);
+                var mesInicio = Int32.Parse(splitListInicio[1]);
+                var diaInicio = Int32.Parse(splitListInicio[2]);
+                var mesFin = Int32.Parse(splitListFin[1]);
+                var diaFin = Int32.Parse(splitListFin[2]);
+                var diferenciaMes = mesFin - mesInicio;
+
+                if (mesInicio != mesFin & diferenciaMes == 1)
                 {
-                    NumNoches = (31 - diaInicio) + diaFin;
+                    if (mesInicio == 1 | mesInicio == 3 | mesInicio == 5 | mesInicio == 7 | mesInicio == 8 | mesInicio == 10 | mesInicio == 12)
+                    {
+                        NumNoches = (31 - diaInicio) + diaFin;
+                    }
+                    else if (mesInicio == 2)
+                    {
+                        NumNoches = (28 - diaInicio) + diaFin;
+                    }
+                    else
+                    {
+                        NumNoches = (30 - diaInicio) + diaFin;
+                    }
                 }
-                else if(mesInicio == 2)
+                else if (mesInicio != mesFin & diferenciaMes > 1)
                 {
-                    NumNoches = (28 - diaInicio) + diaFin;
+                    var dir = mesFin - mesInicio;
+
+                    NumNoches = 30 * (dir - 1) + (30 - diaInicio) + diaFin;
                 }
-                else
+
+                else if (mesInicio == mesFin)
                 {
-                    NumNoches = (30 - diaInicio) + diaFin;
+                    NumNoches = diaFin - diaInicio;
                 }
+
+                var Total = NumNoches * Service.Precio;
+
+                Booking.NumNoches = NumNoches;
+                Booking.Valor = Total;
+                Booking.Servicio = Service;
+                Booking.Cliente = Usuario;
+                Booking.Titulo = Service.Titulo;
             }
-            else if (mesInicio != mesFin & diferenciaMes > 1)
+            if(Service.TipoServicio == 2)
             {
-                var dir = mesFin - mesInicio;
+                try
+                {
+                    ParametersRequest parametros = new ParametersRequest();
+                    parametros.Parametros.Add(Service.IdServicio.ToString());
+                    APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
+                    if (response.IsSuccess)
+                    {
+                        Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
+                    }
+                    else
+                    {
+ 
+                    }
+                }
+                catch (Exception)
+                {
 
-                NumNoches = 30*(dir-1) + (30 - diaInicio) + diaFin;
+                }
+
+                BookingState.IdEstado = 1;
+                var Total = Int32.Parse(NumPersonas.Value) * Service.Precio;
+                Booking.Valor = Total;
+                Booking.FechaInicio = Horario.FechaInicio;
+                Booking.FechaFin = Horario.FechaFinal;
+                BookingState.IdEstado = 1;
+                Booking.NumNoches = 0;
+                Booking.NumPersonas = Int32.Parse(NumPersonas.Value);
+                Booking.Servicio = Service;
+                Booking.Cliente = Usuario;
+                Booking.Titulo = Service.Titulo;
             }
-
-            else if (mesInicio == mesFin)
-            {
-                NumNoches = diaFin - diaInicio;
-            }
-
-            var Total = NumNoches * Service.Precio;
-
-            Booking.NumNoches = NumNoches;
-            Booking.Valor = Total;
-            Booking.Servicio = Service;
-            Booking.Cliente = Usuario;
-            Booking.Titulo = Service.Titulo;
-
             CheckOutView popUp = new CheckOutView();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
