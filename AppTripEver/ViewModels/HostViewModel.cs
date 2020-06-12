@@ -22,7 +22,8 @@ namespace AppTripEver.ViewModels
         #region Request
         public ElegirRequest<BaseModel> GetServiciosHospedajeHost { get; set; }
         public ElegirRequest<BaseModel> GetServiciosExperienciaHost { get; set; }
-
+        public ElegirRequest<BaseModel> GetFecha { get; set; }
+        
         #endregion Request 
 
         #region Commands
@@ -45,6 +46,8 @@ namespace AppTripEver.ViewModels
 
         private ServiciosModel servicioActual;
 
+        private HorarioModel horario;
+
         public NavigationService NavigationService { get; set; }
 
         private ServiciosModel servicioExperienciaActual;
@@ -57,6 +60,15 @@ namespace AppTripEver.ViewModels
 
         #region Getters & Setters
 
+        public HorarioModel Horario
+        {
+            get { return horario; }
+            set
+            {
+                horario = value;
+                OnPropertyChanged();
+            }
+        }
         public ServiciosModel ServicioExperienciaActual
         {
             get { return servicioExperienciaActual; }
@@ -134,13 +146,17 @@ namespace AppTripEver.ViewModels
         public void InitializeRequest()
         {
             string urlServiciosIdHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_ALL_SERVICIOS_ID_HOST  ;
-
+            string urlGetFecha = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_FECHA;
 
             GetServiciosHospedajeHost = new ElegirRequest<BaseModel>();
             GetServiciosHospedajeHost.ElegirEstrategia("GET", urlServiciosIdHost);
 
             GetServiciosExperienciaHost = new ElegirRequest<BaseModel>();
             GetServiciosExperienciaHost.ElegirEstrategia("GET", urlServiciosIdHost);
+
+            
+            GetFecha = new ElegirRequest<BaseModel>();
+            GetFecha.ElegirEstrategia("GET", urlGetFecha);
         }
 
         public void InitializeCommands()
@@ -206,6 +222,7 @@ namespace AppTripEver.ViewModels
                     List<ServiciosModel> listaServicios = JsonConvert.DeserializeObject<List<ServiciosModel>>
                         (response.Response);
                     ServiciosExperienciaHost = new ObservableCollection<ServiciosModel>(listaServicios);
+
                 }
                 else
                 {
@@ -220,7 +237,22 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectService()
         {
-            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            try
+            {
+                ParametersRequest parametros = new ParametersRequest();
+                parametros.Parametros.Add(ServicioActual.IdServicio.ToString());
+                APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
+                if (response.IsSuccess)
+                {
+                    Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
+                    ServicioActual.Fecha = Horario;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            ServiceEditViewPop popUp = new ServiceEditViewPop();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Host, ServicioActual);
             await PopupNavigation.Instance.PushAsync(popUp);
@@ -228,7 +260,23 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectHospedajeService()
         {
-            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+
+            try
+            {
+                ParametersRequest parametros = new ParametersRequest();
+                parametros.Parametros.Add(ServicioExperienciaActual.IdServicio.ToString());
+                APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
+                if (response.IsSuccess)
+                {
+                    Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
+                    ServicioExperienciaActual.Fecha = Horario;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            ServiceEditViewPop popUp = new ServiceEditViewPop();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Host, ServicioExperienciaActual);
             await PopupNavigation.Instance.PushAsync(popUp);
