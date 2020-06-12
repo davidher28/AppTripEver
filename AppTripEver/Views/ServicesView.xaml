@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="WhiteSmoke"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -25,11 +25,9 @@
         <ResourceDictionary>
             <Style x:Key="Servicios" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"></Setter>
-                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="CornerRadius" Value="2"></Setter>
                 <Setter Property="Margin" Value="0"></Setter>
-                <Setter Property="HasShadow" Value="True"></Setter>
                 <Setter Property="Padding" Value="0.2"></Setter>
-                <Setter Property="BorderColor" Value="LightGray"></Setter>
             </Style>
             <Style x:Key="Card" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="White"></Setter>
@@ -49,24 +47,26 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
-            <StackLayout Padding="0,0,0,10" BackgroundColor="WhiteSmoke" Margin="0,8,0,0" Opacity="0.95" HeightRequest="305">
+            <StackLayout Padding="0,0,0,10" BackgroundColor="White" Margin="0,8,0,0" Opacity="0.95" 
+                         HeightRequest="330">
                 <StackLayout Padding="5,5,5,0" >
                 <Label Text="Hospedajes" Style="{StaticResource Encabezado}"/>
                 </StackLayout>
                 <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                    <StackLayout Margin="10,0,0,0">
                 <CollectionView ItemsSource="{Binding ServiciosHospedaje}" SelectedItem="{Binding ServicioActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectServiceCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
                            SnapPointsType="MandatorySingle"
                            SnapPointsAlignment="Start"
-                           ItemSpacing="5"/>
+                           ItemSpacing="10"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Style="{StaticResource Servicios}" WidthRequest="230" >
-                                <StackLayout Style="{StaticResource Card}">
-                                    <Image Source="Hospedajes.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Padding="6,0,0,0" Margin="0">
+                                <Frame Style="{StaticResource Servicios}" WidthRequest="360" >
+                                    <StackLayout Style="{StaticResource Card}">
+                                        <Image Source="Hospedajes.jpg" HeightRequest="180" WidthRequest="140" Margin="0" Aspect="AspectFill"/>
+                                        <StackLayout Orientation="Vertical" Padding="6,0,0,0" Margin="0">
                                         <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold" Opacity="0.85"/>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic" Margin="0" Padding="0" />
@@ -87,12 +87,15 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </StackLayout>
-            <StackLayout Padding="0,0,0,10" Margin="0,0,0,10" BackgroundColor="WhiteSmoke" Opacity="0.95" HeightRequest="305">
+                    </StackLayout>
+                </StackLayout>
+            <StackLayout Padding="0,0,0,10" Margin="0,0,0,10" BackgroundColor="White" 
+                         Opacity="0.95" HeightRequest="330">
                 <StackLayout Padding="5,5,5,0" >
                     <Label Text="Experiencias" Style="{StaticResource Encabezado}" />
                 </StackLayout>
                 <BoxView BackgroundColor="LightGray" CornerRadius="5" HeightRequest="1.3" Margin="5,0,5,0"/>
+                    <StackLayout Margin="10,0,0,0">
                 <CollectionView ItemsSource="{Binding ServiciosExperiencia}" SelectedItem="{Binding ServicioExperienciaActual}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectHospedajeServiceCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"    
@@ -102,10 +105,10 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Style="{StaticResource Servicios}" WidthRequest="230">
-                                <StackLayout Style="{StaticResource Card}">
-                                    <Image Source="Tour.jpg" HeightRequest="150" WidthRequest="240" Margin="0" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Padding="3">
+                                <Frame Style="{StaticResource Servicios}" WidthRequest="360" >
+                                    <StackLayout Style="{StaticResource Card}">
+                                        <Image Source="Tour.jpg" HeightRequest="180" WidthRequest="140" Margin="0" Aspect="AspectFill"/>
+                                        <StackLayout Orientation="Vertical" Padding="3">
                                         <Label TextColor="Black" Text="{Binding Titulo}"  FontAttributes="Bold"  Opacity="0.85"/>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="Black" Text="{Binding Pais}"  FontAttributes="Italic" />
@@ -126,7 +129,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </StackLayout>
+                    </StackLayout>
+                </StackLayout>
             <!--<<StackLayout>
                 <Button
                         BackgroundColor="#393c3e"
