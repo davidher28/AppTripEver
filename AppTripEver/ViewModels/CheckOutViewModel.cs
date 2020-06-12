@@ -235,11 +235,11 @@ namespace AppTripEver.ViewModels
 
                     JObject vals3 =
                         new JObject(
-                        new JProperty("Monto", Booking.Valor)
+                        new JProperty("Monto", Booking.Valor.ToString())
                         );
                     string Json3 = vals3.ToString();
                     ParametersRequest parametros2 = new ParametersRequest();
-                    parametros.Parametros.Add(Booking.Servicio.IdServicio.ToString());
+                    parametros2.Parametros.Add(Booking.Servicio.IdServicio.ToString());
                     APIResponse response2 = await UpdateHostWallet.EjecutarEstrategia(null, parametros2, Json3);
                     if (response1.IsSuccess && response2.IsSuccess)
                     {
