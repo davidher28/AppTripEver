@@ -286,6 +286,11 @@ namespace AppTripEver.ViewModels
 
         public async Task Close()
         {
+            var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+            var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+            var hostcontext = context.HostViewModel as HostViewModel;
+            await hostcontext.ListaServiciosExperienciaHost();
+            await hostcontext.ListaServiciosHospedajeHost();
             await PopupNavigation.Instance.PopAsync();
         }
         #endregion Methods
