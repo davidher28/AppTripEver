@@ -66,6 +66,8 @@ namespace AppTripEver.ViewModels
 
         private bool fechaEnable;
 
+        public bool VerificadorFecha = false;
+
         public NavigationService NavigationService { get; set; }
 
         #endregion Properties
@@ -175,6 +177,7 @@ namespace AppTripEver.ViewModels
             Service = new ServiciosModel(Horario, Host);
             Booking = new ReservasModel(BookingState, Service, Usuario);
             NavigationService = new NavigationService();
+            Message = new MessageModel() { Message = "Fechas no disponibles"};
             InitializeCommands();
             InitializeRequest();
             InitializeFields();
@@ -236,6 +239,18 @@ namespace AppTripEver.ViewModels
                 var mesFin = Int32.Parse(splitListFin[1]);
                 var diaFin = Int32.Parse(splitListFin[2]);
                 var diferenciaMes = mesFin - mesInicio;
+                
+                var splitListInicio2 = Service.Fecha.FechaInicio.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+                var splitListFin2 = Service.Fecha.FechaFinal.Split('-', (char)StringSplitOptions.RemoveEmptyEntries).ToList();
+                var mesInicioService = Int32.Parse(splitListInicio2[1]);
+                var diaInicioService = Int32.Parse(splitListInicio2[2]);
+                var mesFinService = Int32.Parse(splitListFin2[1]);
+                var diaFinService = Int32.Parse(splitListFin2[2]);
+
+                if ((diaInicio <= diaFinService && diaInicio >= diaInicioService) && (mesInicio <= mesFinService && mesInicio >= mesInicioService))
+                {
+                    VerificadorFecha = true;
+                }
 
                 if (mesInicio != mesFin & diferenciaMes == 1)
                 {
@@ -274,25 +289,6 @@ namespace AppTripEver.ViewModels
             }
             if(Service.TipoServicio == 2)
             {
-             //   try
-               // {
-                //    ParametersRequest parametros = new ParametersRequest();
-                //    parametros.Parametros.Add(Service.IdServicio.ToString());
-                //    APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
-                 //   if (response.IsSuccess)
-                 //   {
-                 //       Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
-                  //  }
-                  //  else
-                   // {
- 
-                  //  }
-              //  }
-              //  catch (Exception)
-              //  {
-
-              //  }
-
                 BookingState.IdEstado = 1;
                 var Total = Int32.Parse(NumPersonas.Value) * Service.Precio;
                 Booking.Valor = Total;
@@ -305,10 +301,20 @@ namespace AppTripEver.ViewModels
                 Booking.Cliente = Usuario;
                 Booking.Titulo = Service.Titulo;
             }
-            CheckOutView popUp = new CheckOutView();
-            var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
-            await PopupNavigation.Instance.PushAsync(popUp);
+            if (VerificadorFecha)
+            {
+                CheckOutView popUp = new CheckOutView();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, Booking);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
+            else
+            {
+                PopGeneralView popUp = new PopGeneralView();
+                var viewModel = popUp.BindingContext;
+                await ((BaseViewModel)viewModel).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(popUp);
+            }
         }
 
 
