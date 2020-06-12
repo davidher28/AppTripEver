@@ -57,6 +57,17 @@ namespace AppTripEver.ViewModels
         public ValidatableObject<Nullable<int>> Precio { get; set; }
 
 
+        private string labelTipo;
+
+        private string labelHoraI;
+
+        private string labelHoraF;
+
+        private string labelFechaI;
+
+        private string labelFechaF;
+
+
         #endregion Properties
 
         #region Getters & Setters
@@ -112,6 +123,56 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public string LabelTipo
+        {
+            get { return labelTipo; }
+            set
+            {
+                labelTipo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelHoraI
+        {
+            get { return labelHoraI; }
+            set
+            {
+                labelHoraI = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelHoraF
+        {
+            get { return labelHoraF; }
+            set
+            {
+                labelHoraF = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelFechaI
+        {
+            get { return labelFechaI; }
+            set
+            {
+                labelFechaI = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelFechaF
+        {
+            get { return labelFechaF; }
+            set
+            {
+                labelFechaF = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
@@ -161,6 +222,22 @@ namespace AppTripEver.ViewModels
             var service = parameters2 as ServiciosModel;
             Host = host;
             Service = service;
+            if (Service.TipoServicio == 1)
+            {
+                LabelTipo = "Noche";
+                LabelHoraI = "Check In:";
+                LabelHoraF = "Check Out:";
+                LabelFechaI = "Disponible Desde:";
+                LabelFechaF = "Disponible Hasta:";
+            }
+            else
+            {
+                LabelTipo = "Persona:";
+                LabelHoraI = "Hora Inicio:";
+                LabelHoraF = "Hora Fin:";
+                LabelFechaI = "Inicia:";
+                LabelFechaF = "Finaliza:";
+            }
         }
 
         #endregion Initialize
@@ -186,6 +263,14 @@ namespace AppTripEver.ViewModels
             APIResponse response1 = await EditService.EjecutarEstrategia(Cartera, parametros, Json2);
             if (response1.IsSuccess)
             {
+                PopGeneralView view = new PopGeneralView();
+                var context = view.BindingContext;
+                await ((BaseViewModel)context).ConstructorAsync(Message);
+                await PopupNavigation.Instance.PushAsync(view);
+            }
+            else
+            {
+                Message.Message = "No se realizó la actualización, intentalo de nuevo";
                 PopGeneralView view = new PopGeneralView();
                 var context = view.BindingContext;
                 await ((BaseViewModel)context).ConstructorAsync(Message);
