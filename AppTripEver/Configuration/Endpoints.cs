@@ -27,10 +27,8 @@ namespace AppTripEver.Configuration
         public static readonly string EDITAR_SERVICIO = "/updateServicio";
         public static readonly string CONSULTAR_TARJETAREGALO = "/getTarjetaRegalo";
         public static readonly string EDITAR_HOST = "/updateHost";
-<<<<<<< HEAD
         public static readonly string CONSULTAR_ESTADO = "/getReservaEstado";
         public static readonly string ACTUALIZAR_ESTADO_RESERVA = "/updateEstado";
-=======
->>>>>>> aab35d329f822a5cd04f298a2fc5895d8f5640ac
+
     }
 }
