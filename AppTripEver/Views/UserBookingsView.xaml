@@ -20,7 +20,7 @@
                  IconImageSource="usuario.png"
                  Order="Primary"
                  Priority="0"
-                 />
+                 Command="{Binding UsuarioInfoCommand}"                 />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -110,7 +110,7 @@
                                            TextColor="White" FontSize="15" Opacity="0.95"/>
 
                                             <Label
-                                           Text="{Binding Valor}"
+                                           Text="{Binding Valor, StringFormat='${0}'}"
                                            VerticalOptions="End"
                                            FontAttributes="Bold"
                                            HorizontalOptions="EndAndExpand"
