@@ -274,30 +274,30 @@ namespace AppTripEver.ViewModels
             }
             if(Service.TipoServicio == 2)
             {
-                try
-                {
-                    ParametersRequest parametros = new ParametersRequest();
-                    parametros.Parametros.Add(Service.IdServicio.ToString());
-                    APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
-                    if (response.IsSuccess)
-                    {
-                        Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
-                    }
-                    else
-                    {
+             //   try
+               // {
+                //    ParametersRequest parametros = new ParametersRequest();
+                //    parametros.Parametros.Add(Service.IdServicio.ToString());
+                //    APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
+                 //   if (response.IsSuccess)
+                 //   {
+                 //       Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
+                  //  }
+                  //  else
+                   // {
  
-                    }
-                }
-                catch (Exception)
-                {
+                  //  }
+              //  }
+              //  catch (Exception)
+              //  {
 
-                }
+              //  }
 
                 BookingState.IdEstado = 1;
                 var Total = Int32.Parse(NumPersonas.Value) * Service.Precio;
                 Booking.Valor = Total;
-                Booking.FechaInicio = Horario.FechaInicio;
-                Booking.FechaFin = Horario.FechaFinal;
+                Booking.FechaInicio = Service.Fecha.FechaFinal;
+                Booking.FechaFin = Service.Fecha.FechaFinal;
                 BookingState.IdEstado = 1;
                 Booking.NumNoches = 0;
                 Booking.NumPersonas = Int32.Parse(NumPersonas.Value);

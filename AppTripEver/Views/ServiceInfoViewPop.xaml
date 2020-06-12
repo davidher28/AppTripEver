@@ -69,6 +69,30 @@
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
+                        <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Image Source="people.png" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" Margin="-27,0,20,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Vertical" Padding="0,0,0,0">
+                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelFechaI, StringFormat='{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.FechaFinal, StringFormat='{0}'}" FontAttributes="Bold"/>   
+                                </StackLayout>
+                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelFechaF, StringFormat='{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.FechaFinal, StringFormat='{0}'}" FontAttributes="Bold"/>                                    
+                                </StackLayout>
+                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraI, StringFormat='{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraInicio, StringFormat='{0}'}" FontAttributes="Bold"/>   
+                                </StackLayout>
+                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraF, StringFormat='{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraFinal, StringFormat='{0}'}" FontAttributes="Bold"/>                                    
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
                 </ScrollView>
                 <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  Margin="0" HasShadow="True">
