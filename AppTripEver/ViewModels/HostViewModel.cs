@@ -35,6 +35,10 @@ namespace AppTripEver.ViewModels
 
         public ICommand SelectHospedajeServiceCommand { get; set; }
 
+        public ICommand CarteraCommand { get; set; }
+
+        public ICommand UsuarioInfoCommand { get; set; }
+
         #endregion Commands
 
 
@@ -164,6 +168,8 @@ namespace AppTripEver.ViewModels
             CrearServicioCommand = new Command(async () => await CrearServicio(), () => true);
             SelectServiceCommand = new Command(async () => await SelectService(), () => true);
             SelectHospedajeServiceCommand = new Command(async () => await SelectHospedajeService(), () => true);
+            CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
+            UsuarioInfoCommand = new Command(async () => await DisplayUsuario(), () => true);
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -279,6 +285,22 @@ namespace AppTripEver.ViewModels
             ServiceEditViewPop popUp = new ServiceEditViewPop();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Host, ServicioExperienciaActual);
+            await PopupNavigation.Instance.PushAsync(popUp);
+        }
+
+        public async Task DisplayCartera()
+        {
+            CarteraHostView popUp = new CarteraHostView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Host);
+            await PopupNavigation.Instance.PushAsync(popUp);
+        }
+
+        public async Task DisplayUsuario()
+        {
+            InfoHostView popUp = new InfoHostView();
+            var viewModel = popUp.BindingContext;
+            await ((BaseViewModel)viewModel).ConstructorAsync(Host);
             await PopupNavigation.Instance.PushAsync(popUp);
         }
 

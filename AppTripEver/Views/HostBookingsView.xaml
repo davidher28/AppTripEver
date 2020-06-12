@@ -9,19 +9,6 @@
              mc:Ignorable="d"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-                 IconImageSource="billetera.png"
-                 Order="Primary"
-                 Text="Cerrar Sesión"
-                 Priority="0"
-                 Command="{Binding CarteraCommand}"/>
-        <ToolbarItem 
-                 IconImageSource="usuario.png"
-                 Order="Primary"
-                 Priority="0"
-                 />
-    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Servicios" TargetType="Frame">

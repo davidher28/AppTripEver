@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="AppTripEver.Views.CarteraHostView"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="#80000000"></Setter>
+            </Style>
+
+            <Style x:Key="Container" TargetType="FlexLayout" >
+                <Setter Property="AlignItems" Value="Center"></Setter>
+                <Setter Property="JustifyContent" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="Modal" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
+                <Setter Property="Margin" Value="0,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="300"></Setter>
+                <Setter Property="HeightRequest" Value="300"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="BackgroundColor" Value="#E7E6ED"></Setter>
+                <Setter Property="CornerRadius" Value="20"></Setter>
+            </Style>
+
+            <Style x:Key="Message" TargetType="Label">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="TextColor" Value="#3C3C3B"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0,0,0,20"></Setter>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"></Setter>
+                <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <FlexLayout Style="{StaticResource Container}">
+            <Frame Style="{StaticResource Modal}">
+                <StackLayout Orientation="Vertical" HeightRequest="500">
+                    <ImageButton Source="cerrarB.png" Margin="8,8,0,0" VerticalOptions="Start" Opacity="0.3" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand}"/>
+                    <Label TextColor="Gray" FontAttributes="Bold" Text="Cartera" 
+                           HorizontalOptions="CenterAndExpand" FontSize = "25" 
+                           CharacterSpacing="0.8"/>
+                    <Frame Padding="0" HeightRequest="100" BackgroundColor="Transparent" HasShadow="True">
+                        <Image Source="Wallet.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
+                    </Frame>
+                    <Frame Opacity="0.8" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Padding="0,5,5,0">
+                        <StackLayout Margin="0,20,0,0">
+                            <Label TextColor="Black" Text="{Binding Host.Cartera.MontoTotal, StringFormat='${0}'}" 
+                               Margin="0" HorizontalOptions="Center" 
+                               VerticalOptions="CenterAndExpand" FontSize = "25"/>
+                            <Label Text="Balance" 
+                               Margin="0" HorizontalOptions="Center" FontSize = "20" TextColor="Gray" FontAttributes="Italic"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+    </ContentPage.Content>
+</pages:PopupPage>
