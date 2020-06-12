@@ -15,19 +15,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using AppTripEver.Behaviors;
+using Newtonsoft.Json.Linq;
+
 
 namespace AppTripEver.ViewModels
 {
-    public class CarteraViewModel : BaseViewModel
+    public class CanjearCodeViewModel : BaseViewModel
     {
         #region Request
-        public ElegirRequest<BaseModel> GetUsuarioHost { get; set; }
+        public ElegirRequest<BaseModel> UpdateCartera { get; set; }
+
+        public ElegirRequest<BaseModel> CanjearCode { get; set; }
+
+        public ValidatableObject<Nullable<int>> CodigoTarjeta { get; set; }
 
         #endregion Request 
 
         #region Commands
         public ICommand RecargarCommand { get; set; }
-        public ICommand CanjearCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
         #endregion Commands
@@ -82,7 +87,7 @@ namespace AppTripEver.ViewModels
         #endregion Getters/Setters
 
         #region Initialize
-        public CarteraViewModel()
+        public CanjearCodeViewModel()
         {
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
@@ -90,21 +95,34 @@ namespace AppTripEver.ViewModels
             NavigationService = new NavigationService();
             InitializeRequest();
             InitializeCommands();
+            InitializeFields();
         }
 
         public void InitializeRequest()
         {
-            //string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
+            string UrlUpdateCartera = Endpoints.URL_SERVIDOR + Endpoints.ACTUALIZAR_CARTERA;
 
-            //GetUsuarioHost = new ElegirRequest<BaseModel>();
-            //GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
+            UpdateCartera = new ElegirRequest<BaseModel>();
+            UpdateCartera.ElegirEstrategia("PUT", UrlUpdateCartera);
+
+            string UrlCanjearCodigo = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_TARJETAREGALO;
+
+            CanjearCode = new ElegirRequest<BaseModel>();
+            CanjearCode.ElegirEstrategia("GET", UrlCanjearCodigo);
+
+
+
         }
 
         public void InitializeCommands()
         {
             RecargarCommand = new Command(async () => await Recargar(), () => true);
-            CanjearCommand = new Command(async () => await Canjear(), () => true);
             CloseCommand = new Command(async () => await Close(), () => true);
+        }
+
+        public void InitializeFields()
+        {
+            CodigoTarjeta = new ValidatableObject<Nullable<int>>();
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -121,18 +139,38 @@ namespace AppTripEver.ViewModels
 
         public async Task Recargar()
         {
-            EditarCarteraView popUp = new EditarCarteraView();
-            var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
-            await PopupNavigation.Instance.PushAsync(popUp);
-        }
+            try
+            {
+                ParametersRequest parametros2 = new ParametersRequest();
+                parametros2.Parametros.Add(CodigoTarjeta.Value.ToString());
+                APIResponse response = await CanjearCode.EjecutarEstrategia(null, parametros2);
+                if (response.IsSuccess)
+                {
+                    JToken token = JObject.Parse(response.Response);
+                    int nuevo = Usuario.Cartera.MontoTotal + (int)token.SelectToken("Monto");
+                    JObject vals2 =
+                        new JObject(
+                        new JProperty("Monto", nuevo),
+                        new JProperty("IdUsuario", Usuario.IdUsuario)
+                        );
+                    string Json2 = vals2.ToString();
+                    ParametersRequest parametros = new ParametersRequest();
+                    parametros.Parametros.Add(Usuario.Cartera.IdCartera.ToString());
+                    APIResponse response1 = await UpdateCartera.EjecutarEstrategia(Cartera, parametros, Json2);
+                    if (response1.IsSuccess)
+                    {
+                        var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                        var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
+                        var hostcontext = context.ServicesViewModel as ServicesViewModel;
+                        hostcontext.Usuario.Cartera.MontoTotal = nuevo;
+                        await PopupNavigation.Instance.PopAsync();
+                    }
+                }
+            }
+            catch (Exception)
+            {
 
-        public async Task Canjear()
-        {
-            CanjearCodeView popUp = new CanjearCodeView();
-            var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
-            await PopupNavigation.Instance.PushAsync(popUp);
+            }
         }
 
         public async Task Close()
@@ -141,5 +179,6 @@ namespace AppTripEver.ViewModels
         }
 
         #endregion Methods
+
     }
 }
