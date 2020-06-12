@@ -96,5 +96,8 @@
     <Compile Update="Views\PopGeneralView.xaml.cs">
       <DependentUpon>PopGeneralView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\BookingInfoViewPop.xaml.cs">
+      <DependentUpon>BookingInfoViewPop.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

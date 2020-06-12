@@ -46,7 +46,7 @@ namespace AppTripEver.ViewModels
 
         private ObservableCollection<ReservasModel> reservas;
 
-        private ReservasSimpleModel reservaActual;
+        private ReservasModel reservaActual;
 
         private string imagen;
 
@@ -57,7 +57,7 @@ namespace AppTripEver.ViewModels
 
         #region Getters & Setters
 
-        public ReservasSimpleModel ReservaActual
+        public ReservasModel ReservaActual
         {
             get { return reservaActual; }
             set
@@ -141,7 +141,6 @@ namespace AppTripEver.ViewModels
 
         public void InitializeCommands()
         {
-            SelectServiceCommand = new Command(async () => await SelectService(), () => true);
             CarteraCommand = new Command(async () => await DisplayCartera(), () => true);
             SelectReservaCommand = new Command(async () => await SelectReserva(), () => true);
             UsuarioInfoCommand = new Command(async () => await DisplayUsuario(), () => true);
@@ -202,21 +201,11 @@ namespace AppTripEver.ViewModels
 
         public async Task SelectReserva()
         {
-            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
+            BookingInfoViewPop popUp = new BookingInfoViewPop();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ReservaActual);
             await PopupNavigation.Instance.PushAsync(popUp);
         }
-
-
-        public async Task SelectService()
-        {
-            ServiceInfoViewPop popUp = new ServiceInfoViewPop();
-            var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync2(Usuario, ReservaActual);
-            await PopupNavigation.Instance.PushAsync(popUp);
-        }
-
 
         public async Task DisplayCartera()
         {

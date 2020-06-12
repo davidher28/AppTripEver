@@ -29,7 +29,6 @@ namespace AppTripEver.ViewModels
         #region Commands
 
         public ICommand CrearServicioCommand { get; set; }
-
         
         public ICommand SelectServiceCommand { get; set; }
 

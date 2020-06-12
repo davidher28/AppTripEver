@@ -15,5 +15,13 @@ namespace AppTripEver.Views
             InitializeComponent();
             BindingContext = context;
         }
+
+        void ListView_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+        }
+
+        void ListView_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+        }
     }
 }

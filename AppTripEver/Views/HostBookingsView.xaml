@@ -6,8 +6,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"
              mc:Ignorable="d"
-             BackgroundColor="White"
+             BackgroundColor="WhiteSmoke"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -37,82 +38,76 @@
     <ContentPage.Content>
         <StackLayout >
                 <StackLayout Padding="20,5,5,10" Margin="0,8,0,0" >
-                    <Label Text="Solicitudes de reservas" Style="{StaticResource Encabezado}"/>
-                <Label 
-                 Text="•Si tienes reservas, ingresa al detalle para ACEPTARLAS o RECHAZARLAS."
-                 FontAttributes="Italic" 
-                 FontSize="15"/>
-            </StackLayout>
+                    <Label Text="Proximas Reservas" Style="{StaticResource Encabezado}"/>
+                </StackLayout>
             <ScrollView>
-                <ListView  ItemsSource="{Binding Reservas}" HasUnevenRows="true" SeparatorVisibility="None" HeightRequest="{Binding ListReservas}">
+                <ListView  ItemsSource="{Binding Reservas}" HasUnevenRows="true" SeparatorVisibility="None"
+                           HeightRequest="{Binding ListReservas}" SelectedItem="{Binding ReservaActual}">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemSelected"
+                        Command="{Binding SelectReservaCommand}" />       
+                    </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame HeightRequest="155" CornerRadius="5" HasShadow="True" Margin="15,0,15,10" BackgroundColor="#8DA8E3"
+                                <Frame HeightRequest="155" CornerRadius="5" HasShadow="True" Margin="15,0,15,10" BackgroundColor="#364057"
                                        Opacity="0.9">
                                     <StackLayout>
                                        <Label 
-                                       Text="Información de solicitud"
+                                       Text="Información de tu reserva"
                                        FontAttributes="Bold" 
                                        FontSize="18"
-                                       />
+                                       TextColor="WhiteSmoke"/>
                                         <BoxView BackgroundColor="Gray" HeightRequest="0.1" Margin="0,5,0,8"/>
                                         <Label 
                                            Text="{Binding Titulo}"
                                            FontAttributes="Bold" 
                                            Margin="0,0,0,0"
-                                            FontSize="16" 
-                                            TextColor="Black"/>
+                                           TextColor="White" FontSize="16" />
                                         <StackLayout Orientation="Horizontal">
                                             <Label
-                                           Text="El servicio inicia el:"
+                                           Text="Tu servicio inicia el:"
                                            VerticalOptions="End" 
                                            FontAttributes="Bold"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="Black"
-                                            FontSize="15" Opacity="0.95"/>
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
 
                                             <Label
                                            Text="{Binding FechaInicio}"
                                            VerticalOptions="End"
                                            FontAttributes="Bold"
                                            HorizontalOptions="EndAndExpand"
-                                           TextColor="Black"
-                                           FontSize="13" Opacity="0.95"/>
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label
-                                           Text="El servicio termina el:"
+                                           Text="Tu servicio termina el:"
                                            VerticalOptions="End" 
                                            FontAttributes="Bold"
-                                           TextColor="Black"
                                            HorizontalOptions="StartAndExpand"
-                                           FontSize="15" Opacity="0.95"/>
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
 
                                             <Label
                                            Text="{Binding FechaFin}"
                                            VerticalOptions="End"
                                            FontAttributes="Bold"
-                                           TextColor="Black"
                                            HorizontalOptions="EndAndExpand"
-                                           FontSize="13" Opacity="0.95"/>
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label
                                            Text="Total pagado:"
                                            VerticalOptions="End" 
                                            FontAttributes="Bold"
-                                           TextColor="Black"
                                            HorizontalOptions="StartAndExpand"
-                                           FontSize="15" Opacity="0.95"/>
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
 
                                             <Label
-                                           Text="{Binding Valor, StringFormat='${0}'}"
+                                           Text="{Binding Valor}"
                                            VerticalOptions="End"
                                            FontAttributes="Bold"
-                                           TextColor="Black"
                                            HorizontalOptions="EndAndExpand"
-                                           FontSize="13" Opacity="0.95"/>
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
@@ -122,7 +117,7 @@
                 </ListView>
             </ScrollView>
             <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding Imagen}">
-            <Label Text="Aún no han reservado tus servicios" TextColor="Black" FontSize="22" FontAttributes="Bold"
+            <Label Text="Aún no tienes reservas" TextColor="Black" FontSize="22" FontAttributes="Bold"
                    IsVisible="{Binding Imagen}" HorizontalOptions="CenterAndExpand" Opacity="0.7"/>
             <Image Source="book.png" HeightRequest="140"
                    IsVisible="{Binding Imagen}"/>
