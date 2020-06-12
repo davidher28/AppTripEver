@@ -53,7 +53,7 @@
                                     PlaceholderColor="#677BA6"
                                     WidthRequest="300"
                                     FontAttributes="Bold"
-                                    Text="{Binding Titulo.Value}">
+                                    Text="{Binding TituloServicio.Value}">
                                     <Entry.Behaviors>
                                         <behaviors:EventToCommandBehavior EventName="TextChanged"
                                     Command="{Binding ValidateTituloCommand}"/>

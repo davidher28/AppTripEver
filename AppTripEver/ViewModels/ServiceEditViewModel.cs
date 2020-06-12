@@ -263,10 +263,15 @@ namespace AppTripEver.ViewModels
             APIResponse response1 = await EditService.EjecutarEstrategia(Cartera, parametros, Json2);
             if (response1.IsSuccess)
             {
+                var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+                var hostcontext = context.HostViewModel as HostViewModel;
+                await hostcontext.ListaServiciosExperienciaHost();
+                await hostcontext.ListaServiciosHospedajeHost();
                 Message.Message = "Servicio editado correctamente";
                 PopGeneralView view = new PopGeneralView();
-                var context = view.BindingContext;
-                await ((BaseViewModel)context).ConstructorAsync(Message);
+                var context2 = view.BindingContext;
+                await ((BaseViewModel)context2).ConstructorAsync(Message);
                 await PopupNavigation.Instance.PushAsync(view);
             }
             else

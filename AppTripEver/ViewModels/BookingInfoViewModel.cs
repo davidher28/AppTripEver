@@ -266,8 +266,13 @@ namespace AppTripEver.ViewModels
                 if (response.IsSuccess)
                 {
 
+                    var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                    var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+                    var hostcontext = context.HostBookingsViewModel as HostBookingsViewModel;
+                    await hostcontext.ListaReserva();
                     Booking.Estado.IdEstado = 2;
                     Booking.Estado.Estado = "Aceptada";
+                    await PopupNavigation.Instance.PopAsync();
                 }
                 else
                 {
@@ -292,9 +297,13 @@ namespace AppTripEver.ViewModels
                 APIResponse response = await UpdateEstado.EjecutarEstrategia(null, parametros, Json);
                 if (response.IsSuccess)
                 {
-
+                    var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                    var context = page.CurrentPage.BindingContext as HostTabbedViewModel;
+                    var hostcontext = context.HostBookingsViewModel as HostBookingsViewModel;
+                    await hostcontext.ListaReserva();
                     Booking.Estado.IdEstado = 3;
                     Booking.Estado.Estado = "Rechazada";
+                    await PopupNavigation.Instance.PopAsync();
                 }
                 else
                 {
@@ -308,11 +317,6 @@ namespace AppTripEver.ViewModels
         public async Task Close()
         {
             await PopupNavigation.Instance.PopAsync();
-            //var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
-            //var page2 = page.Pages.<>3_source[0] as NavigationPage;
-            //var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
-            //var hostcontext = context.ServicesViewModel as ServicesViewModel;
-            //Device.BeginInvokeOnMainThread(() => hostcontext.CollectionView.SelectedItem = null);
         }
         #endregion Methods
     }

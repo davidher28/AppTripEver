@@ -247,7 +247,7 @@ namespace AppTripEver.ViewModels
                 var mesFinService = Int32.Parse(splitListFin2[1]);
                 var diaFinService = Int32.Parse(splitListFin2[2]);
 
-                if ((diaInicio <= diaFinService && diaInicio >= diaInicioService) && (mesInicio <= mesFinService && mesInicio >= mesInicioService))
+                if ((diaInicio >= diaInicioService && diaInicioService <= diaFin) && (mesInicio >= mesInicioService && mesInicioService <= mesFin))
                 {
                     VerificadorFecha = true;
                 }
