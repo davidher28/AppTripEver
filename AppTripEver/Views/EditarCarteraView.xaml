@@ -21,9 +21,10 @@
 
             <Style x:Key="Modal" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
-                <Setter Property="Margin" Value="0,0,0,0"></Setter>
-                <Setter Property="WidthRequest" Value="350"></Setter>
-                <Setter Property="HeightRequest" Value="350"></Setter>
+                <Setter Property="Margin" Value="0,80,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="310"></Setter>
+                <Setter Property="HeightRequest" Value="330"></Setter>
+                <Setter Property="HasShadow" Value="True"></Setter>
                 <Setter Property="Padding" Value="10"></Setter>
                 <Setter Property="BackgroundColor" Value="#E7E6ED"></Setter>
                 <Setter Property="CornerRadius" Value="20"></Setter>
@@ -66,9 +67,9 @@
                     <StackLayout>
                         <ImageButton Source="cerrarB.png" Margin="8,8,0,0" VerticalOptions="Start" Opacity="0.3" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand}"/>
                         <Frame Grid.Column="1" VerticalOptions="Center" CornerRadius="5" BackgroundColor="Transparent" Padding="0" Margin="0,0,0,0">
-                            <Label Text="Recarga cartera" Style="{StaticResource Message}"/>
+                            <Label Text="Recarga tu cartera!" Style="{StaticResource Message}" FontAttributes="Bold"/>
                         </Frame>
-                        <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="0,0,0,0">
+                        <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="2" Padding="0" Margin="5,20,5,0">
                             <Entry
                                 BackgroundColor="White"
                                 TextColor="#677BA6"
@@ -78,7 +79,7 @@
                             </Entry>
                         </Frame>
 
-                        <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="0,0,0,0">
+                        <Frame CornerRadius="5" BackgroundColor="White" Grid.Row="3" Padding="0" Margin="5,0,5,5">
                             <Entry
                                 BackgroundColor="White"
                                 TextColor="#677BA6"
@@ -88,9 +89,10 @@
                             </Entry>
                         </Frame>
 
-                        <Frame BackgroundColor="Transparent" CornerRadius="5" Grid.Row="4" Padding="0" Margin="0,20,0,0">
+                        <Frame BackgroundColor="Transparent" CornerRadius="5" Grid.Row="4" Padding="0" Margin="0,30,0,0">
                             <Button
-                                BackgroundColor="#DBA016"
+                                Opacity="0.9" 
+                                BackgroundColor="#284B94"
                                 Text="Recargar monto"
                                 TextColor="White"
                                 Command="{Binding RecargarCommand}"/>
