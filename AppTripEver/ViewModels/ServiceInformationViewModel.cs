@@ -23,6 +23,8 @@ namespace AppTripEver.ViewModels
         #region Request
         public ElegirRequest<BaseModel> PostBooking { get; set; }
 
+        public ElegirRequest<BaseModel> GetFecha { get; set; }
+
         #endregion Request 
 
         #region Commands
@@ -59,6 +61,14 @@ namespace AppTripEver.ViewModels
         public NavigationService NavigationService { get; set; }
 
         private string labelTipo;
+
+        private string labelHoraI;
+
+        private string labelHoraF;
+
+        private string labelFechaI;
+
+        private string labelFechaF;
 
         #endregion Properties
 
@@ -154,6 +164,47 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public string LabelHoraI
+        {
+            get { return labelHoraI; }
+            set
+            {
+                labelHoraI = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelHoraF
+        {
+            get { return labelHoraF; }
+            set
+            {
+                labelHoraF = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelFechaI
+        {
+            get { return labelFechaI; }
+            set
+            {
+                labelFechaI = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LabelFechaF
+        {
+            get { return labelFechaF; }
+            set
+            {
+                labelFechaF = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         #endregion Getters/Setters
 
         #region Initialize
@@ -175,9 +226,12 @@ namespace AppTripEver.ViewModels
         {
             string urlBoking = Endpoints.URL_SERVIDOR + Endpoints.CREAR_RESERVA;
 
-
             PostBooking = new ElegirRequest<BaseModel>();
             PostBooking.ElegirEstrategia("POST", urlBoking);
+
+            string urlGetFecha = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_FECHA;
+            GetFecha = new ElegirRequest<BaseModel>();
+            GetFecha.ElegirEstrategia("GET", urlGetFecha);
 
         }
 
@@ -203,11 +257,38 @@ namespace AppTripEver.ViewModels
             Service = service;
             if (Service.TipoServicio == 1){
                 LabelTipo = "Noche";
+                LabelHoraI = "Check In:";
+                LabelHoraF = "Check Out:";
+                LabelFechaI = "Disponible Desde:";
+                LabelFechaF = "Disponible Hasta:";
             }
             else
             {
-                LabelTipo = "Persona";
-            }             
+                LabelTipo = "Persona:";
+                LabelHoraI = "Hora Inicio:";
+                LabelHoraF = "Hora Fin:";
+                LabelFechaI = "Inicia:";
+                LabelFechaF = "Finaliza:";
+            }
+            try
+            {
+                ParametersRequest parametros = new ParametersRequest();
+                parametros.Parametros.Add(Service.IdServicio.ToString());
+                APIResponse response = await GetFecha.EjecutarEstrategia(null, parametros);
+                if (response.IsSuccess)
+                {
+                    Horario = JsonConvert.DeserializeObject<HorarioModel>(response.Response);
+                    Service.Fecha = Horario;
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         #endregion Initialize
