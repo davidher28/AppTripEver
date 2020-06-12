@@ -54,21 +54,21 @@
                 <StackLayout Orientation="Vertical">
                     <ScrollView  VerticalOptions="FillAndExpand">
                         <StackLayout>
-                            <AbsoluteLayout HeightRequest="150" BackgroundColor="{Binding Background}">
+                            <StackLayout BackgroundColor="{Binding Background}" HeightRequest="150">
                                 <ImageButton Source="cerrarB.png" Margin="15,15,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand} " Opacity="0.25" BackgroundColor="Transparent"/>
                                 <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Center">
                                     <Label
-                                           Text="ESTADO ACTUAL"
-                                           VerticalOptions="End" 
-                                           FontAttributes="Bold"
-                                           HorizontalOptions="Center"
-                                           TextColor="Black"
-                                            FontSize="18" 
-                                        Opacity="0.8"/>
+                                               Text="ESTADO ACTUAL"
+                                               VerticalOptions="End" 
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center"
+                                               TextColor="Black"
+                                                FontSize="18" 
+                                            Opacity="0.8"/>
                                     <Label HorizontalOptions="Center" TextColor="Black" FontSize="25"
-                                       Text="{Binding Booking.Estado.Estado}" Margin="0,0,0,0" FontAttributes="Bold"/>
+                                           Text="{Binding Booking.Estado.Estado}" Margin="0,0,0,0" FontAttributes="Bold"/>
                                 </FlexLayout>
-                            </AbsoluteLayout>
+                            </StackLayout>
                             <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
                                 <Label
                                            Text="El servicio inicia el:"
