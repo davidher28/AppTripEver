@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -52,6 +53,8 @@ namespace AppTripEver.ViewModels
         private EstadoModel estado;
 
         private MessageModel message;
+
+        private string background;
 
         public NavigationService NavigationService { get; set; }
 
@@ -139,6 +142,16 @@ namespace AppTripEver.ViewModels
             }
         }
 
+        public string Background
+        {
+            get { return background; }
+            set
+            {
+                background = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Getters/Setters
 
         #region Initialize
@@ -198,6 +211,18 @@ namespace AppTripEver.ViewModels
             }
             catch (Exception)
             {
+            }
+            if (Booking.Estado.IdEstado == 1)
+            {
+                Background = "#677BA6";
+            }
+            else if (Booking.Estado.IdEstado == 2)
+            {
+                Background = "#96E3AC";
+            }
+            else if (Booking.Estado.IdEstado == 3)
+            {
+                Background = "#E0897A";
             }
         }
 
