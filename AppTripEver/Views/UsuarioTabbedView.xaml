@@ -20,7 +20,7 @@
     </NavigationPage>
     <ContentPage Title="Información" Icon="info.png" BackgroundColor="White">
         <StackLayout Padding="10, 10">
-            <Label Text="Tips TripEver" FontAttributes="Bold" HorizontalOptions="Start" TextColor="Black" Opacity="0.9" FontSize="25"/>
+            <Label Text="Tips para tener en cuenta" FontAttributes="Bold" HorizontalOptions="Start" TextColor="Black" Opacity="0.9" FontSize="25"/>
             <ScrollView>
                 <StackLayout Padding="10, 10" Orientation="Vertical">
                     <Frame BackgroundColor="White" HasShadow="True">
