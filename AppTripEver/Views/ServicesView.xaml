@@ -116,7 +116,7 @@
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="Black" Text="{Binding Precio, StringFormat='${0}'}"  FontAttributes="Bold" Opacity="0.85"/>
-                                            <Label Text="/Persona" FontAttributes="Italic" TextColor="Black" FontSize="Caption"/>
+                                            <Label Text="/Persona" FontAttributes="Italic" TextColor="Black"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="Gray" Text="{Binding NumMaxPersonas}"  FontAttributes="Italic" />

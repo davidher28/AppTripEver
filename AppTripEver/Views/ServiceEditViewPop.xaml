@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              mc:Ignorable="d"
+             xmlns:behaviors="clr-namespace:AppTripEver.Behaviors;assembly=AppTripEver"         
              x:Class="AppTripEver.Views.ServiceEditViewPop"
              CloseWhenBackgroundIsClicked="True">
     <ContentPage.Resources>
@@ -13,7 +14,6 @@
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
                 <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
-                <Setter Property="Margin" Value="40,0,40,0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
             </Style>
 
@@ -45,16 +45,75 @@
                             </AbsoluteLayout>
                         </StackLayout>
                         <StackLayout Margin="40,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                            <Label HorizontalOptions="StartAndExpand" Style="{StaticResource Encabezado}" Text="{Binding Service.Titulo}"/>
+                            <Frame CornerRadius="5" BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                                <Entry
+                                    BackgroundColor="White"
+                                    TextColor="#1A3161"
+                                    Placeholder="{Binding Service.Titulo}"
+                                    PlaceholderColor="#677BA6"
+                                    WidthRequest="300"
+                                    FontAttributes="Bold"
+                                    Text="{Binding Titulo.Value}">
+                                    <Entry.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                    Command="{Binding ValidateTituloCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
                         </StackLayout>
                         <StackLayout Margin="50,-5,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                            <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Ciudad, StringFormat='{0},'}"/>
-                            <Label Style="{StaticResource Ciudad}" Text="{Binding Service.Pais}"/>
+                        <Frame CornerRadius="5" BackgroundColor="White"  Padding="0" Margin="0,0,0,0">
+                                <Entry
+                                    BackgroundColor="White"
+                                    TextColor="#677BA6"
+                                    WidthRequest="80"
+                                    Keyboard="Text"
+                                    HeightRequest="40"
+                                    Placeholder="{Binding Service.Ciudad}"
+                                    PlaceholderColor="#677BA6"
+                                    Text="{Binding Ciudad.Value}">
+                                    <Entry.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                        Command="{Binding ValidateCiudadCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
+                            <Label Style="{StaticResource Ciudad}" Text="," Margin="0,10,0,0"/>
+                            <Frame CornerRadius="5"  BackgroundColor="White"  Padding="0" Margin="0,0,0,0">
+                                <Entry
+                                    BackgroundColor="White"
+                                    TextColor="#677BA6"
+                                    HeightRequest="40"
+                                    Placeholder="{Binding Service.Pais}"
+                                    WidthRequest="90"
+                                    PlaceholderColor="#677BA6"
+                                    Text="{Binding Pais.Value}">
+                                    <Entry.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                    Command="{Binding ValidatePaisCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
                         </StackLayout>
                         <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
                         <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
                             <Image Source="descripcion.png"  VerticalOptions="Start" HeightRequest="30" WidthRequest="30" Margin="-30,0,20,0"/>
-                            <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Descripcion}"/>
+                            <Frame CornerRadius="5"  BackgroundColor="White"  Padding="0" Margin="0,0,0,0" WidthRequest="300">
+                                <ScrollView>
+                                    <Editor
+                                    BackgroundColor="White"
+                                    TextColor="#677BA6"
+                                    Placeholder="{Binding Service.Descripcion}"
+                                    PlaceholderColor="#677BA6"
+                                    Text="{Binding Descripcion.Value}"
+                                    HeightRequest="250">
+                                        <Editor.Behaviors>
+                                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                        Command="{Binding ValidateDescripcionCommand}"/>
+                                        </Editor.Behaviors>
+                                    </Editor>
+                                </ScrollView>
+                            </Frame>
                         </StackLayout>
                         <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
                         <StackLayout Orientation="Horizontal">
@@ -62,18 +121,84 @@
                                 <Image Source="people.png" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" Margin="-27,0,20,0"/>
                             </StackLayout>
                             <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Vertical" Padding="0,0,0,0">
-                                <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.NumMaxPersonas, StringFormat='Personas: {0}'}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label  Style="{StaticResource Ciudad}" Text="Personas: "/>
+                                    <Frame CornerRadius="5"  BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                                        <Entry
+                                            BackgroundColor="White"
+                                            TextColor="#677BA6"
+                                            Keyboard="Numeric"
+                                            WidthRequest="40"
+                                            MaxLength="3"
+                                            HeightRequest="40"
+                                            Placeholder="{Binding Service.NumMaxPersonas}"
+                                            PlaceholderColor="#677BA6"
+                                            Text="{Binding NumMaxPersonas.Value}">
+                                            <Entry.Behaviors>
+                                                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                Command="{Binding ValidateMaxPersonasCommand}"/>
+                                            </Entry.Behaviors>
+                                        </Entry>
+                                    </Frame>
+                                </StackLayout>
                                 <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Precio, StringFormat='${0}'}" FontAttributes="Bold"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelTipo, StringFormat='/{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="Precio: " FontAttributes="Bold"/>
+                                    <Frame CornerRadius="5"  BackgroundColor="White" Padding="0" Margin="0,0,0,0">
+                                        <Entry
+                                            BackgroundColor="White"
+                                            TextColor="#677BA6"
+                                            Keyboard="Numeric"
+                                            WidthRequest="130"
+                                            MaxLength="13"
+                                            HeightRequest="40"
+                                            Placeholder="{Binding Service.Precio}"
+                                            PlaceholderColor="#677BA6"
+                                            Text="{Binding Precio.Value}">
+                                            <Entry.Behaviors>
+                                                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                Command="{Binding ValidateNombreCommand}"/>
+                                            </Entry.Behaviors>
+                                        </Entry>
+                                    </Frame>
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
+                        <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
+                            <StackLayout Orientation="Horizontal" >
+                                <StackLayout Margin="0,10,0,0" Orientation="Horizontal" Padding="2,2,0,0" >
+                                    <Image Source="clock.png" VerticalOptions="Start" HorizontalOptions="StartAndExpand" 
+                                               HeightRequest="40" WidthRequest="30" Margin="20,0,20,0"/>
+                                </StackLayout>
+                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Vertical" Padding="0,0,0,0">
+                                    <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelFechaI, StringFormat='{0}'}"/>
+                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.FechaInicio, StringFormat='{0}'}" FontAttributes="Bold"/>
+
+                                </StackLayout>
+                                    <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelFechaF, StringFormat='{0}'}"/>
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.FechaFinal, StringFormat='{0}'}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraI, StringFormat='{0}'}"/>
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraInicio, StringFormat='{0}'}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraF, StringFormat='{0}'}"/>
+                                        <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraFinal, StringFormat='{0}'}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Frame HasShadow="True" Margin="20" Padding="10" BackgroundColor="Transparent">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                                <Button Text="Cancelar" Opacity="0.9" BackgroundColor="#D86B19" Margin="0,0,30,0"
+                                Command="{Binding CloseCommand}" TextColor="White"></Button>
+                                <Button Text="Guardar cambios" Opacity="0.9" BackgroundColor="#284B94" Margin="30,0,0,0"
+                                Command="{Binding EditCommand}" TextColor="White"></Button>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
                 </ScrollView>
-                <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  Margin="0" HasShadow="True">
-                    <Button Text="Reservar" Command="{Binding BookingCommand}" WidthRequest="1000" TextColor="White"></Button>
-                </Frame>
             </StackLayout>
         </Frame>
 

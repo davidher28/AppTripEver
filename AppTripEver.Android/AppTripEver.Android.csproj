@@ -218,6 +218,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\book.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\clock.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="Xamarin.GooglePlayServices.Basement\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('Xamarin.GooglePlayServices.Basement.42.1001.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets')" />
 </Project>

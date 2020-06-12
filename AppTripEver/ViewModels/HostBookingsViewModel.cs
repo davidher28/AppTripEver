@@ -217,7 +217,7 @@ namespace AppTripEver.ViewModels
 
         public async Task DisplayUsuario()
         {
-            InfoUserView popUp = new InfoUserView();
+            InfoHostView popUp = new InfoHostView();
             var viewModel = popUp.BindingContext;
             await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
             await PopupNavigation.Instance.PushAsync(popUp);
