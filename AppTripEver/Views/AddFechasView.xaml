@@ -38,7 +38,6 @@
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
                 <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
-                <Setter Property="Margin" Value="40,0,40,0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
             </Style>
 
@@ -79,18 +78,10 @@
                         PlaceholderColor="#677BA6">
                         </Entry>
                     </Frame>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Frame HorizontalOptions="CenterAndExpand" Grid.Column="0" Padding="-20,10,30,10" BackgroundColor="Transparent">
-                            <Button Opacity="0.9" BackgroundColor="#D86B19" Text="Cancelar" Command="{Binding CloseCommand}" TextColor="White"></Button>
-                        </Frame>
-                        <Frame HorizontalOptions="CenterAndExpand" Grid.Column="1" Padding="-100,10,-30,10" BackgroundColor="Transparent">
-                            <Button Opacity="0.9" BackgroundColor="#284B94" Text="Confirmar" Command="{Binding BookingCommand}" TextColor="White"></Button>
-                        </Frame>
-                    </Grid>
+                    <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                        <Button Opacity="0.9" BackgroundColor="#D86B19" Text="Cancelar" Command="{Binding CloseCommand}" Margin="0,0,10,0" TextColor="White"></Button>
+                        <Button Opacity="0.9" BackgroundColor="#284B94" Text="Confirmar" Command="{Binding BookingCommand}" Margin="10,0,0,0" TextColor="White"></Button>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
         </FlexLayout>
