@@ -15,21 +15,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using AppTripEver.Behaviors;
+using Newtonsoft.Json.Linq;
 
 namespace AppTripEver.ViewModels
 {
-    public class CarteraViewModel : BaseViewModel
+    public class EditarCarteraViewModel : BaseViewModel
     {
         #region Request
-        public ElegirRequest<BaseModel> GetUsuarioHost { get; set; }
+        public ElegirRequest<BaseModel> UpdateCartera { get; set; }
+
+        public ValidatableObject<string> NomCuenta { get; set; }
+        public ValidatableObject<Nullable<int>> NuevoMonto { get; set; }
 
         #endregion Request 
 
         #region Commands
         public ICommand RecargarCommand { get; set; }
-        public ICommand CanjearCommand { get; set; }
         public ICommand CloseCommand { get; set; }
-
+        
         #endregion Commands
 
         #region Properties
@@ -82,7 +85,7 @@ namespace AppTripEver.ViewModels
         #endregion Getters/Setters
 
         #region Initialize
-        public CarteraViewModel()
+        public EditarCarteraViewModel()
         {
             Cartera = new CarteraModel();
             Usuario = new UsuarioModel(Cartera);
@@ -90,21 +93,27 @@ namespace AppTripEver.ViewModels
             NavigationService = new NavigationService();
             InitializeRequest();
             InitializeCommands();
+            InitializeFields();
         }
 
         public void InitializeRequest()
         {
-            //string urlUsuarioHost = Endpoints.URL_SERVIDOR + Endpoints.CONSULTAR_USUARIO_HOST;
+            string UrlUpdateCartera = Endpoints.URL_SERVIDOR + Endpoints.ACTUALIZAR_CARTERA;
 
-            //GetUsuarioHost = new ElegirRequest<BaseModel>();
-            //GetUsuarioHost.ElegirEstrategia("GET", urlUsuarioHost);
+            UpdateCartera = new ElegirRequest<BaseModel>();
+            UpdateCartera.ElegirEstrategia("PUT", UrlUpdateCartera);
         }
 
         public void InitializeCommands()
         {
             RecargarCommand = new Command(async () => await Recargar(), () => true);
-            CanjearCommand = new Command(async () => await Canjear(), () => true);
             CloseCommand = new Command(async () => await Close(), () => true);
+        }
+
+        public void InitializeFields()
+        {
+            NomCuenta = new ValidatableObject<string>();
+            NuevoMonto = new ValidatableObject<Nullable<int>>();
         }
 
         public override async Task ConstructorAsync(object parameters)
@@ -121,15 +130,24 @@ namespace AppTripEver.ViewModels
 
         public async Task Recargar()
         {
-            EditarCarteraView popUp = new EditarCarteraView();
-            var viewModel = popUp.BindingContext;
-            await ((BaseViewModel)viewModel).ConstructorAsync(Usuario);
-            await PopupNavigation.Instance.PushAsync(popUp);
-        }
-
-        public async Task Canjear()
-        {
-
+            int nuevo = Usuario.Cartera.MontoTotal + (int)NuevoMonto.Value;
+            JObject vals2 =
+                new JObject(
+                new JProperty("Monto", nuevo),
+                new JProperty("IdUsuario", Usuario.IdUsuario)
+                );
+            string Json2 = vals2.ToString();
+            ParametersRequest parametros = new ParametersRequest();
+            parametros.Parametros.Add(Usuario.Cartera.IdCartera.ToString());
+            APIResponse response1 = await UpdateCartera.EjecutarEstrategia(Cartera, parametros, Json2);
+            if (response1.IsSuccess)
+            {
+                var page = Application.Current.MainPage.Navigation.NavigationStack[1] as NavigationPage;
+                var context = page.CurrentPage.BindingContext as UsuarioTabbedViewModel;
+                var hostcontext = context.ServicesViewModel as ServicesViewModel;
+                hostcontext.Usuario.Cartera.MontoTotal=nuevo;
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
 
         public async Task Close()
@@ -138,5 +156,6 @@ namespace AppTripEver.ViewModels
         }
 
         #endregion Methods
+
     }
 }
