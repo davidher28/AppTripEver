@@ -13,13 +13,27 @@
             <Style TargetType="Button">
                 <Setter Property="HeightRequest" Value="50"></Setter>
                 <Setter Property="BackgroundColor" Value="#DBA016"></Setter>
-                <Setter Property="Margin" Value="40,0,40,0"></Setter>
                 <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style>
+
+            <Style x:Key="Container" TargetType="FlexLayout" >
+                <Setter Property="AlignItems" Value="Center"></Setter>
+                <Setter Property="JustifyContent" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="Modal" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#EDEDED"></Setter>
+                <Setter Property="Margin" Value="0,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="350"></Setter>
+                <Setter Property="HeightRequest" Value="600"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="BackgroundColor" Value="#E7E6ED"></Setter>
+                <Setter Property="CornerRadius" Value="20"></Setter>
             </Style>
             
             <Style x:Key="Encabezado" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
-                <Setter Property="FontSize" Value="Title"></Setter>
+                <Setter Property="FontSize" Value="23"></Setter>
                 <Setter Property="TextColor" Value="#1A3161"></Setter>
             </Style>
 
@@ -34,75 +48,96 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Frame Padding="0,0,0,0" >
-            <StackLayout Orientation="Vertical">
-                <ScrollView  VerticalOptions="FillAndExpand">
-                    <StackLayout>
-                        <StackLayout >
-                            <AbsoluteLayout >
-                                <Image HeightRequest="250" Source="Travel.jpg" Aspect="AspectFill" Margin="0,0,0,0"/>
-                                <ImageButton Source="cerrar.png" Margin="8,8,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand}"/>
-                            </AbsoluteLayout>
-                        </StackLayout>
-                        <StackLayout Margin="40,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                            <Label HorizontalOptions="StartAndExpand" Style="{StaticResource Encabezado}" Text="{Binding Booking.Titulo}"/>
-                        </StackLayout>
-                        <StackLayout Margin="50,-5,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                            <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Ciudad, StringFormat='{0},'}"/>
-                            <Label Style="{StaticResource Ciudad}" Text="{Binding Service.Pais}"/>
-                        </StackLayout>
-                        <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
-                        <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                            <Image Source="descripcion.png"  VerticalOptions="Start" HeightRequest="30" WidthRequest="30" Margin="-30,0,20,0"/>
-                            <Label HorizontalOptions="End" Style="{StaticResource Ciudad}" Text="{Binding Service.Descripcion}" HorizontalTextAlignment="Start"/>
-                        </StackLayout>
-                        <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                                <Image Source="people.png" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" Margin="-27,0,20,0"/>
+        <FlexLayout Style="{StaticResource Container}">
+            <Frame Style="{StaticResource Modal}">
+                <StackLayout Orientation="Vertical">
+                    <ScrollView  VerticalOptions="FillAndExpand">
+                        <StackLayout>
+                            <StackLayout >
+                                <ImageButton Source="cerrarB.png" Margin="8,8,0,0" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="33" WidthRequest="33" Command="{Binding CloseCommand} " Opacity="0.25"/>
                             </StackLayout>
-                            <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Vertical" Padding="0,0,0,0">
-                                <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.NumMaxPersonas, StringFormat='Personas: {0}'}"/>
-                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Precio, StringFormat='${0}'}" FontAttributes="Bold"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelTipo, StringFormat='/{0}'}"/>
-                                </StackLayout>
+                            <StackLayout Margin="30,0,0,0" Orientation="Vertical" Padding="2,2,0,0" HorizontalOptions="CenterAndExpand">
+                                <Label HorizontalOptions="CenterAndExpand"  Style="{StaticResource Encabezado}" Text="Tienes una solicitud de reserva en:"/>
+                                <Label Style="{StaticResource Encabezado}" Text="{Binding Booking.Titulo}" Opacity="0.75"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="ESTADO ACTUAL:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" />
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}"
+                                       Text="{Binding Booking.Estado.Estado}" Margin="0,0,10,0" FontAttributes="Bold"/>
+                            </StackLayout>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="El servicio inicia el:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" Opacity="0.7"/>
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}" Text="{Binding Booking.FechaInicio}" Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="El servicio finaliza el:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" Opacity="0.7"/>
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}" Text="{Binding Booking.FechaFin}" Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="Sera tomada por:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" Opacity="0.7"/>
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}" Text="{Binding Booking.NumPersonas, StringFormat='{0} Personas'}" Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="El servicio durará :"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" Opacity="0.7"/>
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}" Text="{Binding Booking.NumNoches, StringFormat='{0} Días'}" Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="10,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
+                                <Label
+                                           Text="Valor total cancelado :"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="Black"
+                                            FontSize="18" Opacity="0.7"/>
+                                <Label HorizontalOptions="End" TextColor="Black" Style="{StaticResource Ciudad}" Text="{Binding Booking.Valor, StringFormat='${0}'}" Margin="0,0,10,0"/>
                             </StackLayout>
                         </StackLayout>
-                        <BoxView BackgroundColor="LightGray" HeightRequest="0.5" Margin="10,10,10,0"/>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout Margin="50,10,0,0" Orientation="Horizontal" Padding="2,2,0,0">
-                                <Image Source="people.png" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" Margin="-27,0,20,0"/>
-                            </StackLayout>
-                            <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Vertical" Padding="0,0,0,0">
-                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="Estado Reserva: "/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Booking.Estado.Estado, StringFormat='{0}'}" FontAttributes="Bold"/>   
-                                </StackLayout>
-                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelFechaF, StringFormat='{0}'}"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.FechaFinal, StringFormat='{0}'}" FontAttributes="Bold"/>                                    
-                                </StackLayout>
-                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraI, StringFormat='{0}'}"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraInicio, StringFormat='{0}'}" FontAttributes="Bold"/>   
-                                </StackLayout>
-                                <StackLayout Margin="0,0,0,0" VerticalOptions="Start" Orientation="Horizontal" Padding="0,0,0,0">
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding LabelHoraF, StringFormat='{0}'}"/>
-                                    <Label  Style="{StaticResource Ciudad}" Text="{Binding Service.Fecha.HoraFinal, StringFormat='{0}'}" FontAttributes="Bold"/>                                    
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
+                    </ScrollView>
+                    <Label 
+                     Text="•Debes tener en cuenta que la reserva ya esta paga, si la cancelas debes comunicarte con la persona que solicito el servicio."
+                     FontAttributes="Italic" 
+                     FontSize="15" Margin="5,0,5,0"/>
+                    <Label 
+                     Text="•Para Quejas Y Reclamos comunicate al 01 800 341819."
+                     FontAttributes="Italic" 
+                     FontSize="15" Margin="5,0,5,0"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Padding="10">
+                        <Button Text="Rechazar" Opacity="0.9" BackgroundColor="#D86B19" IsEnabled="{Binding IsCancelEnable}" Command="{Binding CancelCommand}" WidthRequest="150" TextColor="White" Margin="10,0,0,0"></Button>
+                        <Button Opacity="0.9" BackgroundColor="#284B94" Text="Aceptar" IsEnabled="{Binding IsAcceptEnable}" Command="{Binding AcceptCommand}"  WidthRequest="150" TextColor="White" Margin="0,0,10,0"></Button>
                     </StackLayout>
-                </ScrollView>
-                <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  Margin="0" HasShadow="True">
-                    <Button Text="Aceptar" IsEnabled="{Binding IsAcceptEnable}" Command="{Binding AcceptCommand}" WidthRequest="1000" TextColor="White"></Button>
-                </Frame>
-                <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  Margin="0" HasShadow="True">
-                    <Button Text="Cancelar" IsEnabled="{Binding IsCancelEnable}" Command="{Binding CancelCommand}" WidthRequest="1000" TextColor="White"></Button>
-                </Frame>
-        </StackLayout>
-        </Frame>
-
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
     </ContentPage.Content>
 </pages:PopupPage>
