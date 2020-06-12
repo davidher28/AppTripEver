@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             x:Class="AppTripEver.Views.HostBookingsView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:AppTripEver.Controls;assembly=AppTripEver"
+             mc:Ignorable="d"
+             BackgroundColor="WhiteSmoke"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+                 IconImageSource="billetera.png"
+                 Order="Primary"
+                 Text="Cerrar Sesión"
+                 Priority="0"
+                 Command="{Binding CarteraCommand}"/>
+        <ToolbarItem 
+                 IconImageSource="usuario.png"
+                 Order="Primary"
+                 Priority="0"
+                 />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Servicios" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="HasShadow" Value="True"></Setter>
+                <Setter Property="Padding" Value="0.2"></Setter>
+                <Setter Property="BorderColor" Value="LightGray"></Setter>
+            </Style>
+            <Style x:Key="Card" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="TextColor" Value="#DBA016"></Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout >
+                <StackLayout Padding="20,5,5,10" Margin="0,8,0,0" >
+                    <Label Text="Proximas Reservas" Style="{StaticResource Encabezado}"/>
+                </StackLayout>
+            <ScrollView>
+                <ListView  ItemsSource="{Binding Reservas}" HasUnevenRows="true" SeparatorVisibility="None" HeightRequest="{Binding ListReservas}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HeightRequest="155" CornerRadius="5" HasShadow="True" Margin="15,0,15,10" BackgroundColor="#364057"
+                                       Opacity="0.9">
+                                    <StackLayout>
+                                       <Label 
+                                       Text="Información de tu reserva"
+                                       FontAttributes="Bold" 
+                                       FontSize="18"
+                                       TextColor="WhiteSmoke"/>
+                                        <BoxView BackgroundColor="Gray" HeightRequest="0.1" Margin="0,5,0,8"/>
+                                        <Label 
+                                           Text="{Binding Titulo}"
+                                           FontAttributes="Bold" 
+                                           Margin="0,0,0,0"
+                                           TextColor="White" FontSize="16" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                           Text="Tu servicio inicia el:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
+
+                                            <Label
+                                           Text="{Binding FechaInicio}"
+                                           VerticalOptions="End"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="EndAndExpand"
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                           Text="Tu servicio termina el:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
+
+                                            <Label
+                                           Text="{Binding FechaFin}"
+                                           VerticalOptions="End"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="EndAndExpand"
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                           Text="Total pagado:"
+                                           VerticalOptions="End" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="White" FontSize="15" Opacity="0.95"/>
+
+                                            <Label
+                                           Text="{Binding Valor}"
+                                           VerticalOptions="End"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="EndAndExpand"
+                                           TextColor="White" FontSize="13" Opacity="0.95"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding Imagen}">
+            <Label Text="Aún no tienes reservas" TextColor="Black" FontSize="22" FontAttributes="Bold"
+                   IsVisible="{Binding Imagen}" HorizontalOptions="CenterAndExpand" Opacity="0.7"/>
+            <Image Source="book.png" HeightRequest="140"
+                   IsVisible="{Binding Imagen}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
